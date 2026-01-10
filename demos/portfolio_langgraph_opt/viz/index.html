@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio LangGraph - Pareto Frontier Visualization</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Viz.js for Graphviz rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/@viz-js/viz@3.4.0/lib/viz-standalone.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Portfolio LangGraph Topology Search</h1>
+            <p class="subtitle">Pareto Frontier: Coverage vs. Token Cost</p>
+        </header>
+        
+        <div class="main-content">
+            <!-- Left Column: Scatter Plot -->
+            <div class="left-panel">
+                <!-- Cost Model Controls -->
+                <div class="cost-controls">
+                    <div class="control-group">
+                        <label for="xAxisMode">X-axis:</label>
+                        <select id="xAxisMode">
+                            <option value="tokens">Tokens</option>
+                            <option value="cost">Cost per Case</option>
+                        </select>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="tokenPrice">Token Price (USD per 1k):</label>
+                        <input type="number" id="tokenPrice" value="0.01" step="0.001" min="0">
+                    </div>
+                    
+                    <div class="derived-costs">
+                        <div class="cost-display">
+                            <span class="cost-label">Selected Cost/Case:</span>
+                            <span class="cost-value" id="costPerCase">--</span>
+                        </div>
+                        <div class="cost-display">
+                            <span class="cost-label">Cost/1k Cases:</span>
+                            <span class="cost-value" id="costPer1kCases">--</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="paretoChart"></canvas>
+                </div>
+                
+                <div class="legend">
+                    <h3>Legend</h3>
+                    <div class="legend-item">
+                        <span class="legend-dot" style="background: rgba(150, 150, 150, 0.6);"></span>
+                        <span>All Candidates</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot" style="background: rgba(54, 162, 235, 0.8);"></span>
+                        <span>Pareto Frontier</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot" style="background: rgba(75, 192, 192, 0.8);"></span>
+                        <span>Baseline</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot" style="background: rgba(255, 99, 132, 0.8);"></span>
+                        <span>Best (by score)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot selected"></span>
+                        <span>Selected</span>
+                    </div>
+                </div>
+                
+                <div class="instructions">
+                    <p><strong>Instructions:</strong> Click any point on the chart or use the dropdown to view its topology.</p>
+                </div>
+            </div>
+            
+            <!-- Right Column: Topology Viewer -->
+            <div class="right-panel">
+                <div class="topology-header">
+                    <h2>Topology Diagram</h2>
+                    <div id="dotSourceBadge"></div>
+                    <div class="candidate-selector">
+                        <label for="candidateSelect">Select Candidate:</label>
+                        <select id="candidateSelect">
+                            <option value="">-- Select a candidate --</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="metrics-panel" id="metricsPanel">
+                    <h3 id="candidateName">No candidate selected</h3>
+                    <div class="metrics-grid">
+                        <div class="metric">
+                            <span class="metric-label">Coverage:</span>
+                            <span class="metric-value" id="metricCoverage">--</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Avg Tokens:</span>
+                            <span class="metric-value" id="metricTokens">--</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Avg Steps:</span>
+                            <span class="metric-value" id="metricSteps">--</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">HITL Rate:</span>
+                            <span class="metric-value" id="metricHitl">--</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Score:</span>
+                            <span class="metric-value" id="metricScore">--</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Violation Rate:</span>
+                            <span class="metric-value" id="metricViolation">--</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="topology-container" id="topologyContainer">
+                    <div class="loading-message">Select a candidate to view topology</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>

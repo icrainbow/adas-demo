@@ -1,0 +1,73 @@
+# Pareto Frontier Visualization (Cost-based)
+
+**This file describes the plot that would be generated with matplotlib.**
+
+## Plot Description
+
+**Title:** Pareto Frontier: Coverage vs. Cost
+
+**X-axis:** Cost per Case (USD @ $0.010/1k tokens)  
+**Y-axis:** Average Coverage (0.0 to 1.0)
+
+**Token Price Model:** $0.01 per 1000 tokens
+
+## Elements
+
+1. **All Candidates** (light gray scatter points, size=50)
+   - Shows all 16 evaluated candidates
+   - Distribution across cost/coverage space
+
+2. **Pareto Frontier** (blue scatter points, size=100)
+   - Highlighted non-dominated candidates
+   - Connected with blue dashed line
+   - Same topology as token-based plot (scaled by cost model)
+
+3. **Top 3 Pareto Points** (annotated with candidate names)
+   - Labels positioned with 10pt offset
+   - Shows configuration IDs
+
+4. **Baseline** (green star, size=150)
+   - Configuration: R0-D0-B0-H0-SA-M4-AD0-APS-CO1
+   - Position: ($0.0027 per case, 0.365 coverage)
+   - Most cost-efficient option
+
+5. **Best (by score)** (red star, size=150)
+   - Configuration: R1-D1-B1-H0-SB-M4-AD0-APS-CO0
+   - Position: ($0.0078 per case, 0.417 coverage)
+   - Highest-scoring configuration
+
+## Cost Analysis
+
+**Baseline Cost:** $0.0027 per case (273 tokens)
+**Best Cost:** $0.0078 per case (782 tokens)
+**Cost Increase:** 186% for 5.2% coverage improvement
+
+## Key Insights
+
+The cost-based visualization reveals:
+- Baseline is extremely cost-effective at under $0.003 per case
+- Best configuration costs ~3x more but provides modest coverage gains
+- At scale (1M cases/month), this translates to:
+  - Baseline: $2,700/month
+  - Best: $7,800/month
+  - Difference: $5,100/month premium for better quality
+
+## Decision Framework
+
+**Choose Baseline if:**
+- Cost optimization is primary concern
+- Coverage of 36.5% is acceptable
+- Operating at very large scale
+
+**Choose Best if:**
+- Quality is paramount
+- Budget allows for 3x token cost
+- 41.7% coverage is required threshold
+
+## To Generate This Plot
+
+Install matplotlib and run:
+```bash
+pip install matplotlib
+python demos/portfolio_langgraph_opt/scripts/make_pareto_viz.py --token-price 0.01
+```

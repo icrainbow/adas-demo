@@ -1,0 +1,24 @@
+id: synth_style_A
+version: 1.0.0
+stage: synthesis
+node_type: style
+enabled_by_default: true
+description: "Terse synthesis style - concise explanations focused on key points"
+params:
+  style_name: "A"
+  verbosity: "terse"
+  max_explanation_length: 200
+constraints:
+  requires: []
+  requires_any: []
+  mutex_with: ["synth_style_B"]
+  only_with: []
+  at_most_one_group: "synth_style"
+ordering:
+  priority: 50
+  depends_on: []
+  before: []
+cost_hint:
+  tokens_per_case: 100
+  relative_latency: 1.0
+  complexity: "low"

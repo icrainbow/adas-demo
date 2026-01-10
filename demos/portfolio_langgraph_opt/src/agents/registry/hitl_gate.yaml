@@ -1,0 +1,23 @@
+id: hitl_gate
+version: 1.0.0
+stage: synthesis
+node_type: node
+enabled_by_default: false
+description: "Human-in-the-loop gate for escalation decisions"
+params:
+  escalation_threshold: 0.7
+  auto_escalate_on_violation: true
+constraints:
+  requires: []
+  requires_any: []
+  mutex_with: ["carryover_full"]
+  only_with: []
+  at_most_one_group: ""
+ordering:
+  priority: 10
+  depends_on: []
+  before: []
+cost_hint:
+  tokens_per_case: 50
+  relative_latency: 1.05
+  complexity: "low"

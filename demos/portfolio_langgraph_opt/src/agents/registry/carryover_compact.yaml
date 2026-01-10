@@ -1,0 +1,25 @@
+id: carryover_compact
+version: 1.0.0
+stage: strategy
+node_type: strategy
+enabled_by_default: true
+description: "Compact context carryover - essential information only"
+params:
+  mode: "compact"
+  carryover_fields:
+    - signals
+    - decision
+constraints:
+  requires: []
+  requires_any: []
+  mutex_with: ["carryover_none", "carryover_full"]
+  only_with: []
+  at_most_one_group: "carryover"
+ordering:
+  priority: 200
+  depends_on: []
+  before: []
+cost_hint:
+  tokens_per_case: 50
+  relative_latency: 1.0
+  complexity: "low"

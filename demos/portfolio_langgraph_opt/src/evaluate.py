@@ -193,7 +193,7 @@ def _select_samples_by_coverage(results: list[dict], k_low: int = 2, k_high: int
     return out
 
 
-def evaluate_candidate(candidate: dict, cases: list[dict], policy_text: str) -> dict:
+def evaluate_candidate(candidate: dict, cases: list[dict], policy_text: str, export_descriptor: bool = False) -> dict:
     """
     Evaluate a candidate configuration on all cases.
     
@@ -201,9 +201,11 @@ def evaluate_candidate(candidate: dict, cases: list[dict], policy_text: str) -> 
         candidate: Configuration dictionary
         cases: List of case dictionaries
         policy_text: Policy guidance text
+        export_descriptor: If True, include wiring descriptor in result. Default False.
         
     Returns:
-        Dictionary with score, metrics, and sample cases
+        Dictionary with score, metrics, and sample cases.
+        If export_descriptor is True, includes wiring descriptor under result["wiring"]
         
     Raises:
         ValueError: If evaluation fails or data is invalid
@@ -211,9 +213,14 @@ def evaluate_candidate(candidate: dict, cases: list[dict], policy_text: str) -> 
     # Import here to avoid circular dependencies
     try:
         from demos.portfolio_langgraph_opt.src.graph_builder import build_runner
-        from demos.portfolio_langgraph_opt.src.search_space import validate_candidate, candidate_to_name
+        from demos.portfolio_langgraph_opt.src.search_space import validate_candidate, candidate_to_name, candidate_to_selected_agents
     except ImportError as e:
         raise ValueError(f"Failed to import required modules: {e}")
+    
+    # Ensure candidate has selected_agents key (for backward compatibility and future viz)
+    if "selected_agents" not in candidate:
+        candidate = candidate.copy()  # Don't mutate input
+        candidate["selected_agents"] = candidate_to_selected_agents(candidate)
     
     # Validate candidate
     try:
@@ -229,7 +236,11 @@ def evaluate_candidate(candidate: dict, cases: list[dict], policy_text: str) -> 
     
     # Build runner once for this candidate
     try:
-        runner = build_runner(candidate, policy_text)
+        if export_descriptor:
+            runner, descriptor = build_runner(candidate, policy_text, export_descriptor=True)
+        else:
+            runner = build_runner(candidate, policy_text)
+            descriptor = None
     except Exception as e:
         raise ValueError(f"Failed to build runner: {e}")
     
@@ -252,6 +263,12 @@ def evaluate_candidate(candidate: dict, cases: list[dict], policy_text: str) -> 
             path = final_state["path"]
             signals = final_state["signals"]
             
+            # Extract token usage (may not be present in old runs)
+            token_usage = final_state.get("token_usage", {})
+            prompt_tokens = token_usage.get("prompt_tokens", 0)
+            completion_tokens = token_usage.get("completion_tokens", 0)
+            total_tokens = token_usage.get("total_tokens", 0)
+            
             # Compute metrics
             rubric = case["gold_rubric"]
             cover = coverage_rate(explanation, rubric["must_cover"])
@@ -272,7 +289,10 @@ def evaluate_candidate(candidate: dict, cases: list[dict], policy_text: str) -> 
                 "violation": viol,
                 "hitl": hitl,
                 "steps": steps,
-                "adaptive_marker": adaptive_marker
+                "adaptive_marker": adaptive_marker,
+                "prompt_tokens": prompt_tokens,
+                "completion_tokens": completion_tokens,
+                "total_tokens": total_tokens
             })
         
         except Exception as e:
@@ -286,8 +306,15 @@ def evaluate_candidate(candidate: dict, cases: list[dict], policy_text: str) -> 
     avg_steps = sum(r["steps"] for r in results) / n
     adaptive_marker_rate = sum(1 for r in results if r.get("adaptive_marker")) / n
     
-    # Compute score (unchanged)
-    score = 100 * avg_cover - 200 * violation_rate - 10 * hitl_rate - 1 * avg_steps
+    # Token metrics
+    avg_prompt_tokens = sum(r.get("prompt_tokens", 0) for r in results) / n
+    avg_completion_tokens = sum(r.get("completion_tokens", 0) for r in results) / n
+    avg_total_tokens = sum(r.get("total_tokens", 0) for r in results) / n
+    
+    # Compute score with token penalty
+    # TOKEN_LAMBDA can be controlled via environment variable
+    token_lambda = float(os.getenv("PORTFOLIO_TOKEN_LAMBDA", "0.01"))
+    score = 100 * avg_cover - 200 * violation_rate - 10 * hitl_rate - 1 * avg_steps - token_lambda * avg_total_tokens
     
     # Select sample cases with improved sampling strategy
     sample_low = int(os.getenv("PORTFOLIO_SAMPLE_LOW", "2"))
@@ -310,7 +337,8 @@ def evaluate_candidate(candidate: dict, cases: list[dict], policy_text: str) -> 
             "rubric_must_cover": r["rubric_must_cover"],
             "coverage": r["coverage"],
             "steps": r["steps"],
-            "adaptive_marker": r["adaptive_marker"]
+            "adaptive_marker": r["adaptive_marker"],
+            "total_tokens": r.get("total_tokens", 0)
         })
     
     # Build result dictionary
@@ -324,6 +352,9 @@ def evaluate_candidate(candidate: dict, cases: list[dict], policy_text: str) -> 
             "hitl_rate": hitl_rate,
             "avg_steps": avg_steps,
             "adaptive_marker_rate": adaptive_marker_rate,
+            "avg_prompt_tokens": avg_prompt_tokens,
+            "avg_completion_tokens": avg_completion_tokens,
+            "avg_total_tokens": avg_total_tokens,
             "num_cases": n
         },
         "samples": samples
@@ -343,8 +374,15 @@ def evaluate_candidate(candidate: dict, cases: list[dict], policy_text: str) -> 
                 "violation": r["violation"],
                 "hitl": r["hitl"],
                 "steps": r["steps"],
-                "adaptive_marker": r["adaptive_marker"]
+                "adaptive_marker": r["adaptive_marker"],
+                "prompt_tokens": r.get("prompt_tokens", 0),
+                "completion_tokens": r.get("completion_tokens", 0),
+                "total_tokens": r.get("total_tokens", 0)
             })
         result["all_results"] = all_results
+    
+    # Optional: include wiring descriptor if requested
+    if export_descriptor and descriptor is not None:
+        result["wiring"] = descriptor
     
     return result

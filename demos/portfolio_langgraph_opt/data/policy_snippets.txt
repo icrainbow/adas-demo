@@ -1,0 +1,12 @@
+Avoid recommending illiquid assets when client has high liquidity needs or short time horizon.
+Do not recommend high-volatility products to clients with stated low risk appetite.
+Flag portfolios where single position exceeds 25% or single sector exceeds 40% of total holdings.
+Consider client age and time to retirement when evaluating exposure to high-volatility assets.
+Complex or leveraged products require documented evidence of client experience and understanding.
+Leverage products must include clear disclosure of downside amplification and liquidation risks.
+Clients over 65 with aggressive growth requests require time horizon and recovery capacity review.
+Any suitability concern must be explained in plain language the client can understand.
+Concentration risk increases when adding to existing large positions; assess diversification impact.
+Escalate to human review when client profile conflicts with requested action on multiple dimensions.
+Match portfolio liquidity profile to client stated liquidity needs within 12-month planning horizon.
+Inexperienced clients requesting complex derivatives or structured products require additional due diligence.

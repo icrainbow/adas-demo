@@ -1,0 +1,191 @@
+{
+  "by_name": {
+    "R1-D1-B1-H0-SB-M4-AD0-APS-CO0": {
+      "use_retriever": true,
+      "use_risk_decompose": true,
+      "use_behavior_check": true,
+      "use_hitl_gate": false,
+      "synth_style": "B",
+      "max_steps": 4,
+      "adaptive": false,
+      "adaptive_policy": "strict",
+      "carryover": "none"
+    },
+    "R1-D1-B1-H0-SA-M4-AD0-APS-CO0": {
+      "use_retriever": true,
+      "use_risk_decompose": true,
+      "use_behavior_check": true,
+      "use_hitl_gate": false,
+      "synth_style": "A",
+      "max_steps": 4,
+      "adaptive": false,
+      "adaptive_policy": "strict",
+      "carryover": "none"
+    },
+    "R1-D1-B1-H0-SB-M4-AD1-APS-CO0": {
+      "use_retriever": true,
+      "use_risk_decompose": true,
+      "use_behavior_check": true,
+      "use_hitl_gate": false,
+      "synth_style": "B",
+      "max_steps": 4,
+      "adaptive": true,
+      "adaptive_policy": "strict",
+      "carryover": "none"
+    },
+    "R1-D1-B1-H0-SA-M4-AD1-APS-CO0": {
+      "use_retriever": true,
+      "use_risk_decompose": true,
+      "use_behavior_check": true,
+      "use_hitl_gate": false,
+      "synth_style": "A",
+      "max_steps": 4,
+      "adaptive": true,
+      "adaptive_policy": "strict",
+      "carryover": "none"
+    },
+    "R1-D1-B1-H0-SB-M4-AD0-APS-CO1": {
+      "use_retriever": true,
+      "use_risk_decompose": true,
+      "use_behavior_check": true,
+      "use_hitl_gate": false,
+      "synth_style": "B",
+      "max_steps": 4,
+      "adaptive": false,
+      "adaptive_policy": "strict",
+      "carryover": "compact"
+    },
+    "R1-D1-B1-H0-SA-M4-AD0-APS-CO1": {
+      "use_retriever": true,
+      "use_risk_decompose": true,
+      "use_behavior_check": true,
+      "use_hitl_gate": false,
+      "synth_style": "A",
+      "max_steps": 4,
+      "adaptive": false,
+      "adaptive_policy": "strict",
+      "carryover": "compact"
+    },
+    "R1-D1-B1-H0-SB-M4-AD1-APS-CO1": {
+      "use_retriever": true,
+      "use_risk_decompose": true,
+      "use_behavior_check": true,
+      "use_hitl_gate": false,
+      "synth_style": "B",
+      "max_steps": 4,
+      "adaptive": true,
+      "adaptive_policy": "strict",
+      "carryover": "compact"
+    },
+    "R1-D1-B1-H0-SA-M4-AD1-APS-CO1": {
+      "use_retriever": true,
+      "use_risk_decompose": true,
+      "use_behavior_check": true,
+      "use_hitl_gate": false,
+      "synth_style": "A",
+      "max_steps": 4,
+      "adaptive": true,
+      "adaptive_policy": "strict",
+      "carryover": "compact"
+    },
+    "R1-D1-B1-H1-SB-M4-AD0-APS-CO0": {
+      "use_retriever": true,
+      "use_risk_decompose": true,
+      "use_behavior_check": true,
+      "use_hitl_gate": true,
+      "synth_style": "B",
+      "max_steps": 4,
+      "adaptive": false,
+      "adaptive_policy": "strict",
+      "carryover": "none"
+    },
+    "R1-D1-B1-H1-SA-M4-AD0-APS-CO0": {
+      "use_retriever": true,
+      "use_risk_decompose": true,
+      "use_behavior_check": true,
+      "use_hitl_gate": true,
+      "synth_style": "A",
+      "max_steps": 4,
+      "adaptive": false,
+      "adaptive_policy": "strict",
+      "carryover": "none"
+    },
+    "R1-D1-B1-H1-SB-M4-AD1-APS-CO0": {
+      "use_retriever": true,
+      "use_risk_decompose": true,
+      "use_behavior_check": true,
+      "use_hitl_gate": true,
+      "synth_style": "B",
+      "max_steps": 4,
+      "adaptive": true,
+      "adaptive_policy": "strict",
+      "carryover": "none"
+    },
+    "R1-D1-B1-H1-SA-M4-AD1-APS-CO0": {
+      "use_retriever": true,
+      "use_risk_decompose": true,
+      "use_behavior_check": true,
+      "use_hitl_gate": true,
+      "synth_style": "A",
+      "max_steps": 4,
+      "adaptive": true,
+      "adaptive_policy": "strict",
+      "carryover": "none"
+    },
+    "R1-D1-B1-H1-SB-M4-AD0-APS-CO1": {
+      "use_retriever": true,
+      "use_risk_decompose": true,
+      "use_behavior_check": true,
+      "use_hitl_gate": true,
+      "synth_style": "B",
+      "max_steps": 4,
+      "adaptive": false,
+      "adaptive_policy": "strict",
+      "carryover": "compact"
+    },
+    "R1-D1-B1-H1-SA-M4-AD0-APS-CO1": {
+      "use_retriever": true,
+      "use_risk_decompose": true,
+      "use_behavior_check": true,
+      "use_hitl_gate": true,
+      "synth_style": "A",
+      "max_steps": 4,
+      "adaptive": false,
+      "adaptive_policy": "strict",
+      "carryover": "compact"
+    },
+    "R1-D1-B1-H1-SB-M4-AD1-APS-CO1": {
+      "use_retriever": true,
+      "use_risk_decompose": true,
+      "use_behavior_check": true,
+      "use_hitl_gate": true,
+      "synth_style": "B",
+      "max_steps": 4,
+      "adaptive": true,
+      "adaptive_policy": "strict",
+      "carryover": "compact"
+    },
+    "R1-D1-B1-H1-SA-M4-AD1-APS-CO1": {
+      "use_retriever": true,
+      "use_risk_decompose": true,
+      "use_behavior_check": true,
+      "use_hitl_gate": true,
+      "synth_style": "A",
+      "max_steps": 4,
+      "adaptive": true,
+      "adaptive_policy": "strict",
+      "carryover": "compact"
+    },
+    "R0-D0-B0-H0-SA-M4-AD0-APS-CO1": {
+      "use_retriever": false,
+      "use_risk_decompose": false,
+      "use_behavior_check": false,
+      "use_hitl_gate": false,
+      "synth_style": "A",
+      "max_steps": 4,
+      "adaptive": false,
+      "adaptive_policy": "strict",
+      "carryover": "compact"
+    }
+  }
+}

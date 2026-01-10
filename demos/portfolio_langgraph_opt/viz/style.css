@@ -1,0 +1,357 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+header h1 {
+    color: #667eea;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 1.2em;
+}
+
+/* Main Content Layout */
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Left Panel - Chart */
+.left-panel {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Cost Controls */
+.cost-controls {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid #667eea;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.control-group label {
+    font-weight: 600;
+    color: #555;
+    white-space: nowrap;
+    min-width: 120px;
+}
+
+.control-group select,
+.control-group input[type="number"] {
+    flex: 1;
+    padding: 6px 10px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.95em;
+    background: white;
+    transition: border-color 0.3s;
+}
+
+.control-group select:hover,
+.control-group input[type="number"]:hover {
+    border-color: #667eea;
+}
+
+.control-group select:focus,
+.control-group input[type="number"]:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.derived-costs {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #dee2e6;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.cost-display {
+    display: flex;
+    flex-direction: column;
+}
+
+.cost-label {
+    font-size: 0.85em;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.cost-value {
+    font-size: 1.15em;
+    font-weight: 600;
+    color: #667eea;
+}
+
+.chart-container {
+    position: relative;
+    height: 500px;
+    margin-bottom: 20px;
+}
+
+.legend {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.legend h3 {
+    font-size: 1em;
+    margin-bottom: 10px;
+    color: #667eea;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.legend-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.legend-dot.selected {
+    background: rgba(255, 206, 86, 0.8);
+    border: 3px solid #ff9800;
+}
+
+.instructions {
+    background: #e3f2fd;
+    padding: 12px;
+    border-radius: 6px;
+    border-left: 4px solid #2196f3;
+}
+
+.instructions p {
+    font-size: 0.95em;
+    color: #1565c0;
+}
+
+/* Right Panel - Topology */
+.right-panel {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.topology-header {
+    margin-bottom: 20px;
+}
+
+.topology-header h2 {
+    color: #667eea;
+    margin-bottom: 15px;
+}
+
+.candidate-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.candidate-selector label {
+    font-weight: 600;
+    color: #555;
+}
+
+.candidate-selector select {
+    flex: 1;
+    padding: 8px 12px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.95em;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.candidate-selector select:hover {
+    border-color: #667eea;
+}
+
+.candidate-selector select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* Metrics Panel */
+.metrics-panel {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.metrics-panel h3 {
+    color: #667eea;
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    word-break: break-all;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.metric {
+    display: flex;
+    flex-direction: column;
+}
+
+.metric-label {
+    font-size: 0.85em;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.metric-value {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Topology Container */
+.topology-container {
+    flex: 1;
+    background: #fafafa;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    overflow: auto;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.topology-container svg {
+    max-width: 100%;
+    height: auto;
+}
+
+.loading-message {
+    color: #999;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .chart-container {
+        height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.8em;
+    }
+    
+    .subtitle {
+        font-size: 1em;
+    }
+    
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Loading Animation */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.loading-message {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* DOT Source Badge */
+#dotSourceBadge {
+    margin: 10px 0;
+    text-align: center;
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.85em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-real {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    color: #006400;
+    box-shadow: 0 2px 4px rgba(67, 233, 123, 0.3);
+}
+
+.badge-inferred {
+    background: linear-gradient(135deg, #ffa726 0%, #fb8c00 100%);
+    color: #ffffff;
+    box-shadow: 0 2px 4px rgba(255, 167, 38, 0.3);
+}

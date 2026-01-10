@@ -1,0 +1,52 @@
+# Pareto Frontier Visualization (Token-based)
+
+**This file describes the plot that would be generated with matplotlib.**
+
+## Plot Description
+
+**Title:** Pareto Frontier: Coverage vs. Token Cost
+
+**X-axis:** Average Total Tokens  
+**Y-axis:** Average Coverage (0.0 to 1.0)
+
+## Elements
+
+1. **All Candidates** (light gray scatter points, size=50)
+   - Shows all 16 evaluated candidates
+   - Distribution across token/coverage space
+
+2. **Pareto Frontier** (blue scatter points, size=100)
+   - Highlighted non-dominated candidates
+   - Connected with blue dashed line
+   - Only 1 Pareto-optimal point identified
+
+3. **Top 3 Pareto Points** (annotated with candidate names)
+   - Labels positioned with 10pt offset
+   - Shows configuration IDs
+
+4. **Baseline** (green star, size=150)
+   - Configuration: R0-D0-B0-H0-SA-M4-AD0-APS-CO1
+   - Position: (273.0 tokens, 0.365 coverage)
+   - Most cost-efficient baseline
+
+5. **Best (by score)** (red star, size=150)
+   - Configuration: R1-D1-B1-H0-SB-M4-AD0-APS-CO0
+   - Position: (782.0 tokens, 0.417 coverage)
+   - Highest-scoring configuration
+
+## Key Insights
+
+The visualization would reveal:
+- A clear trade-off between token usage and coverage quality
+- Baseline achieves decent coverage (36.5%) with minimal tokens (273)
+- Best configuration improves coverage by 5.2% but uses 2.9x more tokens
+- Most candidates cluster in the high-token, moderate-coverage region
+- Only 1 configuration on Pareto frontier, suggesting most configs are dominated
+
+## To Generate This Plot
+
+Install matplotlib and run:
+```bash
+pip install matplotlib
+python demos/portfolio_langgraph_opt/scripts/make_pareto_viz.py
+```

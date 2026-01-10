@@ -1,0 +1,23 @@
+id: retriever
+version: 1.0.0
+stage: processing
+node_type: node
+enabled_by_default: false
+description: "Policy text retriever that matches relevant policy lines to case keywords"
+params:
+  matching_algorithm: "keyword"
+  max_results: 5
+constraints:
+  requires: []
+  requires_any: []
+  mutex_with: []
+  only_with: []
+  at_most_one_group: ""
+ordering:
+  priority: 100
+  depends_on: []
+  before: []
+cost_hint:
+  tokens_per_case: 150
+  relative_latency: 1.2
+  complexity: "low"

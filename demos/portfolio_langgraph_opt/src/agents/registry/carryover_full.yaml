@@ -1,0 +1,28 @@
+id: carryover_full
+version: 1.0.0
+stage: strategy
+node_type: strategy
+enabled_by_default: false
+description: "Full context carryover - complete state passed between nodes"
+params:
+  mode: "full"
+  carryover_fields:
+    - signals
+    - notes
+    - decision
+    - explanation
+    - path
+constraints:
+  requires: []
+  requires_any: []
+  mutex_with: ["carryover_none", "carryover_compact"]
+  only_with: []
+  at_most_one_group: "carryover"
+ordering:
+  priority: 200
+  depends_on: []
+  before: []
+cost_hint:
+  tokens_per_case: 200
+  relative_latency: 1.3
+  complexity: "medium"
