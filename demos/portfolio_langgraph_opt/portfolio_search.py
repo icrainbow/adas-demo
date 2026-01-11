@@ -377,6 +377,25 @@ def main():
                 wiring = result["wiring"]
                 candidate_spec["dot"] = wiring_to_dot(wiring)
                 candidate_spec["wiring"] = wiring
+                candidate_spec["dot_source"] = "wiring"
+            # Fallback: generate registry-driven DOT from processing_agents (node_type=='node')
+            elif candidate_spec.get("processing_agents") and args.registry_dir:
+                from demos.portfolio_langgraph_opt.src.topology_infer import build_candidate_dot
+                candidate_spec["dot"] = build_candidate_dot(
+                    candidate_name=name,
+                    selected_agents=candidate_spec["processing_agents"],
+                    registry_dir=args.registry_dir
+                )
+                candidate_spec["dot_source"] = "processing_agents"
+            elif candidate_spec.get("selected_agents") and args.registry_dir:
+                # Backup fallback if processing_agents missing
+                from demos.portfolio_langgraph_opt.src.topology_infer import build_candidate_dot
+                candidate_spec["dot"] = build_candidate_dot(
+                    candidate_name=name,
+                    selected_agents=candidate_spec["selected_agents"],
+                    registry_dir=args.registry_dir
+                )
+                candidate_spec["dot_source"] = "selected_agents"
             
             # Track all scores
             all_scores.append({
