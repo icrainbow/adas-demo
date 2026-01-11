@@ -2,3 +2,4 @@ results/
 *.pkl
 __pycache__/
 .venv/
+demos/portfolio_langgraph_opt/outputs/
