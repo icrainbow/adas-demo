@@ -1,8 +1,8 @@
 // APP VERSION - for cache busting verification
-const APP_VERSION = '2026-01-11T19:10:00+08:00-FINAL';
+const APP_VERSION = '2026-01-11T19:25:00+08:00-FIXED-DATA-MAPPING';
 console.log(`%c📦 Portfolio Viz App v${APP_VERSION}`, 'color: #4CAF50; font-weight: bold; font-size: 16px;');
 console.log('%c✅ Processing agents support enabled', 'color: #2196F3; font-weight: bold;');
-console.log('%c⚠️ If you see old topology, close browser completely and reopen!', 'color: #FF5722; font-weight: bold;');
+console.log('%c✅ CRITICAL FIX: candidate_spec now properly preserved in data mapping', 'color: #FF9800; font-weight: bold;');
 
 // Global state
 let resultsData = null;
@@ -244,11 +244,12 @@ function generateDOTFromAgents(agents, candidateName) {
 function createScatterChart(data) {
     const ctx = document.getElementById('paretoChart').getContext('2d');
     
-    // Extract all candidates
+    // Extract all candidates (IMPORTANT: preserve candidate_spec for topology rendering)
     allCandidatesData = data.all_scores.map(entry => ({
         name: entry.name,
         metrics: entry.metrics,
-        score: entry.score
+        score: entry.score,
+        candidate_spec: entry.candidate_spec  // CRITICAL: needed for processing_agents
     }));
     
     // Render the chart
@@ -271,6 +272,7 @@ function renderChart() {
         name: 'baseline',
         metrics: resultsData.baseline.metrics,
         score: resultsData.baseline.score,
+        candidate_spec: resultsData.baseline.candidate_spec,  // preserve for topology
         isBaseline: true
     };
     
@@ -278,6 +280,7 @@ function renderChart() {
         name: 'best',
         metrics: resultsData.best.metrics,
         score: resultsData.best.score,
+        candidate_spec: resultsData.best.candidate_spec,  // preserve for topology
         isBest: true
     };
     
