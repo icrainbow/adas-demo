@@ -17,7 +17,9 @@ async function loadResultsData() {
     if (resultsParam) {
         // Use the results path from query parameter
         try {
-            const response = await fetch(resultsParam);
+            // Add cache-busting timestamp to force fresh load
+            const cacheBuster = `?t=${Date.now()}`;
+            const response = await fetch(resultsParam + cacheBuster);
             if (response.ok) {
                 const data = await response.json();
                 console.log('Loaded data from query param:', resultsParam);
@@ -32,8 +34,9 @@ async function loadResultsData() {
         }
     }
     
-    // Fallback to legacy paths if no query parameter
+    // Fallback to default paths if no query parameter
     const paths = [
+        'legal_demo.json',  // Latest legal case demo with full agent topology
         '../outputs/results_v11_pareto_smoke.json',
         './outputs/results_v11_pareto_smoke.json',
         'outputs/results_v11_pareto_smoke.json'
@@ -41,7 +44,9 @@ async function loadResultsData() {
     
     for (const path of paths) {
         try {
-            const response = await fetch(path);
+            // Add cache-busting timestamp to force fresh load
+            const cacheBuster = `?t=${Date.now()}`;
+            const response = await fetch(path + cacheBuster);
             if (response.ok) {
                 const data = await response.json();
                 console.log('Loaded data from:', path);
@@ -169,6 +174,8 @@ function applyDeterministicJitter(candidate) {
 
 // Generate DOT from selected_agents array (TRUE TOPOLOGY)
 function generateDOTFromAgents(agents, candidateName) {
+    console.log(`🎯 generateDOTFromAgents called with ${agents.length} agents:`, agents);
+    
     let dot = 'digraph Topology {\n';
     dot += '  rankdir=LR;\n';
     dot += '  bgcolor="white";\n';
@@ -200,6 +207,7 @@ function generateDOTFromAgents(agents, candidateName) {
     }
 
     dot += '}\n';
+    console.log('🎯 Generated DOT:', dot);
     return dot;
 }
 
@@ -675,24 +683,28 @@ async function generateTopology(candidate) {
         let dot;
         let isRealDot = false;
         
+        console.log('🔍 generateTopology called for candidate:', candidate.name);
+        console.log('🔍 candidate_spec:', candidate.candidate_spec);
+        
         // Priority 1: Real DOT from backend
         if (candidate.candidate_spec && candidate.candidate_spec.dot) {
             dot = candidate.candidate_spec.dot;
             isRealDot = true;
-            console.log('Using real DOT from candidate_spec.dot');
+            console.log('✅ Using real DOT from candidate_spec.dot');
         }
         // Priority 2: Generate from selected_agents array (NEW!)
         else if (candidate.candidate_spec && candidate.candidate_spec.selected_agents) {
             const agents = candidate.candidate_spec.selected_agents;
+            console.log(`✅ Using selected_agents (${agents.length} agents):`, agents);
             dot = generateDOTFromAgents(agents, candidate.name);
             isRealDot = true;
-            console.log(`Using selected_agents (${agents.length} agents) for DOT generation`);
         }
         // Priority 3: Fallback to inferred DOT (backward compatibility)
         else {
+            console.log('⚠️ Using inferred DOT (no candidate_spec data found)');
+            console.log('⚠️ Full candidate object:', candidate);
             dot = generateDOT(candidate);
             isRealDot = false;
-            console.log('Using inferred DOT (no candidate_spec data found)');
         }
         
         // Use Viz.js to render (v3+ API)

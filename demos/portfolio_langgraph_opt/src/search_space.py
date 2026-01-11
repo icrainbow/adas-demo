@@ -8,6 +8,17 @@ import itertools
 
 # Lazy imports to avoid circular dependencies
 _registry_cache = None
+_registry_dir = None
+
+
+def set_registry_dir(registry_dir: Optional[str]):
+    """
+    Set the registry directory for all subsequent calls.
+    Must be called before load_registry_cached().
+    """
+    global _registry_dir, _registry_cache
+    _registry_dir = registry_dir
+    _registry_cache = None  # Clear cache when changing directory
 
 
 def load_registry_cached():
@@ -20,7 +31,7 @@ def load_registry_cached():
     global _registry_cache
     if _registry_cache is None:
         from demos.portfolio_langgraph_opt.src.agents import load_registry
-        _registry_cache = load_registry()
+        _registry_cache = load_registry(_registry_dir)
     return _registry_cache
 
 

@@ -1,0 +1,36 @@
+id: citation_verifier
+role: verification
+purpose: Verify every major finding is traceable to specific chunks; flag gaps and
+  weak evidence.
+inputs:
+- clause_inventory
+- risk_register
+- contradictions
+- ambiguities
+outputs:
+- citation_gaps
+token_budget_hint: 1400
+name: Citation Verifier
+version: 1.0.0
+stage: processing
+node_type: node
+enabled_by_default: true
+params:
+  model: gpt-4
+  temperature: 0.1
+constraints:
+  requires: []
+  requires_any: []
+  mutex_with: []
+  only_with: []
+  at_most_one_group: ''
+ordering:
+  priority: 100
+  depends_on: []
+  before: []
+cost_hint:
+  tokens_per_case: 140
+  relative_latency: 1.0
+  complexity: medium
+description: Verify every major finding is traceable to specific chunks; flag gaps
+  and weak evidence.

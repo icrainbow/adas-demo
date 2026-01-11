@@ -1,0 +1,5 @@
+case_id: "legal_case"
+display_name: "Legal Document Analysis Case"
+description: "Legal doc analysis topology optimization case package."
+version: "1.0.0"
+defaults: {}

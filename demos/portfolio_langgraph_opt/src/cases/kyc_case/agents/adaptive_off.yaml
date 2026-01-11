@@ -1,0 +1,31 @@
+id: adaptive_off
+version: 1.0.0
+stage: strategy
+node_type: policy
+enabled_by_default: true
+description: Adaptive disabled - static graph topology for all cases
+params:
+  adaptive_enabled: false
+constraints:
+  requires: []
+  requires_any: []
+  mutex_with:
+  - adaptive_on
+  only_with: []
+  at_most_one_group: adaptive
+ordering:
+  priority: 300
+  depends_on: []
+  before: []
+cost_hint:
+  tokens_per_case: 0
+  relative_latency: 1.0
+  complexity: low
+role: control
+purpose: Disable adaptive step selection to use fixed topology for baseline comparison.
+inputs:
+- search_config
+outputs:
+- adaptive_mode
+token_budget_hint: 300
+name: Adaptive Off

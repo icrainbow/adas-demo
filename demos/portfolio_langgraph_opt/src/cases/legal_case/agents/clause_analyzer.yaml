@@ -1,0 +1,42 @@
+id: clause_analyzer
+version: 1.0.0
+stage: processing
+node_type: node
+enabled_by_default: true
+params:
+  model: gpt-4
+  temperature: 0.2
+constraints:
+  requires:
+  - contract_parser
+  requires_any: []
+  mutex_with: []
+  only_with: []
+  at_most_one_group: ''
+ordering:
+  priority: 100
+  depends_on: []
+  before: []
+cost_hint:
+  tokens_per_case: 170
+  relative_latency: 1.0
+  complexity: medium
+metadata:
+  description: Analyze legal clauses for risks and obligations
+  author: ADAS Team
+  tags:
+  - legal
+  - analysis
+  - risk
+role: extraction
+purpose: Extract canonical clause types (termination, liability, indemnity, confidentiality,
+  payment, governing law, dispute resolution) with citations.
+inputs:
+- normalized_document
+- doc_structure
+outputs:
+- clause_inventory
+token_budget_hint: 1700
+name: Clause Analyzer
+description: Extract canonical clause types (termination, liability, indemnity, confidentiality,
+  payment, governing law, dispute resolution) with citations.

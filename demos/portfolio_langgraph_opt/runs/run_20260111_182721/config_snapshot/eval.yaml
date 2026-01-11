@@ -1,0 +1,12 @@
+sampling:
+  k_high: 2
+  k_low: 2
+  k_mid: 2
+version: 1.0
+weights:
+  coverage_weight: 100.0
+  hitl_penalty: 10.0
+  step_penalty: 1.0
+  # Increased for better differentiation in demo (token differences now matter)
+  token_penalty: 0.1
+  violation_penalty: 200.0

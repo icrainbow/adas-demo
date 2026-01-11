@@ -13,8 +13,13 @@ LOCK_FILE = "demos/portfolio_langgraph_opt/runs/.lock"
 ALLOWED_ARGS = ['cases', 'policy', 'mode', 'budget', 'seed', 'out']
 
 
-def start_optimization():
-    """Start optimization run."""
+def start_optimization(case_id: str = None):
+    """
+    Start optimization run.
+    
+    Args:
+        case_id: Optional case ID to use specific agent registry
+    """
     try:
         # Check lock
         if os.path.exists(LOCK_FILE):
@@ -55,11 +60,18 @@ def start_optimization():
             if os.path.exists(run_path):
                 shutil.copy(run_path, os.path.join(snapshot_dir, "run.yaml"))
             
-            # Save agent manifest
-            agents_data = list_agents()
+            # Save agent manifest for the selected case
+            agents_data = list_agents(case_id=case_id)
             manifest_path = os.path.join(snapshot_dir, "agents_manifest.json")
             with open(manifest_path, 'w') as f:
                 json.dump(agents_data, f, indent=2)
+            
+            # Compute registry_dir from case_id
+            registry_dir = None
+            if case_id:
+                from .case_service import case_root
+                case_path = case_root(case_id)
+                registry_dir = os.path.join(case_path, "agents")
             
             # Build subprocess command
             results_json_path = os.path.join(output_dir, "results.json")
@@ -73,6 +85,10 @@ def start_optimization():
                 "--seed", str(run_cfg.search.seed),
                 "--out", results_json_path
             ]
+            
+            # Add registry_dir if specified
+            if registry_dir:
+                cmd.extend(["--registry_dir", registry_dir])
             
             # Run subprocess
             log_path = os.path.join(output_dir, "run.log")

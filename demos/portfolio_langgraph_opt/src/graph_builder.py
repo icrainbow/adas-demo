@@ -329,8 +329,11 @@ Portfolio:
 
 Requested Action: {case['requested_action']}
 
-{f'Previous Context:\n{carryover_text}\n' if carryover_text else ''}
-
+"""
+    # Add carryover context if present (extracted to avoid f-string backslash)
+    carryover_section = f"Previous Context:\n{carryover_text}\n" if carryover_text else ""
+    prompt += carryover_section
+    prompt += """
 Task: Identify risk mismatches and generate signals."""
     
     # Perform analysis (deterministic heuristics)
@@ -436,8 +439,11 @@ Client Profile:
 
 Requested Action: {requested_action}
 
-{f'Previous Context:\n{carryover_text}\n' if carryover_text else ''}
-
+"""
+    # Add carryover context if present (extracted to avoid f-string backslash)
+    carryover_section = f"Previous Context:\n{carryover_text}\n" if carryover_text else ""
+    prompt_text += carryover_section
+    prompt_text += """
 Task: Evaluate suitability and identify concerns."""
     
     # Extract keywords from requested action
@@ -544,8 +550,11 @@ Action Keywords: {', '.join(action_keywords)}
 Policy Database:
 {policy_text}
 
-{f'Previous Context:\n{carryover_text}\n' if carryover_text else ''}
-
+"""
+    # Add carryover context if present (extracted to avoid f-string backslash)
+    carryover_section = f"Previous Context:\n{carryover_text}\n" if carryover_text else ""
+    prompt_text += carryover_section
+    prompt_text += """
 Task: Match and retrieve relevant policy lines."""
     
     # Match policy lines
@@ -582,8 +591,11 @@ def sub_liquidity_node(state: State) -> State:
     # Build prompt (minimal for adaptive subgraphs)
     carryover_mode = state.get("candidate", {}).get("carryover", "compact")
     carryover_text = build_carryover_text(state, carryover_mode)
-    prompt_text = f"""Liquidity deep-dive analysis.
-{f'Context:\n{carryover_text}' if carryover_text else ''}"""
+    prompt_text = """Liquidity deep-dive analysis.
+"""
+    # Add carryover context if present (extracted to avoid f-string backslash)
+    carryover_section = f"Context:\n{carryover_text}" if carryover_text else ""
+    prompt_text += carryover_section
     
     # Deterministic findings based on signals
     if "sub_findings" not in state:
@@ -611,8 +623,11 @@ def sub_concentration_node(state: State) -> State:
     
     carryover_mode = state.get("candidate", {}).get("carryover", "compact")
     carryover_text = build_carryover_text(state, carryover_mode)
-    prompt_text = f"""Concentration risk deep-dive analysis.
-{f'Context:\n{carryover_text}' if carryover_text else ''}"""
+    prompt_text = """Concentration risk deep-dive analysis.
+"""
+    # Add carryover context if present (extracted to avoid f-string backslash)
+    carryover_section = f"Context:\n{carryover_text}" if carryover_text else ""
+    prompt_text += carryover_section
     
     if "sub_findings" not in state:
         state["sub_findings"] = []
@@ -639,8 +654,11 @@ def sub_leverage_node(state: State) -> State:
     
     carryover_mode = state.get("candidate", {}).get("carryover", "compact")
     carryover_text = build_carryover_text(state, carryover_mode)
-    prompt_text = f"""Leverage concerns deep-dive analysis.
-{f'Context:\n{carryover_text}' if carryover_text else ''}"""
+    prompt_text = """Leverage concerns deep-dive analysis.
+"""
+    # Add carryover context if present (extracted to avoid f-string backslash)
+    carryover_section = f"Context:\n{carryover_text}" if carryover_text else ""
+    prompt_text += carryover_section
     
     if "sub_findings" not in state:
         state["sub_findings"] = []
@@ -667,8 +685,11 @@ def sub_suitability_node(state: State) -> State:
     
     carryover_mode = state.get("candidate", {}).get("carryover", "compact")
     carryover_text = build_carryover_text(state, carryover_mode)
-    prompt_text = f"""Suitability concerns deep-dive analysis.
-{f'Context:\n{carryover_text}' if carryover_text else ''}"""
+    prompt_text = """Suitability concerns deep-dive analysis.
+"""
+    # Add carryover context if present (extracted to avoid f-string backslash)
+    carryover_section = f"Context:\n{carryover_text}" if carryover_text else ""
+    prompt_text += carryover_section
     
     if "sub_findings" not in state:
         state["sub_findings"] = []
@@ -1118,8 +1139,11 @@ Sub Findings: {len(state.get('sub_findings', []))} findings
 Policy Context:
 {policy_text_sample[:500] if policy_text_sample else 'N/A'}...
 
-{f'Previous Context:\n{carryover_text}\n' if carryover_text else ''}
-
+"""
+    # Add carryover context if present (extracted to avoid f-string backslash)
+    carryover_section = f"Previous Context:\n{carryover_text}\n" if carryover_text else ""
+    prompt_text += carryover_section
+    prompt_text += """
 Task: Generate decision and client-friendly explanation."""
     
     output_text = explanation

@@ -1,0 +1,36 @@
+id: carryover_compact
+version: 1.0.0
+stage: strategy
+node_type: policy
+enabled_by_default: true
+description: Compact carryover - passes summarized context between steps
+params:
+  carryover_mode: compact
+  context_window: 2
+  summarization: key_points
+constraints:
+  requires: []
+  requires_any: []
+  mutex_with:
+  - carryover_none
+  - carryover_full
+  only_with: []
+  at_most_one_group: carryover
+ordering:
+  priority: 50
+  depends_on: []
+  before: []
+cost_hint:
+  tokens_per_case: 100
+  relative_latency: 1.1
+  complexity: low
+role: memory
+purpose: Enable compact carryover of key facts and decisions to stabilize multi-step
+  reasoning with limited tokens.
+inputs:
+- run_context
+- prior_steps
+outputs:
+- compact_state
+token_budget_hint: 700
+name: Carryover Compact

@@ -1,0 +1,17 @@
+dataset:
+  cases_path: demos/portfolio_langgraph_opt/data/cases.jsonl
+  policy_path: demos/portfolio_langgraph_opt/data/policy_snippets.txt
+output:
+  emit_dot: true
+  lite_mode: true
+  output_dir: demos/portfolio_langgraph_opt/runs
+safety:
+  max_budget: 64
+  max_concurrency: 1
+  max_file_upload_mb: 1
+  timeout_seconds: 3600
+search:
+  budget: 4
+  mode: grid
+  seed: 42
+version: 1.0

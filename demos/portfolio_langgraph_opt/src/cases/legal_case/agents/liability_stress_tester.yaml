@@ -1,0 +1,34 @@
+id: liability_stress_tester
+role: risk
+purpose: Stress-test limitation of liability vs indemnity/warranty/termination; flag
+  cap too low, carve-outs missing, or asymmetry.
+inputs:
+- clause_inventory
+- risk_register
+outputs:
+- liability_findings
+token_budget_hint: 2100
+name: Liability Stress Tester
+version: 1.0.0
+stage: processing
+node_type: node
+enabled_by_default: true
+params:
+  model: gpt-4
+  temperature: 0.1
+constraints:
+  requires: []
+  requires_any: []
+  mutex_with: []
+  only_with: []
+  at_most_one_group: ''
+ordering:
+  priority: 100
+  depends_on: []
+  before: []
+cost_hint:
+  tokens_per_case: 210
+  relative_latency: 1.0
+  complexity: medium
+description: Stress-test limitation of liability vs indemnity/warranty/termination;
+  flag cap too low, carve-outs missing, or asymmetry.

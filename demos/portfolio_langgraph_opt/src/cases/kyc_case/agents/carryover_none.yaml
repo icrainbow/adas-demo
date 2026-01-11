@@ -1,0 +1,34 @@
+id: carryover_none
+version: 1.0.0
+stage: strategy
+node_type: policy
+enabled_by_default: false
+description: No carryover - each step starts fresh without previous context
+params:
+  carryover_mode: none
+  context_window: 0
+constraints:
+  requires: []
+  requires_any: []
+  mutex_with:
+  - carryover_compact
+  - carryover_full
+  only_with: []
+  at_most_one_group: carryover
+ordering:
+  priority: 50
+  depends_on: []
+  before: []
+cost_hint:
+  tokens_per_case: 0
+  relative_latency: 1.0
+  complexity: low
+role: memory
+purpose: Disable carryover/memory to maximize independence and reduce contamination
+  across runs.
+inputs:
+- run_context
+outputs:
+- memory_mode
+token_budget_hint: 400
+name: Carryover None

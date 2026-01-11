@@ -1,0 +1,35 @@
+id: ambiguity_detector
+role: quality
+purpose: Detect ambiguous language (e.g., 'reasonable efforts', 'material', 'substantially')
+  and propose concrete rewrite options.
+inputs:
+- sections
+- chunks
+outputs:
+- ambiguities
+- rewrite_suggestions
+token_budget_hint: 1600
+name: Ambiguity Detector
+version: 1.0.0
+stage: processing
+node_type: node
+enabled_by_default: true
+params:
+  model: gpt-4
+  temperature: 0.1
+constraints:
+  requires: []
+  requires_any: []
+  mutex_with: []
+  only_with: []
+  at_most_one_group: ''
+ordering:
+  priority: 100
+  depends_on: []
+  before: []
+cost_hint:
+  tokens_per_case: 160
+  relative_latency: 1.0
+  complexity: medium
+description: Detect ambiguous language (e.g., 'reasonable efforts', 'material', 'substantially')
+  and propose concrete rewrite options.

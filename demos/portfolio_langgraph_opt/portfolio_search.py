@@ -10,12 +10,8 @@ import sys
 repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, repo_root)
 
-from demos.portfolio_langgraph_opt.src.search_space import (
-    default_candidate,
-    all_candidates_small,
-    candidate_to_name,
-    validate_candidate
-)
+from demos.portfolio_langgraph_opt.src.search_space import validate_candidate
+from demos.portfolio_langgraph_opt.src.search_space_generator import load_search_space_for_case
 from demos.portfolio_langgraph_opt.src.evaluate import (
     load_cases,
     load_policy_text,
@@ -71,6 +67,12 @@ def parse_args():
         "--out",
         default="demos/portfolio_langgraph_opt/outputs/results.json",
         help="Output JSON file path"
+    )
+    
+    parser.add_argument(
+        "--registry_dir",
+        default=None,
+        help="Path to agent registry directory (defaults to kyc_case/agents)"
     )
     
     parser.add_argument(
@@ -161,6 +163,37 @@ def main():
     """Main search and evaluation pipeline."""
     args = parse_args()
     
+    # Set registry directory if provided
+    if args.registry_dir:
+        from demos.portfolio_langgraph_opt.src.search_space import set_registry_dir
+        set_registry_dir(args.registry_dir)
+        print(f"Using custom registry: {args.registry_dir}")
+    
+    # Load case-specific search space (YAML or default)
+    import re
+    from pathlib import Path
+    
+    case_id = None
+    if args.registry_dir:
+        # Infer case_id from registry_dir path: .../cases/<case_id>/agents
+        parts = Path(args.registry_dir).parts
+        if 'cases' in parts:
+            cases_idx = parts.index('cases')
+            if cases_idx + 1 < len(parts):
+                inferred_case_id = parts[cases_idx + 1]
+                # Validate format
+                if re.match(r'^[A-Za-z0-9_-]+$', inferred_case_id):
+                    case_id = inferred_case_id
+    
+    # Load search space module (YAML spec or default)
+    ss = load_search_space_for_case(case_id=case_id, registry_dir=args.registry_dir)
+    default_candidate = ss.default_candidate
+    all_candidates_small = ss.all_candidates_small
+    candidate_to_name = ss.candidate_to_name
+    
+    if case_id:
+        print(f"Loaded search space for case: {case_id}")
+    
     print("=" * 70)
     print("Portfolio Advisory Graph Search")
     print("=" * 70)
@@ -169,6 +202,7 @@ def main():
     print(f"Seed: {args.seed}")
     print(f"Cases: {args.cases}")
     print(f"Policy: {args.policy}")
+    print(f"Registry: {args.registry_dir or 'default (kyc_case)'}")
     print(f"Emit DOT: {args.emit_dot}")
     if args.resume_path:
         print(f"Resume from: {args.resume_path}")

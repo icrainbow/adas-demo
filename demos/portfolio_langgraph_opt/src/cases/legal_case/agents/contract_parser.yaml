@@ -1,0 +1,41 @@
+id: contract_parser
+version: 1.0.0
+stage: preprocessing
+node_type: node
+enabled_by_default: true
+params:
+  model: gpt-4
+  temperature: 0.1
+constraints:
+  requires: []
+  requires_any: []
+  mutex_with: []
+  only_with: []
+  at_most_one_group: ''
+ordering:
+  priority: 100
+  depends_on: []
+  before: []
+cost_hint:
+  tokens_per_case: 120
+  relative_latency: 1.0
+  complexity: medium
+metadata:
+  description: Parse and extract structured data from legal contracts
+  author: ADAS Team
+  tags:
+  - legal
+  - parsing
+  - nlp
+role: preprocessing
+purpose: Normalize raw legal text, preserve headings, and produce a stable structured
+  representation for downstream extraction.
+inputs:
+- raw_document
+outputs:
+- normalized_document
+- doc_structure
+token_budget_hint: 1200
+name: Contract Parser
+description: Normalize raw legal text, preserve headings, and produce a stable structured
+  representation for downstream extraction.

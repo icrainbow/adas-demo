@@ -1,0 +1,35 @@
+id: definition_indexer
+role: extraction
+purpose: Build a glossary of defined terms; flag missing, circular, unused, or inconsistent
+  definitions.
+inputs:
+- sections
+- chunks
+outputs:
+- definitions_index
+- definition_issues
+token_budget_hint: 1400
+name: Definition Indexer
+version: 1.0.0
+stage: processing
+node_type: node
+enabled_by_default: true
+params:
+  model: gpt-4
+  temperature: 0.1
+constraints:
+  requires: []
+  requires_any: []
+  mutex_with: []
+  only_with: []
+  at_most_one_group: ''
+ordering:
+  priority: 100
+  depends_on: []
+  before: []
+cost_hint:
+  tokens_per_case: 140
+  relative_latency: 1.0
+  complexity: medium
+description: Build a glossary of defined terms; flag missing, circular, unused, or
+  inconsistent definitions.

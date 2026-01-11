@@ -1,0 +1,19 @@
+======================================================================
+Portfolio Advisory Graph Search
+======================================================================
+Mode: grid
+Budget: 16
+Seed: 7
+Cases: demos/portfolio_langgraph_opt/data/cases.jsonl
+Policy: demos/portfolio_langgraph_opt/data/policy_snippets.txt
+Emit DOT: False
+
+Loading data...
+Loaded 24 cases
+Loaded policy text (1166 chars)
+
+Generated 96 candidates
+Grid mode: evaluating first 16 candidates
+
+Evaluating baseline...
+Error evaluating baseline: f-string expression part cannot include a backslash (graph_builder.py, line 334)

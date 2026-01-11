@@ -1,0 +1,13 @@
+digraph G {
+  rankdir=LR;
+  node [fontname="Arial"];
+
+  START [shape=circle, label="START"];
+  behavior_check [shape=box, fillcolor=lightblue, style=filled, label="Behavior\nCheck"];
+  synth [shape=box, fillcolor=lightgreen, style=filled, label="Synthesis\nStyle A\n(carryover: none)"];
+  END [shape=doublecircle, label="END"];
+
+  START -> behavior_check;
+  behavior_check -> synth;
+  synth -> END;
+}

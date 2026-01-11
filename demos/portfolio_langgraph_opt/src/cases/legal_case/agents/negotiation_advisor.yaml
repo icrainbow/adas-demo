@@ -1,0 +1,35 @@
+id: negotiation_advisor
+role: advisory
+purpose: 'Turn risks into negotiation moves: redlines, fallback language, questions
+  to ask, and recommended positions.'
+inputs:
+- risk_register
+- clause_inventory
+- obligations_table
+outputs:
+- negotiation_playbook
+token_budget_hint: 2200
+name: Negotiation Advisor
+version: 1.0.0
+stage: processing
+node_type: node
+enabled_by_default: true
+params:
+  model: gpt-4
+  temperature: 0.1
+constraints:
+  requires: []
+  requires_any: []
+  mutex_with: []
+  only_with: []
+  at_most_one_group: ''
+ordering:
+  priority: 100
+  depends_on: []
+  before: []
+cost_hint:
+  tokens_per_case: 220
+  relative_latency: 1.0
+  complexity: medium
+description: 'Turn risks into negotiation moves: redlines, fallback language, questions
+  to ask, and recommended positions.'

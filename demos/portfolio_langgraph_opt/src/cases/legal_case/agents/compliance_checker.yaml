@@ -1,0 +1,43 @@
+id: compliance_checker
+version: 1.0.0
+stage: processing
+node_type: node
+enabled_by_default: true
+params:
+  model: gpt-4
+  temperature: 0.0
+  strict_mode: true
+constraints:
+  requires:
+  - clause_analyzer
+  requires_any: []
+  mutex_with: []
+  only_with: []
+  at_most_one_group: ''
+ordering:
+  priority: 100
+  depends_on: []
+  before: []
+cost_hint:
+  tokens_per_case: 180
+  relative_latency: 1.0
+  complexity: medium
+metadata:
+  description: Check legal compliance against regulations
+  author: ADAS Team
+  tags:
+  - legal
+  - compliance
+  - validation
+role: verification
+purpose: Check the extracted clauses against generic policy notes and flag missing/weak
+  protections; ensure findings are evidence-grounded.
+inputs:
+- clause_inventory
+- policy_notes
+outputs:
+- compliance_findings
+token_budget_hint: 1800
+name: Compliance Checker
+description: Check the extracted clauses against generic policy notes and flag missing/weak
+  protections; ensure findings are evidence-grounded.

@@ -1,0 +1,32 @@
+id: behavior_check
+version: 1.0.0
+stage: processing
+node_type: node
+enabled_by_default: false
+description: Behavioral pattern analysis - checks for known violation patterns
+params:
+  pattern_library: standard
+  threshold: 0.7
+constraints:
+  requires: []
+  requires_any: []
+  mutex_with: []
+  only_with: []
+  at_most_one_group: ''
+ordering:
+  priority: 250
+  depends_on: []
+  before: []
+cost_hint:
+  tokens_per_case: 200
+  relative_latency: 1.1
+  complexity: medium
+role: verification
+purpose: Detect policy violations or unsafe behaviors in the draft output; flag and
+  require corrections.
+inputs:
+- draft_review
+outputs:
+- behavior_flags
+token_budget_hint: 1200
+name: Behavior Check

@@ -1,0 +1,43 @@
+id: review_pack_assembler
+role: synthesis
+purpose: Assemble a final review pack (inventory, risks, contradictions, rewrites,
+  negotiation playbook) with consistent structure.
+inputs:
+- exec_summary
+- clause_inventory
+- obligations_table
+- risk_register
+- contradictions
+- rewrite_suggestions
+- negotiation_playbook
+- citation_gaps
+- missing_clause_questions
+- jurisdiction_risks
+- liability_findings
+outputs:
+- review_pack
+token_budget_hint: 2600
+name: Review Pack Assembler
+version: 1.0.0
+stage: processing
+node_type: node
+enabled_by_default: true
+params:
+  model: gpt-4
+  temperature: 0.1
+constraints:
+  requires: []
+  requires_any: []
+  mutex_with: []
+  only_with: []
+  at_most_one_group: ''
+ordering:
+  priority: 100
+  depends_on: []
+  before: []
+cost_hint:
+  tokens_per_case: 260
+  relative_latency: 1.0
+  complexity: medium
+description: Assemble a final review pack (inventory, risks, contradictions, rewrites,
+  negotiation playbook) with consistent structure.

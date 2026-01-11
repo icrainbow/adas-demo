@@ -1,0 +1,36 @@
+id: adaptive_policy_strict
+version: 1.0.0
+stage: strategy
+node_type: policy
+enabled_by_default: false
+description: Strict adaptive policy - conservative subgraph selection
+params:
+  policy: strict
+  threshold: 0.8
+  fallback: reject
+constraints:
+  requires:
+  - adaptive_on
+  requires_any: []
+  mutex_with:
+  - adaptive_policy_lenient
+  only_with: []
+  at_most_one_group: adaptive_policy
+ordering:
+  priority: 310
+  depends_on:
+  - adaptive_on
+  before: []
+cost_hint:
+  tokens_per_case: 50
+  relative_latency: 1.0
+  complexity: low
+role: control
+purpose: Use strict adaptive policy to reduce risk and keep outputs conservative;
+  prioritizes precision and compliance.
+inputs:
+- search_config
+outputs:
+- adaptive_policy
+token_budget_hint: 450
+name: Adaptive Policy Strict

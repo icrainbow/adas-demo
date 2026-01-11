@@ -1,0 +1,33 @@
+id: style_enforcer
+role: quality
+purpose: Enforce concise formatting and eliminate duplication; ensure the review pack
+  is skimmable and decision-ready.
+inputs:
+- review_pack
+outputs:
+- review_pack_final
+token_budget_hint: 1200
+name: Style Enforcer
+version: 1.0.0
+stage: processing
+node_type: node
+enabled_by_default: true
+params:
+  model: gpt-4
+  temperature: 0.1
+constraints:
+  requires: []
+  requires_any: []
+  mutex_with: []
+  only_with: []
+  at_most_one_group: ''
+ordering:
+  priority: 100
+  depends_on: []
+  before: []
+cost_hint:
+  tokens_per_case: 120
+  relative_latency: 1.0
+  complexity: medium
+description: Enforce concise formatting and eliminate duplication; ensure the review
+  pack is skimmable and decision-ready.

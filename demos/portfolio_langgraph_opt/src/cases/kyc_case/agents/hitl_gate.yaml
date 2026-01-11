@@ -1,0 +1,37 @@
+id: hitl_gate
+version: 1.0.0
+stage: processing
+node_type: node
+enabled_by_default: false
+description: Human-in-the-loop gate - escalates uncertain cases to human review
+params:
+  confidence_threshold: 0.8
+  escalation_criteria:
+  - ambiguous_policy
+  - high_stakes
+constraints:
+  requires: []
+  requires_any: []
+  mutex_with:
+  - carryover_full
+  only_with: []
+  at_most_one_group: ''
+ordering:
+  priority: 280
+  depends_on: []
+  before: []
+cost_hint:
+  tokens_per_case: 50
+  relative_latency: 1.0
+  complexity: low
+role: verification
+purpose: Gate uncertain/high-risk decisions for human-in-the-loop review; enforce
+  safety and conservative defaults.
+inputs:
+- risk_checklist
+- draft_review
+outputs:
+- hitl_requests
+- approved_path
+token_budget_hint: 1200
+name: HITL Gate

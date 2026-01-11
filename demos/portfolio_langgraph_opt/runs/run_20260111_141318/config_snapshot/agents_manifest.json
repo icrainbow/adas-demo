@@ -1,0 +1,123 @@
+{
+  "agents": [
+    {
+      "id": "risk_decompose",
+      "name": "risk_decompose",
+      "purpose": "",
+      "role": "",
+      "inputs": [],
+      "outputs": [],
+      "token_budget_hint": 0
+    },
+    {
+      "id": "adaptive_policy_strict",
+      "name": "adaptive_policy_strict",
+      "purpose": "",
+      "role": "",
+      "inputs": [],
+      "outputs": [],
+      "token_budget_hint": 0
+    },
+    {
+      "id": "carryover_full",
+      "name": "carryover_full",
+      "purpose": "",
+      "role": "",
+      "inputs": [],
+      "outputs": [],
+      "token_budget_hint": 0
+    },
+    {
+      "id": "synth_style_A",
+      "name": "synth_style_A",
+      "purpose": "",
+      "role": "",
+      "inputs": [],
+      "outputs": [],
+      "token_budget_hint": 0
+    },
+    {
+      "id": "adaptive_on",
+      "name": "adaptive_on",
+      "purpose": "",
+      "role": "",
+      "inputs": [],
+      "outputs": [],
+      "token_budget_hint": 0
+    },
+    {
+      "id": "adaptive_off",
+      "name": "adaptive_off",
+      "purpose": "",
+      "role": "",
+      "inputs": [],
+      "outputs": [],
+      "token_budget_hint": 0
+    },
+    {
+      "id": "carryover_compact",
+      "name": "carryover_compact",
+      "purpose": "",
+      "role": "",
+      "inputs": [],
+      "outputs": [],
+      "token_budget_hint": 0
+    },
+    {
+      "id": "hitl_gate",
+      "name": "hitl_gate",
+      "purpose": "",
+      "role": "",
+      "inputs": [],
+      "outputs": [],
+      "token_budget_hint": 0
+    },
+    {
+      "id": "carryover_none",
+      "name": "carryover_none",
+      "purpose": "",
+      "role": "",
+      "inputs": [],
+      "outputs": [],
+      "token_budget_hint": 0
+    },
+    {
+      "id": "adaptive_policy_lenient",
+      "name": "adaptive_policy_lenient",
+      "purpose": "",
+      "role": "",
+      "inputs": [],
+      "outputs": [],
+      "token_budget_hint": 0
+    },
+    {
+      "id": "retriever",
+      "name": "retriever",
+      "purpose": "",
+      "role": "",
+      "inputs": [],
+      "outputs": [],
+      "token_budget_hint": 0
+    },
+    {
+      "id": "behavior_check",
+      "name": "behavior_check",
+      "purpose": "",
+      "role": "",
+      "inputs": [],
+      "outputs": [],
+      "token_budget_hint": 0
+    },
+    {
+      "id": "synth_style_B",
+      "name": "synth_style_B",
+      "purpose": "",
+      "role": "",
+      "inputs": [],
+      "outputs": [],
+      "token_budget_hint": 0
+    }
+  ],
+  "total": 13,
+  "errors": []
+}

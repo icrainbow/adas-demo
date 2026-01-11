@@ -1,0 +1,878 @@
+{
+  "run": {
+    "mode": "grid",
+    "budget": 24,
+    "seed": 42,
+    "case_count": 24,
+    "emit_dot": false
+  },
+  "baseline": {
+    "candidate": {
+      "use_retriever": false,
+      "use_risk_decompose": false,
+      "use_behavior_check": false,
+      "use_hitl_gate": false,
+      "synth_style": "A",
+      "max_steps": 4,
+      "adaptive": false,
+      "adaptive_policy": "strict",
+      "carryover": "compact",
+      "selected_agents": [
+        "adaptive_off",
+        "carryover_compact",
+        "synth_style_A"
+      ]
+    },
+    "score": 30.30833333333333,
+    "metrics": {
+      "avg_coverage": 0.3645833333333333,
+      "violation_rate": 0.0,
+      "hitl_rate": 0.0,
+      "avg_steps": 1.0,
+      "adaptive_marker_rate": 0.0,
+      "avg_prompt_tokens": 190.04166666666666,
+      "avg_completion_tokens": 174.95833333333334,
+      "avg_total_tokens": 365.0,
+      "num_cases": 24
+    },
+    "samples": [
+      {
+        "case_id": "C014",
+        "requested_action": "rebalance to maintain 60/40 equity-bond allocation",
+        "signals": [],
+        "decision": "APPROVE",
+        "path": [
+          "synth"
+        ],
+        "explanation": "Assessment: APPROVE\n\n\u2022 Key signals: none\n\n\u2022 No significant concerns identified\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: OK \u2014 concentration risk not indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: N/A \u2014 no explicitly speculative elements detected.\n\u2022 Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: N/A \u2014 limited opportunity cost concerns for this request.\n\nDecision rationale:\n\u2022 alignment with risk appetite: requested change fits stated risk profile.\n\u2022 growth potential: reallocation improves expected long-term growth potential.\n\u2022 volatility exposure increase: does not materially raise volatility exposure increase beyond tolerance.",
+        "rubric_must_cover": [
+          "alignment with risk profile",
+          "appropriate diversification",
+          "liquidity maintenance",
+          "reasonable request"
+        ],
+        "coverage": 0.0,
+        "steps": 1,
+        "adaptive_marker": false,
+        "total_tokens": 403
+      },
+      {
+        "case_id": "C019",
+        "requested_action": "rotate from tech to healthcare sector for diversification",
+        "signals": [],
+        "decision": "APPROVE",
+        "path": [
+          "synth"
+        ],
+        "explanation": "Assessment: APPROVE\n\n\u2022 Key signals: none\n\n\u2022 No significant concerns identified\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: Issue \u2014 concentration risk indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: N/A \u2014 no explicitly speculative elements detected.\n\u2022 Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: N/A \u2014 limited opportunity cost concerns for this request.",
+        "rubric_must_cover": [
+          "sector rotation rationale",
+          "diversification benefits",
+          "appropriate for profile",
+          "tactical rebalancing"
+        ],
+        "coverage": 0.0,
+        "steps": 1,
+        "adaptive_marker": false,
+        "total_tokens": 332
+      },
+      {
+        "case_id": "C018",
+        "requested_action": "add 25% more to largest single stock holding",
+        "signals": [
+          "concentration risk"
+        ],
+        "decision": "CAUTION",
+        "path": [
+          "synth"
+        ],
+        "explanation": "Assessment: CAUTION\n\n\u2022 Key signals: high concentration\n\nConcerns identified:\n\u2022 concentration risk\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: Issue \u2014 concentration risk indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: N/A \u2014 no explicitly speculative elements detected.\n\u2022 Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: Consideration \u2014 evaluate tradeoffs of delaying vs executing; compare alternatives.",
+        "rubric_must_cover": [
+          "high concentration",
+          "idiosyncratic risk",
+          "existing concentration concerns",
+          "diversification erosion"
+        ],
+        "coverage": 0.25,
+        "steps": 1,
+        "adaptive_marker": false,
+        "total_tokens": 354
+      },
+      {
+        "case_id": "C009",
+        "requested_action": "reduce bonds further to add international equity exposure",
+        "signals": [],
+        "decision": "APPROVE",
+        "path": [
+          "synth"
+        ],
+        "explanation": "Assessment: APPROVE\n\n\u2022 Key signals: none\n\n\u2022 No significant concerns identified\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: OK \u2014 concentration risk not indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: N/A \u2014 no explicitly speculative elements detected.\n\u2022 Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: N/A \u2014 limited opportunity cost concerns for this request.\n\nDecision rationale:\n\u2022 alignment with risk appetite: requested change fits stated risk profile.",
+        "rubric_must_cover": [
+          "volatility exposure",
+          "geographic diversification benefits",
+          "appropriate for risk profile",
+          "time horizon alignment"
+        ],
+        "coverage": 0.25,
+        "steps": 1,
+        "adaptive_marker": false,
+        "total_tokens": 357
+      },
+      {
+        "case_id": "C005",
+        "requested_action": "allocate 30% to cryptocurrency assets",
+        "signals": [],
+        "decision": "APPROVE",
+        "path": [
+          "synth"
+        ],
+        "explanation": "Assessment: APPROVE\n\n\u2022 Key signals: none\n\n\u2022 No significant concerns identified\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: OK \u2014 concentration risk not indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: Consideration \u2014 elements may be speculative; ensure suitability.\n\u2022 Regulatory uncertainty: Consideration \u2014 regulatory requirements may vary; verify applicable constraints.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: N/A \u2014 limited opportunity cost concerns for this request.",
+        "rubric_must_cover": [
+          "volatility exposure",
+          "regulatory uncertainty",
+          "concentration risk",
+          "speculative nature"
+        ],
+        "coverage": 1.0,
+        "steps": 1,
+        "adaptive_marker": false,
+        "total_tokens": 342
+      },
+      {
+        "case_id": "C012",
+        "requested_action": "shift to growth stocks and reduce conservative allocation",
+        "signals": [],
+        "decision": "APPROVE",
+        "path": [
+          "synth"
+        ],
+        "explanation": "Assessment: APPROVE\n\n\u2022 Key signals: none\n\n\u2022 No significant concerns identified\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: OK \u2014 concentration risk not indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: N/A \u2014 no explicitly speculative elements detected.\n\u2022 Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: N/A \u2014 limited opportunity cost concerns for this request.\n\nDecision rationale:\n\u2022 alignment with risk appetite: requested change fits stated risk profile.\n\u2022 current conservative positioning: proposal modestly increases return-seeking exposure.\n\u2022 growth potential: reallocation improves expected long-term growth potential.\n\u2022 volatility exposure increase: does not materially raise volatility exposure increase beyond tolerance.",
+        "rubric_must_cover": [
+          "volatility exposure increase",
+          "alignment with risk appetite",
+          "current conservative positioning",
+          "growth potential"
+        ],
+        "coverage": 1.0,
+        "steps": 1,
+        "adaptive_marker": false,
+        "total_tokens": 425
+      }
+    ]
+  },
+  "best": {
+    "candidate": {
+      "use_retriever": false,
+      "use_risk_decompose": false,
+      "use_behavior_check": true,
+      "use_hitl_gate": false,
+      "synth_style": "A",
+      "max_steps": 4,
+      "adaptive": false,
+      "adaptive_policy": "strict",
+      "carryover": "none",
+      "selected_agents": [
+        "adaptive_off",
+        "behavior_check",
+        "carryover_none",
+        "synth_style_A"
+      ]
+    },
+    "score": 30.617083333333326,
+    "metrics": {
+      "avg_coverage": 0.3958333333333333,
+      "violation_rate": 0.0,
+      "hitl_rate": 0.0,
+      "avg_steps": 2.0,
+      "adaptive_marker_rate": 0.0,
+      "avg_prompt_tokens": 246.70833333333334,
+      "avg_completion_tokens": 249.91666666666666,
+      "avg_total_tokens": 496.625,
+      "num_cases": 24
+    },
+    "samples": [
+      {
+        "case_id": "C019",
+        "requested_action": "rotate from tech to healthcare sector for diversification",
+        "signals": [
+          "high concentration"
+        ],
+        "decision": "CAUTION",
+        "path": [
+          "behavior_check",
+          "synth"
+        ],
+        "explanation": "Assessment: CAUTION\n\n\u2022 Key signals: high concentration\n\nConcerns identified:\n\u2022 high concentration\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: Issue \u2014 concentration risk indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: N/A \u2014 no explicitly speculative elements detected.\n\u2022 Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: Consideration \u2014 evaluate tradeoffs of delaying vs executing; compare alternatives.\n\nAdvisory coverage:\n\u2022 reasonable request: partially reasonable, but requires additional checks and guardrails.",
+        "rubric_must_cover": [
+          "sector rotation rationale",
+          "diversification benefits",
+          "appropriate for profile",
+          "tactical rebalancing"
+        ],
+        "coverage": 0.0,
+        "steps": 2,
+        "adaptive_marker": false,
+        "total_tokens": 479
+      },
+      {
+        "case_id": "C001",
+        "requested_action": "add leveraged ETF exposure to amplify growth potential",
+        "signals": [
+          "leverage concerns"
+        ],
+        "decision": "CAUTION",
+        "path": [
+          "behavior_check",
+          "synth"
+        ],
+        "explanation": "Assessment: CAUTION\n\n\u2022 Key signals: time horizon mismatch\n\nConcerns identified:\n\u2022 leverage concerns\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: OK \u2014 concentration risk not indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: Consideration \u2014 elements may be speculative; ensure suitability.\n\u2022 Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: Consideration \u2014 evaluate tradeoffs of delaying vs executing; compare alternatives.\n\nAdvisory coverage:\n\u2022 reasonable request: partially reasonable, but requires additional checks and guardrails.",
+        "rubric_must_cover": [
+          "volatility exposure",
+          "leverage risks",
+          "market timing concerns",
+          "appropriate for high risk tolerance"
+        ],
+        "coverage": 0.25,
+        "steps": 2,
+        "adaptive_marker": false,
+        "total_tokens": 477
+      },
+      {
+        "case_id": "C018",
+        "requested_action": "add 25% more to largest single stock holding",
+        "signals": [
+          "concentration risk",
+          "high concentration"
+        ],
+        "decision": "CAUTION",
+        "path": [
+          "behavior_check",
+          "synth"
+        ],
+        "explanation": "Assessment: CAUTION\n\n\u2022 Key signals: high concentration\n\nConcerns identified:\n\u2022 concentration risk\n\u2022 high concentration\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: Issue \u2014 concentration risk indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: N/A \u2014 no explicitly speculative elements detected.\n\u2022 Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: Consideration \u2014 evaluate tradeoffs of delaying vs executing; compare alternatives.\n\nAdvisory coverage:\n\u2022 reasonable request: partially reasonable, but requires additional checks and guardrails.",
+        "rubric_must_cover": [
+          "high concentration",
+          "idiosyncratic risk",
+          "existing concentration concerns",
+          "diversification erosion"
+        ],
+        "coverage": 0.25,
+        "steps": 2,
+        "adaptive_marker": false,
+        "total_tokens": 485
+      },
+      {
+        "case_id": "C010",
+        "requested_action": "concentrate 50% of portfolio into single sector ETF",
+        "signals": [
+          "concentration risk",
+          "high concentration"
+        ],
+        "decision": "CAUTION",
+        "path": [
+          "behavior_check",
+          "synth"
+        ],
+        "explanation": "Assessment: CAUTION\n\n\u2022 Key signals: high concentration\n\nConcerns identified:\n\u2022 concentration risk\n\u2022 high concentration\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: Issue \u2014 concentration risk indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: N/A \u2014 no explicitly speculative elements detected.\n\u2022 Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: Consideration \u2014 evaluate tradeoffs of delaying vs executing; compare alternatives.\n\nAdvisory coverage:\n\u2022 reasonable request: partially reasonable, but requires additional checks and guardrails.",
+        "rubric_must_cover": [
+          "high concentration",
+          "sector risk",
+          "existing concentration concerns",
+          "diversification erosion"
+        ],
+        "coverage": 0.25,
+        "steps": 2,
+        "adaptive_marker": false,
+        "total_tokens": 487
+      },
+      {
+        "case_id": "C005",
+        "requested_action": "allocate 30% to cryptocurrency assets",
+        "signals": [],
+        "decision": "APPROVE",
+        "path": [
+          "behavior_check",
+          "synth"
+        ],
+        "explanation": "Assessment: APPROVE\n\n\u2022 Key signals: none\n\n\u2022 No significant concerns identified\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: OK \u2014 concentration risk not indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: Consideration \u2014 elements may be speculative; ensure suitability.\n\u2022 Regulatory uncertainty: Consideration \u2014 regulatory requirements may vary; verify applicable constraints.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: N/A \u2014 limited opportunity cost concerns for this request.\n\nAdvisory coverage:\n\u2022 reasonable request: consistent with stated constraints and avoids unnecessary complexity.",
+        "rubric_must_cover": [
+          "volatility exposure",
+          "regulatory uncertainty",
+          "concentration risk",
+          "speculative nature"
+        ],
+        "coverage": 1.0,
+        "steps": 2,
+        "adaptive_marker": false,
+        "total_tokens": 464
+      },
+      {
+        "case_id": "C012",
+        "requested_action": "shift to growth stocks and reduce conservative allocation",
+        "signals": [],
+        "decision": "APPROVE",
+        "path": [
+          "behavior_check",
+          "synth"
+        ],
+        "explanation": "Assessment: APPROVE\n\n\u2022 Key signals: none\n\n\u2022 No significant concerns identified\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: OK \u2014 concentration risk not indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: N/A \u2014 no explicitly speculative elements detected.\n\u2022 Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: N/A \u2014 limited opportunity cost concerns for this request.\n\nDecision rationale:\n\u2022 alignment with risk appetite: requested change fits stated risk profile.\n\u2022 current conservative positioning: proposal modestly increases return-seeking exposure.\n\u2022 growth potential: reallocation improves expected long-term growth potential.\n\u2022 volatility exposure increase: does not materially raise volatility exposure increase beyond tolerance.\n\nAdvisory coverage:\n\u2022 reasonable request: consistent with stated constraints and avoids unnecessary complexity.",
+        "rubric_must_cover": [
+          "volatility exposure increase",
+          "alignment with risk appetite",
+          "current conservative positioning",
+          "growth potential"
+        ],
+        "coverage": 1.0,
+        "steps": 2,
+        "adaptive_marker": false,
+        "total_tokens": 552
+      }
+    ]
+  },
+  "all_scores": [
+    {
+      "name": "R0-D0-B1-H0-SA-M4-AD0-APS-CO0",
+      "score": 30.617083333333326,
+      "metrics": {
+        "avg_coverage": 0.3958333333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 2.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 246.70833333333334,
+        "avg_completion_tokens": 249.91666666666666,
+        "avg_total_tokens": 496.625,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "adaptive_off",
+          "behavior_check",
+          "carryover_none",
+          "synth_style_A"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": true,
+          "use_hitl_gate": false,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "none"
+        }
+      }
+    },
+    {
+      "name": "R0-D0-B1-H0-SB-M4-AD0-APS-CO0",
+      "score": 30.492499999999993,
+      "metrics": {
+        "avg_coverage": 0.3958333333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 2.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 246.70833333333334,
+        "avg_completion_tokens": 262.375,
+        "avg_total_tokens": 509.0833333333333,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "adaptive_off",
+          "behavior_check",
+          "carryover_none",
+          "synth_style_B"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": true,
+          "use_hitl_gate": false,
+          "synth_style": "B",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "none"
+        }
+      }
+    },
+    {
+      "name": "R0-D0-B0-H0-SA-M4-AD0-APS-CO0",
+      "score": 30.45458333333333,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 175.41666666666666,
+        "avg_completion_tokens": 174.95833333333334,
+        "avg_total_tokens": 350.375,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "adaptive_off",
+          "carryover_none",
+          "synth_style_A"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": false,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "none"
+        }
+      }
+    },
+    {
+      "name": "R0-D0-B1-H0-SA-M4-AD0-APS-CO1",
+      "score": 30.35583333333333,
+      "metrics": {
+        "avg_coverage": 0.3958333333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 2.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 272.8333333333333,
+        "avg_completion_tokens": 249.91666666666666,
+        "avg_total_tokens": 522.75,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "adaptive_off",
+          "behavior_check",
+          "carryover_compact",
+          "synth_style_A"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": true,
+          "use_hitl_gate": false,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "R0-D0-B0-H0-SB-M4-AD0-APS-CO0",
+      "score": 30.312916666666663,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 175.41666666666666,
+        "avg_completion_tokens": 189.125,
+        "avg_total_tokens": 364.5416666666667,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "adaptive_off",
+          "carryover_none",
+          "synth_style_B"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": false,
+          "synth_style": "B",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "none"
+        }
+      }
+    },
+    {
+      "name": "R0-D0-B0-H0-SA-M4-AD0-APS-CO1",
+      "score": 30.30833333333333,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 190.04166666666666,
+        "avg_completion_tokens": 174.95833333333334,
+        "avg_total_tokens": 365.0,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "adaptive_off",
+          "carryover_compact",
+          "synth_style_A"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": false,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "R0-D0-B1-H0-SB-M4-AD0-APS-CO1",
+      "score": 30.231249999999996,
+      "metrics": {
+        "avg_coverage": 0.3958333333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 2.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 272.8333333333333,
+        "avg_completion_tokens": 262.375,
+        "avg_total_tokens": 535.2083333333334,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "adaptive_off",
+          "behavior_check",
+          "carryover_compact",
+          "synth_style_B"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": true,
+          "use_hitl_gate": false,
+          "synth_style": "B",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "R0-D0-B0-H0-SB-M4-AD0-APS-CO1",
+      "score": 30.16666666666666,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 190.04166666666666,
+        "avg_completion_tokens": 189.125,
+        "avg_total_tokens": 379.1666666666667,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "adaptive_off",
+          "carryover_compact",
+          "synth_style_B"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": false,
+          "synth_style": "B",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "R0-D0-B0-H1-SA-M4-AD0-APS-CO0",
+      "score": 29.95458333333333,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 175.41666666666666,
+        "avg_completion_tokens": 174.95833333333334,
+        "avg_total_tokens": 350.375,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "adaptive_off",
+          "carryover_none",
+          "hitl_gate",
+          "synth_style_A"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": true,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "none"
+        }
+      }
+    },
+    {
+      "name": "R0-D0-B0-H1-SB-M4-AD0-APS-CO0",
+      "score": 29.812916666666663,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 175.41666666666666,
+        "avg_completion_tokens": 189.125,
+        "avg_total_tokens": 364.5416666666667,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "adaptive_off",
+          "carryover_none",
+          "hitl_gate",
+          "synth_style_B"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": true,
+          "synth_style": "B",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "none"
+        }
+      }
+    },
+    {
+      "name": "R0-D0-B0-H1-SA-M4-AD0-APS-CO1",
+      "score": 29.80833333333333,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 190.04166666666666,
+        "avg_completion_tokens": 174.95833333333334,
+        "avg_total_tokens": 365.0,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "adaptive_off",
+          "carryover_compact",
+          "hitl_gate",
+          "synth_style_A"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": true,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "R0-D0-B0-H1-SB-M4-AD0-APS-CO1",
+      "score": 29.66666666666666,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 190.04166666666666,
+        "avg_completion_tokens": 189.125,
+        "avg_total_tokens": 379.1666666666667,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "adaptive_off",
+          "carryover_compact",
+          "hitl_gate",
+          "synth_style_B"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": true,
+          "synth_style": "B",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "R0-D0-B1-H1-SA-M4-AD0-APS-CO0",
+      "score": 28.876249999999995,
+      "metrics": {
+        "avg_coverage": 0.3958333333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.125,
+        "avg_steps": 2.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 246.70833333333334,
+        "avg_completion_tokens": 249.0,
+        "avg_total_tokens": 495.7083333333333,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "adaptive_off",
+          "behavior_check",
+          "carryover_none",
+          "hitl_gate",
+          "synth_style_A"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": true,
+          "use_hitl_gate": true,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "none"
+        }
+      }
+    },
+    {
+      "name": "R0-D0-B1-H1-SB-M4-AD0-APS-CO0",
+      "score": 28.76333333333333,
+      "metrics": {
+        "avg_coverage": 0.3958333333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.125,
+        "avg_steps": 2.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 246.70833333333334,
+        "avg_completion_tokens": 260.2916666666667,
+        "avg_total_tokens": 507.0,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "adaptive_off",
+          "behavior_check",
+          "carryover_none",
+          "hitl_gate",
+          "synth_style_B"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": true,
+          "use_hitl_gate": true,
+          "synth_style": "B",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "none"
+        }
+      }
+    },
+    {
+      "name": "R0-D0-B1-H1-SA-M4-AD0-APS-CO1",
+      "score": 28.61541666666666,
+      "metrics": {
+        "avg_coverage": 0.3958333333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.125,
+        "avg_steps": 2.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 272.7916666666667,
+        "avg_completion_tokens": 249.0,
+        "avg_total_tokens": 521.7916666666666,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "adaptive_off",
+          "behavior_check",
+          "carryover_compact",
+          "hitl_gate",
+          "synth_style_A"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": true,
+          "use_hitl_gate": true,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "R0-D0-B1-H1-SB-M4-AD0-APS-CO1",
+      "score": 28.502499999999994,
+      "metrics": {
+        "avg_coverage": 0.3958333333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.125,
+        "avg_steps": 2.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 272.7916666666667,
+        "avg_completion_tokens": 260.2916666666667,
+        "avg_total_tokens": 533.0833333333334,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "adaptive_off",
+          "behavior_check",
+          "carryover_compact",
+          "hitl_gate",
+          "synth_style_B"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": true,
+          "use_hitl_gate": true,
+          "synth_style": "B",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    }
+  ]
+}

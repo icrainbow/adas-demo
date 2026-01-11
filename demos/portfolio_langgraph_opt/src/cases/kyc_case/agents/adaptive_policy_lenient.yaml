@@ -1,0 +1,36 @@
+id: adaptive_policy_lenient
+version: 1.0.0
+stage: strategy
+node_type: policy
+enabled_by_default: false
+description: Lenient adaptive policy - permissive subgraph selection
+params:
+  policy: lenient
+  threshold: 0.5
+  fallback: default
+constraints:
+  requires:
+  - adaptive_on
+  requires_any: []
+  mutex_with:
+  - adaptive_policy_strict
+  only_with: []
+  at_most_one_group: adaptive_policy
+ordering:
+  priority: 310
+  depends_on:
+  - adaptive_on
+  before: []
+cost_hint:
+  tokens_per_case: 50
+  relative_latency: 1.0
+  complexity: low
+role: control
+purpose: Use lenient adaptive policy to explore broader combinations and produce denser
+  Pareto candidates.
+inputs:
+- search_config
+outputs:
+- adaptive_policy
+token_budget_hint: 450
+name: Adaptive Policy Lenient

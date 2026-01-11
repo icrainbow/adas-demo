@@ -14,7 +14,7 @@ def load_registry(registry_dir: Optional[str] = None) -> dict[str, AgentDef]:
     
     Args:
         registry_dir: Path to registry directory. If None, uses default location
-                     relative to this file.
+                     (kyc_case/agents for now).
                      
     Returns:
         Dictionary mapping agent ID to AgentDef
@@ -22,10 +22,11 @@ def load_registry(registry_dir: Optional[str] = None) -> dict[str, AgentDef]:
     Raises:
         ValueError: If validation fails or references are invalid
     """
-    # Default registry directory
+    # Default registry directory - now points to kyc_case
     if registry_dir is None:
         this_file = Path(__file__)
-        registry_dir = this_file.parent / "registry"
+        # Point to kyc_case/agents instead of legacy registry
+        registry_dir = this_file.parent.parent.parent / "src" / "cases" / "kyc_case" / "agents"
     else:
         registry_dir = Path(registry_dir)
     

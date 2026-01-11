@@ -1,0 +1,35 @@
+id: synth_style_B
+version: 1.0.0
+stage: synthesis
+node_type: style
+enabled_by_default: false
+description: Synthesis style B - narrative-focused response generation
+params:
+  format: narrative
+  rubric_driven: false
+  verbosity: high
+constraints:
+  requires: []
+  requires_any: []
+  mutex_with:
+  - synth_style_A
+  only_with: []
+  at_most_one_group: synth_style
+ordering:
+  priority: 400
+  depends_on: []
+  before: []
+cost_hint:
+  tokens_per_case: 350
+  relative_latency: 1.1
+  complexity: medium
+role: synthesis
+purpose: Synthesize outputs in a more explanatory, rationale-heavy format (variant
+  B).
+inputs:
+- signals
+- evidence
+outputs:
+- draft_review
+token_budget_hint: 1500
+name: Synthesis Style B

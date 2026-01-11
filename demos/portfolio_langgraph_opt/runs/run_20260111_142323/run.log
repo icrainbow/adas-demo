@@ -1,0 +1,62 @@
+======================================================================
+Portfolio Advisory Graph Search
+======================================================================
+Mode: grid
+Budget: 4
+Seed: 42
+Cases: demos/portfolio_langgraph_opt/data/cases.jsonl
+Policy: demos/portfolio_langgraph_opt/data/policy_snippets.txt
+Emit DOT: False
+
+Loading data...
+Loaded 24 cases
+Loaded policy text (1166 chars)
+
+Generated 96 candidates
+Grid mode: evaluating first 4 candidates
+
+Evaluating baseline...
+Baseline score: 31.81
+  Coverage: 0.365
+  Violation rate: 0.000
+  HITL rate: 0.000
+  Avg steps: 1.00
+  Avg total tokens: 365.0
+
+Evaluating 4 candidates...
+  Evaluated 4 new + 0 existing = 4/4 (best: 31.95)
+
+  Total: 4 new evaluations, 0 skipped
+
+======================================================================
+RESULTS SUMMARY
+======================================================================
+
+Baseline: R0-D0-B0-H0-SA-M4-AD0-APS-CO1
+  Score: 31.81
+  Coverage: 0.365
+  Violation rate: 0.000
+  HITL rate: 0.000
+  Avg steps: 1.00
+  Avg tokens: 365.0 (prompt: 190.0, completion: 175.0)
+
+Best: R0-D0-B0-H0-SA-M4-AD0-APS-CO0
+  Score: 31.95
+  Coverage: 0.365
+  Violation rate: 0.000
+  HITL rate: 0.000
+  Avg steps: 1.00
+  Avg tokens: 350.4 (prompt: 175.4, completion: 175.0)
+
+Improvement: 0.15 points
+
+Results written to: demos/portfolio_langgraph_opt/runs/run_20260111_142323/results.json
+
+Computing Pareto frontier...
+  Pareto frontier: 1 candidates
+  Pareto JSON written to: demos/portfolio_langgraph_opt/runs/run_20260111_142323/results_pareto.json
+  Pareto markdown written to: demos/portfolio_langgraph_opt/runs/run_20260111_142323/results_pareto.md
+
+======================================================================
+Search complete!
+======================================================================

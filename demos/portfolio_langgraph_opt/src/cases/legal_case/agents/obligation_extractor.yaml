@@ -1,0 +1,35 @@
+id: obligation_extractor
+role: extraction
+purpose: Extract obligations by party (Supplier/Customer/Mutual) and map each obligation
+  to evidence chunks.
+inputs:
+- sections
+- chunks
+- clause_inventory
+outputs:
+- obligations_table
+token_budget_hint: 1600
+name: Obligation Extractor
+version: 1.0.0
+stage: processing
+node_type: node
+enabled_by_default: true
+params:
+  model: gpt-4
+  temperature: 0.1
+constraints:
+  requires: []
+  requires_any: []
+  mutex_with: []
+  only_with: []
+  at_most_one_group: ''
+ordering:
+  priority: 100
+  depends_on: []
+  before: []
+cost_hint:
+  tokens_per_case: 160
+  relative_latency: 1.0
+  complexity: medium
+description: Extract obligations by party (Supplier/Customer/Mutual) and map each
+  obligation to evidence chunks.

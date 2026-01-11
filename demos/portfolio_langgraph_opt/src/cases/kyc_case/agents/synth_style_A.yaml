@@ -1,0 +1,35 @@
+id: synth_style_A
+version: 1.0.0
+stage: synthesis
+node_type: style
+enabled_by_default: true
+description: Synthesis style A - structured rubric-driven response generation
+params:
+  format: structured
+  rubric_driven: true
+  verbosity: medium
+constraints:
+  requires: []
+  requires_any: []
+  mutex_with:
+  - synth_style_B
+  only_with: []
+  at_most_one_group: synth_style
+ordering:
+  priority: 400
+  depends_on: []
+  before: []
+cost_hint:
+  tokens_per_case: 300
+  relative_latency: 1.0
+  complexity: medium
+role: synthesis
+purpose: Synthesize outputs in a concise, structured, decision-ready format (variant
+  A).
+inputs:
+- signals
+- evidence
+outputs:
+- draft_review
+token_budget_hint: 1400
+name: Synthesis Style A

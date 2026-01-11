@@ -1,0 +1,42 @@
+id: summary_generator
+version: 1.0.0
+stage: synthesis
+node_type: node
+enabled_by_default: true
+params:
+  model: gpt-4
+  temperature: 0.3
+  max_length: 500
+constraints:
+  requires: []
+  requires_any: []
+  mutex_with: []
+  only_with: []
+  at_most_one_group: ''
+ordering:
+  priority: 100
+  depends_on: []
+  before: []
+cost_hint:
+  tokens_per_case: 140
+  relative_latency: 1.0
+  complexity: medium
+metadata:
+  description: Generate executive summary of legal document analysis
+  author: ADAS Team
+  tags:
+  - legal
+  - summary
+  - output
+role: synthesis
+purpose: Generate an executive summary and decision-ready bullet points derived from
+  verified findings, including key risks and next actions.
+inputs:
+- compliance_findings
+- clause_inventory
+outputs:
+- exec_summary
+token_budget_hint: 1400
+name: Summary Generator
+description: Generate an executive summary and decision-ready bullet points derived
+  from verified findings, including key risks and next actions.

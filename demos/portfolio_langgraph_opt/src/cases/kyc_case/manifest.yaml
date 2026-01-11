@@ -1,0 +1,5 @@
+case_id: "kyc_case"
+display_name: "KYC Compliance Case"
+description: "KYC agent topology optimization case package."
+version: "1.0.0"
+defaults: {}

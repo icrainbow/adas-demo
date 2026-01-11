@@ -1,0 +1,36 @@
+id: hallucination_guard
+role: verification
+purpose: Red-team the draft outputs; detect unsupported claims and force corrections
+  to align strictly with document evidence.
+inputs:
+- draft_review_pack
+- normalized_document
+- chunks
+outputs:
+- hallucination_flags
+- corrected_claims
+token_budget_hint: 1900
+name: Hallucination Guard
+version: 1.0.0
+stage: processing
+node_type: node
+enabled_by_default: true
+params:
+  model: gpt-4
+  temperature: 0.1
+constraints:
+  requires: []
+  requires_any: []
+  mutex_with: []
+  only_with: []
+  at_most_one_group: ''
+ordering:
+  priority: 100
+  depends_on: []
+  before: []
+cost_hint:
+  tokens_per_case: 190
+  relative_latency: 1.0
+  complexity: medium
+description: Red-team the draft outputs; detect unsupported claims and force corrections
+  to align strictly with document evidence.

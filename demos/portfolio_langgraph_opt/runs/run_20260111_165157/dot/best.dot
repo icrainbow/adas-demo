@@ -1,0 +1,11 @@
+digraph G {
+  rankdir=LR;
+  node [fontname="Arial"];
+
+  START [shape=circle, label="START"];
+  synth [shape=box, fillcolor=lightgreen, style=filled, label="Synthesis\nStyle A\n(carryover: none)"];
+  END [shape=doublecircle, label="END"];
+
+  START -> synth;
+  synth -> END;
+}

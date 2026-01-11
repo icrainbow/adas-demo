@@ -1,0 +1,36 @@
+id: carryover_full
+version: 1.0.0
+stage: strategy
+node_type: policy
+enabled_by_default: false
+description: Full carryover - passes complete context history between steps
+params:
+  carryover_mode: full
+  context_window: -1
+  summarization: none
+constraints:
+  requires: []
+  requires_any: []
+  mutex_with:
+  - carryover_none
+  - carryover_compact
+  - hitl_gate
+  only_with: []
+  at_most_one_group: carryover
+ordering:
+  priority: 50
+  depends_on: []
+  before: []
+cost_hint:
+  tokens_per_case: 300
+  relative_latency: 1.3
+  complexity: medium
+role: memory
+purpose: Enable full carryover for maximum continuity across steps when budget allows.
+inputs:
+- run_context
+- prior_steps
+outputs:
+- full_state
+token_budget_hint: 1200
+name: Carryover Full

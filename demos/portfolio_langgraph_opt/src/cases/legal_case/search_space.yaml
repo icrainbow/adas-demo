@@ -1,0 +1,115 @@
+version: "1.0"
+case_id: "legal_case"
+
+limits:
+  max_candidates_small: 200
+  hard_cap: 500
+
+must_have:
+  - contract_parser
+  - clause_analyzer
+  - summary_generator
+
+option_groups:
+  - name: preprocessing
+    mode: toggle
+    agents:
+      - segmenter
+
+  - name: enrichment
+    mode: choose_one
+    choices:
+      - id: none
+        include: []
+      - id: defs
+        include:
+          - definition_indexer
+      - id: obligations
+        include:
+          - obligation_extractor
+      - id: both
+        include:
+          - definition_indexer
+          - obligation_extractor
+
+  - name: verification
+    mode: choose_one
+    choices:
+      - id: none
+        include: []
+      - id: basic
+        include:
+          - citation_verifier
+      - id: strict
+        include:
+          - citation_verifier
+          - hallucination_guard
+
+  - name: risk
+    mode: choose_one
+    choices:
+      - id: none
+        include: []
+      - id: basic
+        include:
+          - risk_classifier
+      - id: medium
+        include:
+          - risk_classifier
+          - jurisdiction_checker
+      - id: deep
+        include:
+          - risk_classifier
+          - jurisdiction_checker
+          - liability_stress_tester
+
+  - name: quality
+    mode: choose_one
+    choices:
+      - id: none
+        include: []
+      - id: ambiguity
+        include:
+          - ambiguity_detector
+      - id: contradiction
+        include:
+          - contradiction_detector
+
+  - name: output
+    mode: choose_one
+    choices:
+      - id: summary_only
+        include: []
+      - id: review_pack
+        include:
+          - review_pack_assembler
+      - id: polished
+        include:
+          - review_pack_assembler
+          - style_enforcer
+      - id: negotiation
+        include:
+          - negotiation_advisor
+
+dependencies:
+  - if_includes:
+      - hallucination_guard
+    must_include:
+      - citation_verifier
+  - if_includes:
+      - contradiction_detector
+    must_include:
+      - definition_indexer
+  - if_includes:
+      - negotiation_advisor
+    must_include:
+      - risk_classifier
+
+defaults:
+  selected:
+    - preprocessing: on
+    - enrichment: defs
+    - verification: basic
+    - risk: medium
+    - quality: none
+    - output: review_pack

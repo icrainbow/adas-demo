@@ -1,0 +1,36 @@
+id: risk_decompose
+version: 1.0.0
+stage: processing
+node_type: node
+enabled_by_default: false
+description: Risk decomposition - identifies risk factors and dimensions in case
+params:
+  dimensions:
+  - liquidity
+  - concentration
+  - leverage
+  - suitability
+constraints:
+  requires: []
+  requires_any: []
+  mutex_with: []
+  only_with: []
+  at_most_one_group: ''
+ordering:
+  priority: 200
+  depends_on: []
+  before: []
+cost_hint:
+  tokens_per_case: 250
+  relative_latency: 1.3
+  complexity: medium
+role: risk
+purpose: Decompose the case into risk themes and required checks; produce a structured
+  risk checklist.
+inputs:
+- case_facts
+- retrieved_evidence
+outputs:
+- risk_checklist
+token_budget_hint: 1700
+name: Risk Decompose

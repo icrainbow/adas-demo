@@ -1,0 +1,36 @@
+id: contradiction_detector
+role: quality
+purpose: Detect internal conflicts between clauses and definitions; produce evidence-linked
+  contradiction reports.
+inputs:
+- clause_inventory
+- sections
+- chunks
+- definitions_index
+outputs:
+- contradictions
+token_budget_hint: 2000
+name: Contradiction Detector
+version: 1.0.0
+stage: processing
+node_type: node
+enabled_by_default: true
+params:
+  model: gpt-4
+  temperature: 0.1
+constraints:
+  requires: []
+  requires_any: []
+  mutex_with: []
+  only_with: []
+  at_most_one_group: ''
+ordering:
+  priority: 100
+  depends_on: []
+  before: []
+cost_hint:
+  tokens_per_case: 200
+  relative_latency: 1.0
+  complexity: medium
+description: Detect internal conflicts between clauses and definitions; produce evidence-linked
+  contradiction reports.
