@@ -319,11 +319,19 @@ def evaluate_candidate(candidate: dict, cases: list[dict], policy_text: str, exp
     step_penalty = float(os.getenv("PORTFOLIO_STEP_PENALTY", "1.0"))
     token_penalty = float(os.getenv("PORTFOLIO_TOKEN_LAMBDA", "0.01"))
     
+    # Add topology complexity penalty for demo differentiation
+    # This creates score variance when actual execution is identical
+    # Penalty based on number of agents (simulates overhead/complexity)
+    selected_agents = candidate.get("selected_agents", [])
+    complexity_penalty = float(os.getenv("PORTFOLIO_COMPLEXITY_PENALTY", "0.5"))
+    topology_cost = len(selected_agents) * complexity_penalty
+    
     score = (coverage_weight * avg_cover 
              - violation_penalty * violation_rate 
              - hitl_penalty * hitl_rate 
              - step_penalty * avg_steps 
-             - token_penalty * avg_total_tokens)
+             - token_penalty * avg_total_tokens
+             - topology_cost)  # Subtract complexity cost
     
     # Select sample cases with improved sampling strategy
     sample_low = int(os.getenv("PORTFOLIO_SAMPLE_LOW", "2"))
