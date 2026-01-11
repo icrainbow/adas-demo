@@ -312,9 +312,18 @@ def evaluate_candidate(candidate: dict, cases: list[dict], policy_text: str, exp
     avg_total_tokens = sum(r.get("total_tokens", 0) for r in results) / n
     
     # Compute score with token penalty
-    # TOKEN_LAMBDA can be controlled via environment variable
-    token_lambda = float(os.getenv("PORTFOLIO_TOKEN_LAMBDA", "0.01"))
-    score = 100 * avg_cover - 200 * violation_rate - 10 * hitl_rate - 1 * avg_steps - token_lambda * avg_total_tokens
+    # Weights can be controlled via environment variables (backward compatible)
+    coverage_weight = float(os.getenv("PORTFOLIO_COVERAGE_WEIGHT", "100.0"))
+    violation_penalty = float(os.getenv("PORTFOLIO_VIOLATION_PENALTY", "200.0"))
+    hitl_penalty = float(os.getenv("PORTFOLIO_HITL_PENALTY", "10.0"))
+    step_penalty = float(os.getenv("PORTFOLIO_STEP_PENALTY", "1.0"))
+    token_penalty = float(os.getenv("PORTFOLIO_TOKEN_LAMBDA", "0.01"))
+    
+    score = (coverage_weight * avg_cover 
+             - violation_penalty * violation_rate 
+             - hitl_penalty * hitl_rate 
+             - step_penalty * avg_steps 
+             - token_penalty * avg_total_tokens)
     
     # Select sample cases with improved sampling strategy
     sample_low = int(os.getenv("PORTFOLIO_SAMPLE_LOW", "2"))

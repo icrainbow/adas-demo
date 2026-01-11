@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio LangGraph - Configuration</title>
+    <link rel="stylesheet" href="config.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Portfolio LangGraph Configuration</h1>
+            <p class="subtitle">Configure agents, evaluation weights, and run parameters</p>
+        </header>
+
+        <!-- SECTION 1: Agent Registry -->
+        <section id="agent-registry" class="panel">
+            <h2>Agent Registry</h2>
+            <div class="upload-area">
+                <input type="file" id="agentFileInput" accept=".yaml,.yml" multiple />
+                <button class="btn btn-primary" onclick="uploadAgents()">
+                    Update Agent Registry
+                </button>
+                <span class="tooltip">ℹ️ Uploads YAML files. Does NOT start optimization.</span>
+            </div>
+            <table id="agentTable">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="selectAll" onchange="toggleSelectAll()" /></th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Purpose</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+                <tbody id="agentTableBody">
+                    <!-- Populated by JS -->
+                </tbody>
+            </table>
+            <div class="table-actions">
+                <button class="btn btn-danger" onclick="deleteSelected()">
+                    Delete Selected
+                </button>
+                <button class="btn btn-secondary" onclick="loadAgents()">
+                    Refresh
+                </button>
+                <span class="tooltip">ℹ️ Delete moves to _deleted/ folder. Does NOT start optimization.</span>
+            </div>
+        </section>
+
+        <!-- SECTION 2: Evaluation Configuration -->
+        <section id="eval-config" class="panel">
+            <h2>Evaluation Configuration</h2>
+            <form id="evalForm" onsubmit="return false;">
+                <div class="form-row">
+                    <label>Coverage Weight: 
+                        <input type="number" id="coverageWeight" step="0.1" value="100.0" />
+                    </label>
+                    <label>Violation Penalty: 
+                        <input type="number" id="violationPenalty" step="0.1" value="200.0" />
+                    </label>
+                </div>
+                <div class="form-row">
+                    <label>HITL Penalty: 
+                        <input type="number" id="hitlPenalty" step="0.1" value="10.0" />
+                    </label>
+                    <label>Step Penalty: 
+                        <input type="number" id="stepPenalty" step="0.1" value="1.0" />
+                    </label>
+                </div>
+                <div class="form-row">
+                    <label>Token Penalty: 
+                        <input type="number" id="tokenPenalty" step="0.001" value="0.01" />
+                    </label>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="saveEvalConfig()">
+                    Save Evaluation Config
+                </button>
+                <span class="tooltip">ℹ️ Saves to disk. Does NOT start optimization.</span>
+            </form>
+        </section>
+
+        <!-- SECTION 3: Run Configuration -->
+        <section id="run-config" class="panel">
+            <h2>Run Configuration</h2>
+            <form id="runForm" onsubmit="return false;">
+                <div class="form-row">
+                    <label>Cases Path: 
+                        <input type="text" id="casesPath" value="demos/portfolio_langgraph_opt/data/cases.jsonl" style="width: 100%;" />
+                    </label>
+                </div>
+                <div class="form-row">
+                    <label>Policy Path: 
+                        <input type="text" id="policyPath" value="demos/portfolio_langgraph_opt/data/policy_snippets.txt" style="width: 100%;" />
+                    </label>
+                </div>
+                <div class="form-row">
+                    <label>Mode: 
+                        <select id="mode">
+                            <option value="grid">Grid</option>
+                            <option value="random">Random</option>
+                        </select>
+                    </label>
+                    <label>Budget (max 64): 
+                        <input type="number" id="budget" min="1" max="64" value="16" />
+                    </label>
+                    <label>Seed: 
+                        <input type="number" id="seed" value="7" />
+                    </label>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="saveRunConfig()">
+                    Save Run Config
+                </button>
+                <span class="tooltip">ℹ️ Saves to disk. Does NOT start optimization.</span>
+            </form>
+        </section>
+
+        <!-- SECTION 4: Optimization -->
+        <section id="optimization" class="panel">
+            <h2>Start Optimization</h2>
+            <button class="btn btn-success btn-large" onclick="startOptimization()">
+                Start Optimization
+            </button>
+            <span class="tooltip">ℹ️ Runs search with saved configs. May take several minutes.</span>
+            
+            <div id="progressPanel" style="display:none;">
+                <p><strong>Status:</strong> <span id="statusText">Running...</span></p>
+                <p><strong>Run ID:</strong> <span id="runId"></span></p>
+                <p id="warningText" style="color: orange;"></p>
+                <button class="btn btn-primary" id="viewResultsBtn" onclick="viewResults()" disabled>
+                    View Results
+                </button>
+            </div>
+        </section>
+
+        <div id="toast" class="toast"></div>
+    </div>
+
+    <script src="config.js"></script>
+</body>
+</html>
