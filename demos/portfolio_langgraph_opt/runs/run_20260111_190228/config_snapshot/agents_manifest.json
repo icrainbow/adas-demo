@@ -1,0 +1,183 @@
+{
+  "agents": [
+    {
+      "id": "adaptive_off",
+      "name": "Adaptive Off",
+      "purpose": "Disable adaptive step selection to use fixed topology for baseline comparison.",
+      "role": "control",
+      "inputs": [
+        "search_config"
+      ],
+      "outputs": [
+        "adaptive_mode"
+      ],
+      "token_budget_hint": 300
+    },
+    {
+      "id": "adaptive_on",
+      "name": "Adaptive On",
+      "purpose": "Enable adaptive step selection so the optimizer can adjust which agents run based on intermediate signals.",
+      "role": "control",
+      "inputs": [
+        "search_config"
+      ],
+      "outputs": [
+        "adaptive_mode"
+      ],
+      "token_budget_hint": 400
+    },
+    {
+      "id": "adaptive_policy_lenient",
+      "name": "Adaptive Policy Lenient",
+      "purpose": "Use lenient adaptive policy to explore broader combinations and produce denser Pareto candidates.",
+      "role": "control",
+      "inputs": [
+        "search_config"
+      ],
+      "outputs": [
+        "adaptive_policy"
+      ],
+      "token_budget_hint": 450
+    },
+    {
+      "id": "adaptive_policy_strict",
+      "name": "Adaptive Policy Strict",
+      "purpose": "Use strict adaptive policy to reduce risk and keep outputs conservative; prioritizes precision and compliance.",
+      "role": "control",
+      "inputs": [
+        "search_config"
+      ],
+      "outputs": [
+        "adaptive_policy"
+      ],
+      "token_budget_hint": 450
+    },
+    {
+      "id": "behavior_check",
+      "name": "Behavior Check",
+      "purpose": "Detect policy violations or unsafe behaviors in the draft output; flag and require corrections.",
+      "role": "verification",
+      "inputs": [
+        "draft_review"
+      ],
+      "outputs": [
+        "behavior_flags"
+      ],
+      "token_budget_hint": 1200
+    },
+    {
+      "id": "carryover_compact",
+      "name": "Carryover Compact",
+      "purpose": "Enable compact carryover of key facts and decisions to stabilize multi-step reasoning with limited tokens.",
+      "role": "memory",
+      "inputs": [
+        "run_context",
+        "prior_steps"
+      ],
+      "outputs": [
+        "compact_state"
+      ],
+      "token_budget_hint": 700
+    },
+    {
+      "id": "carryover_full",
+      "name": "Carryover Full",
+      "purpose": "Enable full carryover for maximum continuity across steps when budget allows.",
+      "role": "memory",
+      "inputs": [
+        "run_context",
+        "prior_steps"
+      ],
+      "outputs": [
+        "full_state"
+      ],
+      "token_budget_hint": 1200
+    },
+    {
+      "id": "carryover_none",
+      "name": "Carryover None",
+      "purpose": "Disable carryover/memory to maximize independence and reduce contamination across runs.",
+      "role": "memory",
+      "inputs": [
+        "run_context"
+      ],
+      "outputs": [
+        "memory_mode"
+      ],
+      "token_budget_hint": 400
+    },
+    {
+      "id": "hitl_gate",
+      "name": "HITL Gate",
+      "purpose": "Gate uncertain/high-risk decisions for human-in-the-loop review; enforce safety and conservative defaults.",
+      "role": "verification",
+      "inputs": [
+        "risk_checklist",
+        "draft_review"
+      ],
+      "outputs": [
+        "hitl_requests",
+        "approved_path"
+      ],
+      "token_budget_hint": 1200
+    },
+    {
+      "id": "retriever",
+      "name": "Retriever",
+      "purpose": "Retrieve relevant policy snippets and case context for the review, optimizing recall within the token budget.",
+      "role": "retrieval",
+      "inputs": [
+        "case_facts",
+        "policy_corpus"
+      ],
+      "outputs": [
+        "retrieved_evidence"
+      ],
+      "token_budget_hint": 1600
+    },
+    {
+      "id": "risk_decompose",
+      "name": "Risk Decompose",
+      "purpose": "Decompose the case into risk themes and required checks; produce a structured risk checklist.",
+      "role": "risk",
+      "inputs": [
+        "case_facts",
+        "retrieved_evidence"
+      ],
+      "outputs": [
+        "risk_checklist"
+      ],
+      "token_budget_hint": 1700
+    },
+    {
+      "id": "synth_style_A",
+      "name": "Synthesis Style A",
+      "purpose": "Synthesize outputs in a concise, structured, decision-ready format (variant A).",
+      "role": "synthesis",
+      "inputs": [
+        "signals",
+        "evidence"
+      ],
+      "outputs": [
+        "draft_review"
+      ],
+      "token_budget_hint": 1400
+    },
+    {
+      "id": "synth_style_B",
+      "name": "Synthesis Style B",
+      "purpose": "Synthesize outputs in a more explanatory, rationale-heavy format (variant B).",
+      "role": "synthesis",
+      "inputs": [
+        "signals",
+        "evidence"
+      ],
+      "outputs": [
+        "draft_review"
+      ],
+      "token_budget_hint": 1500
+    }
+  ],
+  "total": 13,
+  "errors": []
+}

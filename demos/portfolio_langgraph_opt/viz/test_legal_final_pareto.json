@@ -1,0 +1,204 @@
+{
+  "pareto_front": [
+    {
+      "candidate_name": "LEGAL-CASE-000-3d2957cd",
+      "score": 27.30833333333333,
+      "avg_coverage": 0.3645833333333333,
+      "avg_steps": 1.0,
+      "hitl_rate": 0.0,
+      "violation_rate": 0.0,
+      "avg_total_tokens": 365.0,
+      "avg_prompt_tokens": 190.04166666666666,
+      "avg_completion_tokens": 174.95833333333334
+    },
+    {
+      "candidate_name": "LEGAL-CASE-145-17cf450d",
+      "score": 28.30833333333333,
+      "avg_coverage": 0.3645833333333333,
+      "avg_steps": 1.0,
+      "hitl_rate": 0.0,
+      "violation_rate": 0.0,
+      "avg_total_tokens": 365.0,
+      "avg_prompt_tokens": 190.04166666666666,
+      "avg_completion_tokens": 174.95833333333334
+    },
+    {
+      "candidate_name": "LEGAL-CASE-172-74f929c6",
+      "score": 27.30833333333333,
+      "avg_coverage": 0.3645833333333333,
+      "avg_steps": 1.0,
+      "hitl_rate": 0.0,
+      "violation_rate": 0.0,
+      "avg_total_tokens": 365.0,
+      "avg_prompt_tokens": 190.04166666666666,
+      "avg_completion_tokens": 174.95833333333334
+    },
+    {
+      "candidate_name": "LEGAL-CASE-180-638f4151",
+      "score": 28.80833333333333,
+      "avg_coverage": 0.3645833333333333,
+      "avg_steps": 1.0,
+      "hitl_rate": 0.0,
+      "violation_rate": 0.0,
+      "avg_total_tokens": 365.0,
+      "avg_prompt_tokens": 190.04166666666666,
+      "avg_completion_tokens": 174.95833333333334
+    },
+    {
+      "candidate_name": "LEGAL-CASE-143-50bbec15",
+      "score": 27.80833333333333,
+      "avg_coverage": 0.3645833333333333,
+      "avg_steps": 1.0,
+      "hitl_rate": 0.0,
+      "violation_rate": 0.0,
+      "avg_total_tokens": 365.0,
+      "avg_prompt_tokens": 190.04166666666666,
+      "avg_completion_tokens": 174.95833333333334
+    },
+    {
+      "candidate_name": "LEGAL-CASE-154-3f39fb38",
+      "score": 27.30833333333333,
+      "avg_coverage": 0.3645833333333333,
+      "avg_steps": 1.0,
+      "hitl_rate": 0.0,
+      "violation_rate": 0.0,
+      "avg_total_tokens": 365.0,
+      "avg_prompt_tokens": 190.04166666666666,
+      "avg_completion_tokens": 174.95833333333334
+    },
+    {
+      "candidate_name": "LEGAL-CASE-033-8257c8da",
+      "score": 29.30833333333333,
+      "avg_coverage": 0.3645833333333333,
+      "avg_steps": 1.0,
+      "hitl_rate": 0.0,
+      "violation_rate": 0.0,
+      "avg_total_tokens": 365.0,
+      "avg_prompt_tokens": 190.04166666666666,
+      "avg_completion_tokens": 174.95833333333334
+    },
+    {
+      "candidate_name": "LEGAL-CASE-073-caa4f666",
+      "score": 27.80833333333333,
+      "avg_coverage": 0.3645833333333333,
+      "avg_steps": 1.0,
+      "hitl_rate": 0.0,
+      "violation_rate": 0.0,
+      "avg_total_tokens": 365.0,
+      "avg_prompt_tokens": 190.04166666666666,
+      "avg_completion_tokens": 174.95833333333334
+    },
+    {
+      "candidate_name": "LEGAL-CASE-092-124c2069",
+      "score": 28.80833333333333,
+      "avg_coverage": 0.3645833333333333,
+      "avg_steps": 1.0,
+      "hitl_rate": 0.0,
+      "violation_rate": 0.0,
+      "avg_total_tokens": 365.0,
+      "avg_prompt_tokens": 190.04166666666666,
+      "avg_completion_tokens": 174.95833333333334
+    }
+  ],
+  "all_rows": [
+    {
+      "candidate_name": "LEGAL-CASE-000-3d2957cd",
+      "score": 27.30833333333333,
+      "avg_coverage": 0.3645833333333333,
+      "avg_steps": 1.0,
+      "hitl_rate": 0.0,
+      "violation_rate": 0.0,
+      "avg_total_tokens": 365.0,
+      "avg_prompt_tokens": 190.04166666666666,
+      "avg_completion_tokens": 174.95833333333334
+    },
+    {
+      "candidate_name": "LEGAL-CASE-145-17cf450d",
+      "score": 28.30833333333333,
+      "avg_coverage": 0.3645833333333333,
+      "avg_steps": 1.0,
+      "hitl_rate": 0.0,
+      "violation_rate": 0.0,
+      "avg_total_tokens": 365.0,
+      "avg_prompt_tokens": 190.04166666666666,
+      "avg_completion_tokens": 174.95833333333334
+    },
+    {
+      "candidate_name": "LEGAL-CASE-172-74f929c6",
+      "score": 27.30833333333333,
+      "avg_coverage": 0.3645833333333333,
+      "avg_steps": 1.0,
+      "hitl_rate": 0.0,
+      "violation_rate": 0.0,
+      "avg_total_tokens": 365.0,
+      "avg_prompt_tokens": 190.04166666666666,
+      "avg_completion_tokens": 174.95833333333334
+    },
+    {
+      "candidate_name": "LEGAL-CASE-180-638f4151",
+      "score": 28.80833333333333,
+      "avg_coverage": 0.3645833333333333,
+      "avg_steps": 1.0,
+      "hitl_rate": 0.0,
+      "violation_rate": 0.0,
+      "avg_total_tokens": 365.0,
+      "avg_prompt_tokens": 190.04166666666666,
+      "avg_completion_tokens": 174.95833333333334
+    },
+    {
+      "candidate_name": "LEGAL-CASE-143-50bbec15",
+      "score": 27.80833333333333,
+      "avg_coverage": 0.3645833333333333,
+      "avg_steps": 1.0,
+      "hitl_rate": 0.0,
+      "violation_rate": 0.0,
+      "avg_total_tokens": 365.0,
+      "avg_prompt_tokens": 190.04166666666666,
+      "avg_completion_tokens": 174.95833333333334
+    },
+    {
+      "candidate_name": "LEGAL-CASE-154-3f39fb38",
+      "score": 27.30833333333333,
+      "avg_coverage": 0.3645833333333333,
+      "avg_steps": 1.0,
+      "hitl_rate": 0.0,
+      "violation_rate": 0.0,
+      "avg_total_tokens": 365.0,
+      "avg_prompt_tokens": 190.04166666666666,
+      "avg_completion_tokens": 174.95833333333334
+    },
+    {
+      "candidate_name": "LEGAL-CASE-033-8257c8da",
+      "score": 29.30833333333333,
+      "avg_coverage": 0.3645833333333333,
+      "avg_steps": 1.0,
+      "hitl_rate": 0.0,
+      "violation_rate": 0.0,
+      "avg_total_tokens": 365.0,
+      "avg_prompt_tokens": 190.04166666666666,
+      "avg_completion_tokens": 174.95833333333334
+    },
+    {
+      "candidate_name": "LEGAL-CASE-073-caa4f666",
+      "score": 27.80833333333333,
+      "avg_coverage": 0.3645833333333333,
+      "avg_steps": 1.0,
+      "hitl_rate": 0.0,
+      "violation_rate": 0.0,
+      "avg_total_tokens": 365.0,
+      "avg_prompt_tokens": 190.04166666666666,
+      "avg_completion_tokens": 174.95833333333334
+    },
+    {
+      "candidate_name": "LEGAL-CASE-092-124c2069",
+      "score": 28.80833333333333,
+      "avg_coverage": 0.3645833333333333,
+      "avg_steps": 1.0,
+      "hitl_rate": 0.0,
+      "violation_rate": 0.0,
+      "avg_total_tokens": 365.0,
+      "avg_prompt_tokens": 190.04166666666666,
+      "avg_completion_tokens": 174.95833333333334
+    }
+  ]
+}

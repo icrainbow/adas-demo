@@ -1,0 +1,69 @@
+Using custom registry: /Users/shenyanran/Dev/AdasDemo/ADAS/demos/portfolio_langgraph_opt/src/cases/legal_case/agents
+Loaded search space for case: legal_case
+======================================================================
+Portfolio Advisory Graph Search
+======================================================================
+Mode: grid
+Budget: 24
+Seed: 42
+Cases: demos/portfolio_langgraph_opt/data/cases.jsonl
+Policy: demos/portfolio_langgraph_opt/data/policy_snippets.txt
+Registry: /Users/shenyanran/Dev/AdasDemo/ADAS/demos/portfolio_langgraph_opt/src/cases/legal_case/agents
+Emit DOT: False
+
+Loading data...
+Loaded 24 cases
+Loaded policy text (1166 chars)
+
+Generated 200 candidates
+Grid mode: evaluating first 24 candidates
+
+Evaluating baseline...
+Baseline score: 27.31
+  Coverage: 0.365
+  Violation rate: 0.000
+  HITL rate: 0.000
+  Avg steps: 1.00
+  Avg total tokens: 365.0
+
+Evaluating 24 candidates...
+  Evaluated 5 new + 0 existing = 5/24 (best: 30.31)
+  Evaluated 10 new + 0 existing = 10/24 (best: 30.31)
+  Evaluated 15 new + 0 existing = 15/24 (best: 30.31)
+  Evaluated 20 new + 0 existing = 20/24 (best: 30.31)
+  Evaluated 24 new + 0 existing = 24/24 (best: 30.31)
+
+  Total: 24 new evaluations, 0 skipped
+
+======================================================================
+RESULTS SUMMARY
+======================================================================
+
+Baseline: LEGAL-CASE-000-3d2957cd
+  Score: 27.31
+  Coverage: 0.365
+  Violation rate: 0.000
+  HITL rate: 0.000
+  Avg steps: 1.00
+  Avg tokens: 365.0 (prompt: 190.0, completion: 175.0)
+
+Best: LEGAL-CASE-000-99d4f405
+  Score: 30.31
+  Coverage: 0.365
+  Violation rate: 0.000
+  HITL rate: 0.000
+  Avg steps: 1.00
+  Avg tokens: 365.0 (prompt: 190.0, completion: 175.0)
+
+Improvement: 3.00 points
+
+Results written to: demos/portfolio_langgraph_opt/runs/run_20260111_190309/results.json
+
+Computing Pareto frontier...
+  Pareto frontier: 25 candidates
+  Pareto JSON written to: demos/portfolio_langgraph_opt/runs/run_20260111_190309/results_pareto.json
+  Pareto markdown written to: demos/portfolio_langgraph_opt/runs/run_20260111_190309/results_pareto.md
+
+======================================================================
+Search complete!
+======================================================================

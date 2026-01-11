@@ -1,0 +1,278 @@
+{
+  "agents": [
+    {
+      "id": "ambiguity_detector",
+      "name": "Ambiguity Detector",
+      "purpose": "Detect ambiguous language (e.g., 'reasonable efforts', 'material', 'substantially') and propose concrete rewrite options.",
+      "role": "quality",
+      "inputs": [
+        "sections",
+        "chunks"
+      ],
+      "outputs": [
+        "ambiguities",
+        "rewrite_suggestions"
+      ],
+      "token_budget_hint": 1600
+    },
+    {
+      "id": "citation_verifier",
+      "name": "Citation Verifier",
+      "purpose": "Verify every major finding is traceable to specific chunks; flag gaps and weak evidence.",
+      "role": "verification",
+      "inputs": [
+        "clause_inventory",
+        "risk_register",
+        "contradictions",
+        "ambiguities"
+      ],
+      "outputs": [
+        "citation_gaps"
+      ],
+      "token_budget_hint": 1400
+    },
+    {
+      "id": "clause_analyzer",
+      "name": "Clause Analyzer",
+      "purpose": "Extract canonical clause types (termination, liability, indemnity, confidentiality, payment, governing law, dispute resolution) with citations.",
+      "role": "extraction",
+      "inputs": [
+        "normalized_document",
+        "doc_structure"
+      ],
+      "outputs": [
+        "clause_inventory"
+      ],
+      "token_budget_hint": 1700
+    },
+    {
+      "id": "compliance_checker",
+      "name": "Compliance Checker",
+      "purpose": "Check the extracted clauses against generic policy notes and flag missing/weak protections; ensure findings are evidence-grounded.",
+      "role": "verification",
+      "inputs": [
+        "clause_inventory",
+        "policy_notes"
+      ],
+      "outputs": [
+        "compliance_findings"
+      ],
+      "token_budget_hint": 1800
+    },
+    {
+      "id": "contract_parser",
+      "name": "Contract Parser",
+      "purpose": "Normalize raw legal text, preserve headings, and produce a stable structured representation for downstream extraction.",
+      "role": "preprocessing",
+      "inputs": [
+        "raw_document"
+      ],
+      "outputs": [
+        "normalized_document",
+        "doc_structure"
+      ],
+      "token_budget_hint": 1200
+    },
+    {
+      "id": "contradiction_detector",
+      "name": "Contradiction Detector",
+      "purpose": "Detect internal conflicts between clauses and definitions; produce evidence-linked contradiction reports.",
+      "role": "quality",
+      "inputs": [
+        "clause_inventory",
+        "sections",
+        "chunks",
+        "definitions_index"
+      ],
+      "outputs": [
+        "contradictions"
+      ],
+      "token_budget_hint": 2000
+    },
+    {
+      "id": "definition_indexer",
+      "name": "Definition Indexer",
+      "purpose": "Build a glossary of defined terms; flag missing, circular, unused, or inconsistent definitions.",
+      "role": "extraction",
+      "inputs": [
+        "sections",
+        "chunks"
+      ],
+      "outputs": [
+        "definitions_index",
+        "definition_issues"
+      ],
+      "token_budget_hint": 1400
+    },
+    {
+      "id": "hallucination_guard",
+      "name": "Hallucination Guard",
+      "purpose": "Red-team the draft outputs; detect unsupported claims and force corrections to align strictly with document evidence.",
+      "role": "verification",
+      "inputs": [
+        "draft_review_pack",
+        "normalized_document",
+        "chunks"
+      ],
+      "outputs": [
+        "hallucination_flags",
+        "corrected_claims"
+      ],
+      "token_budget_hint": 1900
+    },
+    {
+      "id": "jurisdiction_checker",
+      "name": "Jurisdiction Checker",
+      "purpose": "Validate governing law / venue / dispute resolution consistency; flag mismatches and enforcement risks.",
+      "role": "risk",
+      "inputs": [
+        "clause_inventory",
+        "doc_structure"
+      ],
+      "outputs": [
+        "jurisdiction_risks"
+      ],
+      "token_budget_hint": 1500
+    },
+    {
+      "id": "liability_stress_tester",
+      "name": "Liability Stress Tester",
+      "purpose": "Stress-test limitation of liability vs indemnity/warranty/termination; flag cap too low, carve-outs missing, or asymmetry.",
+      "role": "risk",
+      "inputs": [
+        "clause_inventory",
+        "risk_register"
+      ],
+      "outputs": [
+        "liability_findings"
+      ],
+      "token_budget_hint": 2100
+    },
+    {
+      "id": "missing_clause_detector",
+      "name": "Missing Clause Detector",
+      "purpose": "Identify expected clause categories that are absent or under-specified given the document type; generate targeted questions.",
+      "role": "quality",
+      "inputs": [
+        "clause_inventory",
+        "doc_structure",
+        "policy_notes"
+      ],
+      "outputs": [
+        "missing_clause_questions"
+      ],
+      "token_budget_hint": 1500
+    },
+    {
+      "id": "negotiation_advisor",
+      "name": "Negotiation Advisor",
+      "purpose": "Turn risks into negotiation moves: redlines, fallback language, questions to ask, and recommended positions.",
+      "role": "advisory",
+      "inputs": [
+        "risk_register",
+        "clause_inventory",
+        "obligations_table"
+      ],
+      "outputs": [
+        "negotiation_playbook"
+      ],
+      "token_budget_hint": 2200
+    },
+    {
+      "id": "obligation_extractor",
+      "name": "Obligation Extractor",
+      "purpose": "Extract obligations by party (Supplier/Customer/Mutual) and map each obligation to evidence chunks.",
+      "role": "extraction",
+      "inputs": [
+        "sections",
+        "chunks",
+        "clause_inventory"
+      ],
+      "outputs": [
+        "obligations_table"
+      ],
+      "token_budget_hint": 1600
+    },
+    {
+      "id": "review_pack_assembler",
+      "name": "Review Pack Assembler",
+      "purpose": "Assemble a final review pack (inventory, risks, contradictions, rewrites, negotiation playbook) with consistent structure.",
+      "role": "synthesis",
+      "inputs": [
+        "exec_summary",
+        "clause_inventory",
+        "obligations_table",
+        "risk_register",
+        "contradictions",
+        "rewrite_suggestions",
+        "negotiation_playbook",
+        "citation_gaps",
+        "missing_clause_questions",
+        "jurisdiction_risks",
+        "liability_findings"
+      ],
+      "outputs": [
+        "review_pack"
+      ],
+      "token_budget_hint": 2600
+    },
+    {
+      "id": "risk_classifier",
+      "name": "Risk Classifier",
+      "purpose": "Assign severity/likelihood/impact for clause-level risks with rationale; convert into a structured risk register.",
+      "role": "risk",
+      "inputs": [
+        "clause_inventory",
+        "obligations_table",
+        "policy_notes"
+      ],
+      "outputs": [
+        "risk_register"
+      ],
+      "token_budget_hint": 2200
+    },
+    {
+      "id": "segmenter",
+      "name": "Segmenter",
+      "purpose": "Split normalized document into stable chunk IDs for traceability and citation alignment.",
+      "role": "preprocessing",
+      "inputs": [
+        "normalized_document"
+      ],
+      "outputs": [
+        "sections",
+        "chunks"
+      ],
+      "token_budget_hint": 1200
+    },
+    {
+      "id": "style_enforcer",
+      "name": "Style Enforcer",
+      "purpose": "Enforce concise formatting and eliminate duplication; ensure the review pack is skimmable and decision-ready.",
+      "role": "quality",
+      "inputs": [
+        "review_pack"
+      ],
+      "outputs": [
+        "review_pack_final"
+      ],
+      "token_budget_hint": 1200
+    },
+    {
+      "id": "summary_generator",
+      "name": "Summary Generator",
+      "purpose": "Generate an executive summary and decision-ready bullet points derived from verified findings, including key risks and next actions.",
+      "role": "synthesis",
+      "inputs": [
+        "compliance_findings",
+        "clause_inventory"
+      ],
+      "outputs": [
+        "exec_summary"
+      ],
+      "token_budget_hint": 1400
+    }
+  ],
+  "total": 18,
+  "errors": []
+}

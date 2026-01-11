@@ -1,0 +1,1365 @@
+{
+  "run": {
+    "mode": "grid",
+    "budget": 24,
+    "seed": 42,
+    "case_count": 24,
+    "emit_dot": false
+  },
+  "baseline": {
+    "candidate": {
+      "use_retriever": false,
+      "use_risk_decompose": false,
+      "use_behavior_check": false,
+      "use_hitl_gate": false,
+      "synth_style": "A",
+      "max_steps": 4,
+      "adaptive": false,
+      "adaptive_policy": "strict",
+      "carryover": "compact",
+      "selected_agents": [
+        "citation_verifier",
+        "clause_analyzer",
+        "contract_parser",
+        "definition_indexer",
+        "jurisdiction_checker",
+        "review_pack_assembler",
+        "risk_classifier",
+        "segmenter",
+        "summary_generator"
+      ]
+    },
+    "score": 27.30833333333333,
+    "metrics": {
+      "avg_coverage": 0.3645833333333333,
+      "violation_rate": 0.0,
+      "hitl_rate": 0.0,
+      "avg_steps": 1.0,
+      "adaptive_marker_rate": 0.0,
+      "avg_prompt_tokens": 190.04166666666666,
+      "avg_completion_tokens": 174.95833333333334,
+      "avg_total_tokens": 365.0,
+      "num_cases": 24
+    },
+    "samples": [
+      {
+        "case_id": "C014",
+        "requested_action": "rebalance to maintain 60/40 equity-bond allocation",
+        "signals": [],
+        "decision": "APPROVE",
+        "path": [
+          "synth"
+        ],
+        "explanation": "Assessment: APPROVE\n\n\u2022 Key signals: none\n\n\u2022 No significant concerns identified\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: OK \u2014 concentration risk not indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: N/A \u2014 no explicitly speculative elements detected.\n\u2022 Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: N/A \u2014 limited opportunity cost concerns for this request.\n\nDecision rationale:\n\u2022 alignment with risk appetite: requested change fits stated risk profile.\n\u2022 growth potential: reallocation improves expected long-term growth potential.\n\u2022 volatility exposure increase: does not materially raise volatility exposure increase beyond tolerance.",
+        "rubric_must_cover": [
+          "alignment with risk profile",
+          "appropriate diversification",
+          "liquidity maintenance",
+          "reasonable request"
+        ],
+        "coverage": 0.0,
+        "steps": 1,
+        "adaptive_marker": false,
+        "total_tokens": 403
+      },
+      {
+        "case_id": "C019",
+        "requested_action": "rotate from tech to healthcare sector for diversification",
+        "signals": [],
+        "decision": "APPROVE",
+        "path": [
+          "synth"
+        ],
+        "explanation": "Assessment: APPROVE\n\n\u2022 Key signals: none\n\n\u2022 No significant concerns identified\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: Issue \u2014 concentration risk indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: N/A \u2014 no explicitly speculative elements detected.\n\u2022 Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: N/A \u2014 limited opportunity cost concerns for this request.",
+        "rubric_must_cover": [
+          "sector rotation rationale",
+          "diversification benefits",
+          "appropriate for profile",
+          "tactical rebalancing"
+        ],
+        "coverage": 0.0,
+        "steps": 1,
+        "adaptive_marker": false,
+        "total_tokens": 332
+      },
+      {
+        "case_id": "C018",
+        "requested_action": "add 25% more to largest single stock holding",
+        "signals": [
+          "concentration risk"
+        ],
+        "decision": "CAUTION",
+        "path": [
+          "synth"
+        ],
+        "explanation": "Assessment: CAUTION\n\n\u2022 Key signals: high concentration\n\nConcerns identified:\n\u2022 concentration risk\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: Issue \u2014 concentration risk indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: N/A \u2014 no explicitly speculative elements detected.\n\u2022 Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: Consideration \u2014 evaluate tradeoffs of delaying vs executing; compare alternatives.",
+        "rubric_must_cover": [
+          "high concentration",
+          "idiosyncratic risk",
+          "existing concentration concerns",
+          "diversification erosion"
+        ],
+        "coverage": 0.25,
+        "steps": 1,
+        "adaptive_marker": false,
+        "total_tokens": 354
+      },
+      {
+        "case_id": "C009",
+        "requested_action": "reduce bonds further to add international equity exposure",
+        "signals": [],
+        "decision": "APPROVE",
+        "path": [
+          "synth"
+        ],
+        "explanation": "Assessment: APPROVE\n\n\u2022 Key signals: none\n\n\u2022 No significant concerns identified\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: OK \u2014 concentration risk not indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: N/A \u2014 no explicitly speculative elements detected.\n\u2022 Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: N/A \u2014 limited opportunity cost concerns for this request.\n\nDecision rationale:\n\u2022 alignment with risk appetite: requested change fits stated risk profile.",
+        "rubric_must_cover": [
+          "volatility exposure",
+          "geographic diversification benefits",
+          "appropriate for risk profile",
+          "time horizon alignment"
+        ],
+        "coverage": 0.25,
+        "steps": 1,
+        "adaptive_marker": false,
+        "total_tokens": 357
+      },
+      {
+        "case_id": "C005",
+        "requested_action": "allocate 30% to cryptocurrency assets",
+        "signals": [],
+        "decision": "APPROVE",
+        "path": [
+          "synth"
+        ],
+        "explanation": "Assessment: APPROVE\n\n\u2022 Key signals: none\n\n\u2022 No significant concerns identified\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: OK \u2014 concentration risk not indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: Consideration \u2014 elements may be speculative; ensure suitability.\n\u2022 Regulatory uncertainty: Consideration \u2014 regulatory requirements may vary; verify applicable constraints.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: N/A \u2014 limited opportunity cost concerns for this request.",
+        "rubric_must_cover": [
+          "volatility exposure",
+          "regulatory uncertainty",
+          "concentration risk",
+          "speculative nature"
+        ],
+        "coverage": 1.0,
+        "steps": 1,
+        "adaptive_marker": false,
+        "total_tokens": 342
+      },
+      {
+        "case_id": "C012",
+        "requested_action": "shift to growth stocks and reduce conservative allocation",
+        "signals": [],
+        "decision": "APPROVE",
+        "path": [
+          "synth"
+        ],
+        "explanation": "Assessment: APPROVE\n\n\u2022 Key signals: none\n\n\u2022 No significant concerns identified\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: OK \u2014 concentration risk not indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: N/A \u2014 no explicitly speculative elements detected.\n\u2022 Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: N/A \u2014 limited opportunity cost concerns for this request.\n\nDecision rationale:\n\u2022 alignment with risk appetite: requested change fits stated risk profile.\n\u2022 current conservative positioning: proposal modestly increases return-seeking exposure.\n\u2022 growth potential: reallocation improves expected long-term growth potential.\n\u2022 volatility exposure increase: does not materially raise volatility exposure increase beyond tolerance.",
+        "rubric_must_cover": [
+          "volatility exposure increase",
+          "alignment with risk appetite",
+          "current conservative positioning",
+          "growth potential"
+        ],
+        "coverage": 1.0,
+        "steps": 1,
+        "adaptive_marker": false,
+        "total_tokens": 425
+      }
+    ]
+  },
+  "best": {
+    "candidate": {
+      "use_retriever": false,
+      "use_risk_decompose": false,
+      "use_behavior_check": false,
+      "use_hitl_gate": false,
+      "synth_style": "A",
+      "max_steps": 4,
+      "adaptive": false,
+      "adaptive_policy": "strict",
+      "carryover": "compact",
+      "selected_agents": [
+        "clause_analyzer",
+        "contract_parser",
+        "summary_generator"
+      ]
+    },
+    "score": 30.30833333333333,
+    "metrics": {
+      "avg_coverage": 0.3645833333333333,
+      "violation_rate": 0.0,
+      "hitl_rate": 0.0,
+      "avg_steps": 1.0,
+      "adaptive_marker_rate": 0.0,
+      "avg_prompt_tokens": 190.04166666666666,
+      "avg_completion_tokens": 174.95833333333334,
+      "avg_total_tokens": 365.0,
+      "num_cases": 24
+    },
+    "samples": [
+      {
+        "case_id": "C014",
+        "requested_action": "rebalance to maintain 60/40 equity-bond allocation",
+        "signals": [],
+        "decision": "APPROVE",
+        "path": [
+          "synth"
+        ],
+        "explanation": "Assessment: APPROVE\n\n\u2022 Key signals: none\n\n\u2022 No significant concerns identified\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: OK \u2014 concentration risk not indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: N/A \u2014 no explicitly speculative elements detected.\n\u2022 Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: N/A \u2014 limited opportunity cost concerns for this request.\n\nDecision rationale:\n\u2022 alignment with risk appetite: requested change fits stated risk profile.\n\u2022 growth potential: reallocation improves expected long-term growth potential.\n\u2022 volatility exposure increase: does not materially raise volatility exposure increase beyond tolerance.",
+        "rubric_must_cover": [
+          "alignment with risk profile",
+          "appropriate diversification",
+          "liquidity maintenance",
+          "reasonable request"
+        ],
+        "coverage": 0.0,
+        "steps": 1,
+        "adaptive_marker": false,
+        "total_tokens": 403
+      },
+      {
+        "case_id": "C019",
+        "requested_action": "rotate from tech to healthcare sector for diversification",
+        "signals": [],
+        "decision": "APPROVE",
+        "path": [
+          "synth"
+        ],
+        "explanation": "Assessment: APPROVE\n\n\u2022 Key signals: none\n\n\u2022 No significant concerns identified\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: Issue \u2014 concentration risk indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: N/A \u2014 no explicitly speculative elements detected.\n\u2022 Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: N/A \u2014 limited opportunity cost concerns for this request.",
+        "rubric_must_cover": [
+          "sector rotation rationale",
+          "diversification benefits",
+          "appropriate for profile",
+          "tactical rebalancing"
+        ],
+        "coverage": 0.0,
+        "steps": 1,
+        "adaptive_marker": false,
+        "total_tokens": 332
+      },
+      {
+        "case_id": "C018",
+        "requested_action": "add 25% more to largest single stock holding",
+        "signals": [
+          "concentration risk"
+        ],
+        "decision": "CAUTION",
+        "path": [
+          "synth"
+        ],
+        "explanation": "Assessment: CAUTION\n\n\u2022 Key signals: high concentration\n\nConcerns identified:\n\u2022 concentration risk\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: Issue \u2014 concentration risk indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: N/A \u2014 no explicitly speculative elements detected.\n\u2022 Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: Consideration \u2014 evaluate tradeoffs of delaying vs executing; compare alternatives.",
+        "rubric_must_cover": [
+          "high concentration",
+          "idiosyncratic risk",
+          "existing concentration concerns",
+          "diversification erosion"
+        ],
+        "coverage": 0.25,
+        "steps": 1,
+        "adaptive_marker": false,
+        "total_tokens": 354
+      },
+      {
+        "case_id": "C009",
+        "requested_action": "reduce bonds further to add international equity exposure",
+        "signals": [],
+        "decision": "APPROVE",
+        "path": [
+          "synth"
+        ],
+        "explanation": "Assessment: APPROVE\n\n\u2022 Key signals: none\n\n\u2022 No significant concerns identified\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: OK \u2014 concentration risk not indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: N/A \u2014 no explicitly speculative elements detected.\n\u2022 Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: N/A \u2014 limited opportunity cost concerns for this request.\n\nDecision rationale:\n\u2022 alignment with risk appetite: requested change fits stated risk profile.",
+        "rubric_must_cover": [
+          "volatility exposure",
+          "geographic diversification benefits",
+          "appropriate for risk profile",
+          "time horizon alignment"
+        ],
+        "coverage": 0.25,
+        "steps": 1,
+        "adaptive_marker": false,
+        "total_tokens": 357
+      },
+      {
+        "case_id": "C005",
+        "requested_action": "allocate 30% to cryptocurrency assets",
+        "signals": [],
+        "decision": "APPROVE",
+        "path": [
+          "synth"
+        ],
+        "explanation": "Assessment: APPROVE\n\n\u2022 Key signals: none\n\n\u2022 No significant concerns identified\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: OK \u2014 concentration risk not indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: Consideration \u2014 elements may be speculative; ensure suitability.\n\u2022 Regulatory uncertainty: Consideration \u2014 regulatory requirements may vary; verify applicable constraints.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: N/A \u2014 limited opportunity cost concerns for this request.",
+        "rubric_must_cover": [
+          "volatility exposure",
+          "regulatory uncertainty",
+          "concentration risk",
+          "speculative nature"
+        ],
+        "coverage": 1.0,
+        "steps": 1,
+        "adaptive_marker": false,
+        "total_tokens": 342
+      },
+      {
+        "case_id": "C012",
+        "requested_action": "shift to growth stocks and reduce conservative allocation",
+        "signals": [],
+        "decision": "APPROVE",
+        "path": [
+          "synth"
+        ],
+        "explanation": "Assessment: APPROVE\n\n\u2022 Key signals: none\n\n\u2022 No significant concerns identified\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: OK \u2014 concentration risk not indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: N/A \u2014 no explicitly speculative elements detected.\n\u2022 Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: N/A \u2014 limited opportunity cost concerns for this request.\n\nDecision rationale:\n\u2022 alignment with risk appetite: requested change fits stated risk profile.\n\u2022 current conservative positioning: proposal modestly increases return-seeking exposure.\n\u2022 growth potential: reallocation improves expected long-term growth potential.\n\u2022 volatility exposure increase: does not materially raise volatility exposure increase beyond tolerance.",
+        "rubric_must_cover": [
+          "volatility exposure increase",
+          "alignment with risk appetite",
+          "current conservative positioning",
+          "growth potential"
+        ],
+        "coverage": 1.0,
+        "steps": 1,
+        "adaptive_marker": false,
+        "total_tokens": 425
+      }
+    ]
+  },
+  "all_scores": [
+    {
+      "name": "LEGAL-CASE-000-99d4f405",
+      "score": 30.30833333333333,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 190.04166666666666,
+        "avg_completion_tokens": 174.95833333333334,
+        "avg_total_tokens": 365.0,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "clause_analyzer",
+          "contract_parser",
+          "summary_generator"
+        ],
+        "processing_agents": [
+          "clause_analyzer",
+          "contract_parser",
+          "summary_generator"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": false,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "LEGAL-CASE-001-33de5299",
+      "score": 29.80833333333333,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 190.04166666666666,
+        "avg_completion_tokens": 174.95833333333334,
+        "avg_total_tokens": 365.0,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "clause_analyzer",
+          "contract_parser",
+          "review_pack_assembler",
+          "summary_generator"
+        ],
+        "processing_agents": [
+          "clause_analyzer",
+          "contract_parser",
+          "review_pack_assembler",
+          "summary_generator"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": false,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "LEGAL-CASE-003-0702cdab",
+      "score": 29.80833333333333,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 190.04166666666666,
+        "avg_completion_tokens": 174.95833333333334,
+        "avg_total_tokens": 365.0,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "ambiguity_detector",
+          "clause_analyzer",
+          "contract_parser",
+          "summary_generator"
+        ],
+        "processing_agents": [
+          "ambiguity_detector",
+          "clause_analyzer",
+          "contract_parser",
+          "summary_generator"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": false,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "LEGAL-CASE-006-660a5599",
+      "score": 29.80833333333333,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 190.04166666666666,
+        "avg_completion_tokens": 174.95833333333334,
+        "avg_total_tokens": 365.0,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "clause_analyzer",
+          "contract_parser",
+          "risk_classifier",
+          "summary_generator"
+        ],
+        "processing_agents": [
+          "clause_analyzer",
+          "contract_parser",
+          "risk_classifier",
+          "summary_generator"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": false,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "LEGAL-CASE-002-3821cb2d",
+      "score": 29.30833333333333,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 190.04166666666666,
+        "avg_completion_tokens": 174.95833333333334,
+        "avg_total_tokens": 365.0,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "clause_analyzer",
+          "contract_parser",
+          "review_pack_assembler",
+          "style_enforcer",
+          "summary_generator"
+        ],
+        "processing_agents": [
+          "clause_analyzer",
+          "contract_parser",
+          "review_pack_assembler",
+          "style_enforcer",
+          "summary_generator"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": false,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "LEGAL-CASE-004-6eba15d2",
+      "score": 29.30833333333333,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 190.04166666666666,
+        "avg_completion_tokens": 174.95833333333334,
+        "avg_total_tokens": 365.0,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "ambiguity_detector",
+          "clause_analyzer",
+          "contract_parser",
+          "review_pack_assembler",
+          "summary_generator"
+        ],
+        "processing_agents": [
+          "ambiguity_detector",
+          "clause_analyzer",
+          "contract_parser",
+          "review_pack_assembler",
+          "summary_generator"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": false,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "LEGAL-CASE-007-23593a64",
+      "score": 29.30833333333333,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 190.04166666666666,
+        "avg_completion_tokens": 174.95833333333334,
+        "avg_total_tokens": 365.0,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "clause_analyzer",
+          "contract_parser",
+          "review_pack_assembler",
+          "risk_classifier",
+          "summary_generator"
+        ],
+        "processing_agents": [
+          "clause_analyzer",
+          "contract_parser",
+          "review_pack_assembler",
+          "risk_classifier",
+          "summary_generator"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": false,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "LEGAL-CASE-009-35b9c035",
+      "score": 29.30833333333333,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 190.04166666666666,
+        "avg_completion_tokens": 174.95833333333334,
+        "avg_total_tokens": 365.0,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "clause_analyzer",
+          "contract_parser",
+          "negotiation_advisor",
+          "risk_classifier",
+          "summary_generator"
+        ],
+        "processing_agents": [
+          "clause_analyzer",
+          "contract_parser",
+          "negotiation_advisor",
+          "risk_classifier",
+          "summary_generator"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": false,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "LEGAL-CASE-010-5d681e75",
+      "score": 29.30833333333333,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 190.04166666666666,
+        "avg_completion_tokens": 174.95833333333334,
+        "avg_total_tokens": 365.0,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "ambiguity_detector",
+          "clause_analyzer",
+          "contract_parser",
+          "risk_classifier",
+          "summary_generator"
+        ],
+        "processing_agents": [
+          "ambiguity_detector",
+          "clause_analyzer",
+          "contract_parser",
+          "risk_classifier",
+          "summary_generator"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": false,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "LEGAL-CASE-014-67d50d3b",
+      "score": 29.30833333333333,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 190.04166666666666,
+        "avg_completion_tokens": 174.95833333333334,
+        "avg_total_tokens": 365.0,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "clause_analyzer",
+          "contract_parser",
+          "jurisdiction_checker",
+          "risk_classifier",
+          "summary_generator"
+        ],
+        "processing_agents": [
+          "clause_analyzer",
+          "contract_parser",
+          "jurisdiction_checker",
+          "risk_classifier",
+          "summary_generator"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": false,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "LEGAL-CASE-005-0580cb07",
+      "score": 28.80833333333333,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 190.04166666666666,
+        "avg_completion_tokens": 174.95833333333334,
+        "avg_total_tokens": 365.0,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "ambiguity_detector",
+          "clause_analyzer",
+          "contract_parser",
+          "review_pack_assembler",
+          "style_enforcer",
+          "summary_generator"
+        ],
+        "processing_agents": [
+          "ambiguity_detector",
+          "clause_analyzer",
+          "contract_parser",
+          "review_pack_assembler",
+          "style_enforcer",
+          "summary_generator"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": false,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "LEGAL-CASE-008-8ea3cceb",
+      "score": 28.80833333333333,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 190.04166666666666,
+        "avg_completion_tokens": 174.95833333333334,
+        "avg_total_tokens": 365.0,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "clause_analyzer",
+          "contract_parser",
+          "review_pack_assembler",
+          "risk_classifier",
+          "style_enforcer",
+          "summary_generator"
+        ],
+        "processing_agents": [
+          "clause_analyzer",
+          "contract_parser",
+          "review_pack_assembler",
+          "risk_classifier",
+          "style_enforcer",
+          "summary_generator"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": false,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "LEGAL-CASE-011-2c8ec92d",
+      "score": 28.80833333333333,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 190.04166666666666,
+        "avg_completion_tokens": 174.95833333333334,
+        "avg_total_tokens": 365.0,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "ambiguity_detector",
+          "clause_analyzer",
+          "contract_parser",
+          "review_pack_assembler",
+          "risk_classifier",
+          "summary_generator"
+        ],
+        "processing_agents": [
+          "ambiguity_detector",
+          "clause_analyzer",
+          "contract_parser",
+          "review_pack_assembler",
+          "risk_classifier",
+          "summary_generator"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": false,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "LEGAL-CASE-013-f7eed830",
+      "score": 28.80833333333333,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 190.04166666666666,
+        "avg_completion_tokens": 174.95833333333334,
+        "avg_total_tokens": 365.0,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "ambiguity_detector",
+          "clause_analyzer",
+          "contract_parser",
+          "negotiation_advisor",
+          "risk_classifier",
+          "summary_generator"
+        ],
+        "processing_agents": [
+          "ambiguity_detector",
+          "clause_analyzer",
+          "contract_parser",
+          "negotiation_advisor",
+          "risk_classifier",
+          "summary_generator"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": false,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "LEGAL-CASE-015-2c81975c",
+      "score": 28.80833333333333,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 190.04166666666666,
+        "avg_completion_tokens": 174.95833333333334,
+        "avg_total_tokens": 365.0,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "clause_analyzer",
+          "contract_parser",
+          "jurisdiction_checker",
+          "review_pack_assembler",
+          "risk_classifier",
+          "summary_generator"
+        ],
+        "processing_agents": [
+          "clause_analyzer",
+          "contract_parser",
+          "jurisdiction_checker",
+          "review_pack_assembler",
+          "risk_classifier",
+          "summary_generator"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": false,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "LEGAL-CASE-017-a06280a1",
+      "score": 28.80833333333333,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 190.04166666666666,
+        "avg_completion_tokens": 174.95833333333334,
+        "avg_total_tokens": 365.0,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "clause_analyzer",
+          "contract_parser",
+          "jurisdiction_checker",
+          "negotiation_advisor",
+          "risk_classifier",
+          "summary_generator"
+        ],
+        "processing_agents": [
+          "clause_analyzer",
+          "contract_parser",
+          "jurisdiction_checker",
+          "negotiation_advisor",
+          "risk_classifier",
+          "summary_generator"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": false,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "LEGAL-CASE-018-d6f34547",
+      "score": 28.80833333333333,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 190.04166666666666,
+        "avg_completion_tokens": 174.95833333333334,
+        "avg_total_tokens": 365.0,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "ambiguity_detector",
+          "clause_analyzer",
+          "contract_parser",
+          "jurisdiction_checker",
+          "risk_classifier",
+          "summary_generator"
+        ],
+        "processing_agents": [
+          "ambiguity_detector",
+          "clause_analyzer",
+          "contract_parser",
+          "jurisdiction_checker",
+          "risk_classifier",
+          "summary_generator"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": false,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "LEGAL-CASE-022-8f8ce76b",
+      "score": 28.80833333333333,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 190.04166666666666,
+        "avg_completion_tokens": 174.95833333333334,
+        "avg_total_tokens": 365.0,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "clause_analyzer",
+          "contract_parser",
+          "jurisdiction_checker",
+          "liability_stress_tester",
+          "risk_classifier",
+          "summary_generator"
+        ],
+        "processing_agents": [
+          "clause_analyzer",
+          "contract_parser",
+          "jurisdiction_checker",
+          "liability_stress_tester",
+          "risk_classifier",
+          "summary_generator"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": false,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "LEGAL-CASE-012-89787c48",
+      "score": 28.30833333333333,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 190.04166666666666,
+        "avg_completion_tokens": 174.95833333333334,
+        "avg_total_tokens": 365.0,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "ambiguity_detector",
+          "clause_analyzer",
+          "contract_parser",
+          "review_pack_assembler",
+          "risk_classifier",
+          "style_enforcer",
+          "summary_generator"
+        ],
+        "processing_agents": [
+          "ambiguity_detector",
+          "clause_analyzer",
+          "contract_parser",
+          "review_pack_assembler",
+          "risk_classifier",
+          "style_enforcer",
+          "summary_generator"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": false,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "LEGAL-CASE-016-d2069e0c",
+      "score": 28.30833333333333,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 190.04166666666666,
+        "avg_completion_tokens": 174.95833333333334,
+        "avg_total_tokens": 365.0,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "clause_analyzer",
+          "contract_parser",
+          "jurisdiction_checker",
+          "review_pack_assembler",
+          "risk_classifier",
+          "style_enforcer",
+          "summary_generator"
+        ],
+        "processing_agents": [
+          "clause_analyzer",
+          "contract_parser",
+          "jurisdiction_checker",
+          "review_pack_assembler",
+          "risk_classifier",
+          "style_enforcer",
+          "summary_generator"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": false,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "LEGAL-CASE-019-be493007",
+      "score": 28.30833333333333,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 190.04166666666666,
+        "avg_completion_tokens": 174.95833333333334,
+        "avg_total_tokens": 365.0,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "ambiguity_detector",
+          "clause_analyzer",
+          "contract_parser",
+          "jurisdiction_checker",
+          "review_pack_assembler",
+          "risk_classifier",
+          "summary_generator"
+        ],
+        "processing_agents": [
+          "ambiguity_detector",
+          "clause_analyzer",
+          "contract_parser",
+          "jurisdiction_checker",
+          "review_pack_assembler",
+          "risk_classifier",
+          "summary_generator"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": false,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "LEGAL-CASE-021-6c2faaf5",
+      "score": 28.30833333333333,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 190.04166666666666,
+        "avg_completion_tokens": 174.95833333333334,
+        "avg_total_tokens": 365.0,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "ambiguity_detector",
+          "clause_analyzer",
+          "contract_parser",
+          "jurisdiction_checker",
+          "negotiation_advisor",
+          "risk_classifier",
+          "summary_generator"
+        ],
+        "processing_agents": [
+          "ambiguity_detector",
+          "clause_analyzer",
+          "contract_parser",
+          "jurisdiction_checker",
+          "negotiation_advisor",
+          "risk_classifier",
+          "summary_generator"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": false,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "LEGAL-CASE-023-3fefa556",
+      "score": 28.30833333333333,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 190.04166666666666,
+        "avg_completion_tokens": 174.95833333333334,
+        "avg_total_tokens": 365.0,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "clause_analyzer",
+          "contract_parser",
+          "jurisdiction_checker",
+          "liability_stress_tester",
+          "review_pack_assembler",
+          "risk_classifier",
+          "summary_generator"
+        ],
+        "processing_agents": [
+          "clause_analyzer",
+          "contract_parser",
+          "jurisdiction_checker",
+          "liability_stress_tester",
+          "review_pack_assembler",
+          "risk_classifier",
+          "summary_generator"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": false,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    },
+    {
+      "name": "LEGAL-CASE-020-1fbcdc8f",
+      "score": 27.80833333333333,
+      "metrics": {
+        "avg_coverage": 0.3645833333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.0,
+        "avg_steps": 1.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 190.04166666666666,
+        "avg_completion_tokens": 174.95833333333334,
+        "avg_total_tokens": 365.0,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "ambiguity_detector",
+          "clause_analyzer",
+          "contract_parser",
+          "jurisdiction_checker",
+          "review_pack_assembler",
+          "risk_classifier",
+          "style_enforcer",
+          "summary_generator"
+        ],
+        "processing_agents": [
+          "ambiguity_detector",
+          "clause_analyzer",
+          "contract_parser",
+          "jurisdiction_checker",
+          "review_pack_assembler",
+          "risk_classifier",
+          "style_enforcer",
+          "summary_generator"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": false,
+          "use_hitl_gate": false,
+          "synth_style": "A",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "compact"
+        }
+      }
+    }
+  ]
+}

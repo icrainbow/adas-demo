@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Disable caching for development -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Portfolio LangGraph - Pareto Frontier Visualization</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=20260111_1910">
     
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
@@ -140,6 +144,6 @@
     </div>
     
     <!-- Force cache bust with timestamp -->
-    <script src="app.js?v=20260111_1905"></script>
+    <script src="app.js?v=20260111_1910"></script>
 </body>
 </html>

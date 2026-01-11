@@ -1,0 +1,374 @@
+{
+  "run": {
+    "mode": "random",
+    "budget": 8,
+    "seed": 9999,
+    "case_count": 24,
+    "emit_dot": false
+  },
+  "baseline": {
+    "candidate": {
+      "use_retriever": false,
+      "use_risk_decompose": false,
+      "use_behavior_check": false,
+      "use_hitl_gate": false,
+      "synth_style": "A",
+      "max_steps": 4,
+      "adaptive": false,
+      "adaptive_policy": "strict",
+      "carryover": "compact",
+      "selected_agents": [
+        "adaptive_off",
+        "carryover_compact",
+        "synth_style_A"
+      ]
+    },
+    "score": 30.30833333333333,
+    "metrics": {
+      "avg_coverage": 0.3645833333333333,
+      "violation_rate": 0.0,
+      "hitl_rate": 0.0,
+      "avg_steps": 1.0,
+      "adaptive_marker_rate": 0.0,
+      "avg_prompt_tokens": 190.04166666666666,
+      "avg_completion_tokens": 174.95833333333334,
+      "avg_total_tokens": 365.0,
+      "num_cases": 24
+    },
+    "samples": [
+      {
+        "case_id": "C014",
+        "requested_action": "rebalance to maintain 60/40 equity-bond allocation",
+        "signals": [],
+        "decision": "APPROVE",
+        "path": [
+          "synth"
+        ],
+        "explanation": "Assessment: APPROVE\n\n\u2022 Key signals: none\n\n\u2022 No significant concerns identified\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: OK \u2014 concentration risk not indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: N/A \u2014 no explicitly speculative elements detected.\n\u2022 Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: N/A \u2014 limited opportunity cost concerns for this request.\n\nDecision rationale:\n\u2022 alignment with risk appetite: requested change fits stated risk profile.\n\u2022 growth potential: reallocation improves expected long-term growth potential.\n\u2022 volatility exposure increase: does not materially raise volatility exposure increase beyond tolerance.",
+        "rubric_must_cover": [
+          "alignment with risk profile",
+          "appropriate diversification",
+          "liquidity maintenance",
+          "reasonable request"
+        ],
+        "coverage": 0.0,
+        "steps": 1,
+        "adaptive_marker": false,
+        "total_tokens": 403
+      },
+      {
+        "case_id": "C019",
+        "requested_action": "rotate from tech to healthcare sector for diversification",
+        "signals": [],
+        "decision": "APPROVE",
+        "path": [
+          "synth"
+        ],
+        "explanation": "Assessment: APPROVE\n\n\u2022 Key signals: none\n\n\u2022 No significant concerns identified\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: Issue \u2014 concentration risk indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: N/A \u2014 no explicitly speculative elements detected.\n\u2022 Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: N/A \u2014 limited opportunity cost concerns for this request.",
+        "rubric_must_cover": [
+          "sector rotation rationale",
+          "diversification benefits",
+          "appropriate for profile",
+          "tactical rebalancing"
+        ],
+        "coverage": 0.0,
+        "steps": 1,
+        "adaptive_marker": false,
+        "total_tokens": 332
+      },
+      {
+        "case_id": "C018",
+        "requested_action": "add 25% more to largest single stock holding",
+        "signals": [
+          "concentration risk"
+        ],
+        "decision": "CAUTION",
+        "path": [
+          "synth"
+        ],
+        "explanation": "Assessment: CAUTION\n\n\u2022 Key signals: high concentration\n\nConcerns identified:\n\u2022 concentration risk\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: Issue \u2014 concentration risk indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: N/A \u2014 no explicitly speculative elements detected.\n\u2022 Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: Consideration \u2014 evaluate tradeoffs of delaying vs executing; compare alternatives.",
+        "rubric_must_cover": [
+          "high concentration",
+          "idiosyncratic risk",
+          "existing concentration concerns",
+          "diversification erosion"
+        ],
+        "coverage": 0.25,
+        "steps": 1,
+        "adaptive_marker": false,
+        "total_tokens": 354
+      },
+      {
+        "case_id": "C009",
+        "requested_action": "reduce bonds further to add international equity exposure",
+        "signals": [],
+        "decision": "APPROVE",
+        "path": [
+          "synth"
+        ],
+        "explanation": "Assessment: APPROVE\n\n\u2022 Key signals: none\n\n\u2022 No significant concerns identified\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: OK \u2014 concentration risk not indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: N/A \u2014 no explicitly speculative elements detected.\n\u2022 Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: N/A \u2014 limited opportunity cost concerns for this request.\n\nDecision rationale:\n\u2022 alignment with risk appetite: requested change fits stated risk profile.",
+        "rubric_must_cover": [
+          "volatility exposure",
+          "geographic diversification benefits",
+          "appropriate for risk profile",
+          "time horizon alignment"
+        ],
+        "coverage": 0.25,
+        "steps": 1,
+        "adaptive_marker": false,
+        "total_tokens": 357
+      },
+      {
+        "case_id": "C005",
+        "requested_action": "allocate 30% to cryptocurrency assets",
+        "signals": [],
+        "decision": "APPROVE",
+        "path": [
+          "synth"
+        ],
+        "explanation": "Assessment: APPROVE\n\n\u2022 Key signals: none\n\n\u2022 No significant concerns identified\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: OK \u2014 concentration risk not indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: Consideration \u2014 elements may be speculative; ensure suitability.\n\u2022 Regulatory uncertainty: Consideration \u2014 regulatory requirements may vary; verify applicable constraints.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: N/A \u2014 limited opportunity cost concerns for this request.",
+        "rubric_must_cover": [
+          "volatility exposure",
+          "regulatory uncertainty",
+          "concentration risk",
+          "speculative nature"
+        ],
+        "coverage": 1.0,
+        "steps": 1,
+        "adaptive_marker": false,
+        "total_tokens": 342
+      },
+      {
+        "case_id": "C012",
+        "requested_action": "shift to growth stocks and reduce conservative allocation",
+        "signals": [],
+        "decision": "APPROVE",
+        "path": [
+          "synth"
+        ],
+        "explanation": "Assessment: APPROVE\n\n\u2022 Key signals: none\n\n\u2022 No significant concerns identified\n\nAudit checklist:\n\u2022 Liquidity assessment: OK \u2014 no liquidity mismatch identified.\n\u2022 Concentration risk: OK \u2014 concentration risk not indicated.\n\u2022 Volatility exposure: OK \u2014 volatility exposure not indicated.\n\u2022 Speculative nature: N/A \u2014 no explicitly speculative elements detected.\n\u2022 Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected.\n\u2022 Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected.\n\u2022 Opportunity cost analysis: N/A \u2014 limited opportunity cost concerns for this request.\n\nDecision rationale:\n\u2022 alignment with risk appetite: requested change fits stated risk profile.\n\u2022 current conservative positioning: proposal modestly increases return-seeking exposure.\n\u2022 growth potential: reallocation improves expected long-term growth potential.\n\u2022 volatility exposure increase: does not materially raise volatility exposure increase beyond tolerance.",
+        "rubric_must_cover": [
+          "volatility exposure increase",
+          "alignment with risk appetite",
+          "current conservative positioning",
+          "growth potential"
+        ],
+        "coverage": 1.0,
+        "steps": 1,
+        "adaptive_marker": false,
+        "total_tokens": 425
+      }
+    ]
+  },
+  "best": {
+    "candidate": {
+      "use_retriever": false,
+      "use_risk_decompose": false,
+      "use_behavior_check": true,
+      "use_hitl_gate": true,
+      "synth_style": "B",
+      "max_steps": 4,
+      "adaptive": false,
+      "adaptive_policy": "strict",
+      "carryover": "none",
+      "selected_agents": [
+        "adaptive_off",
+        "behavior_check",
+        "carryover_none",
+        "hitl_gate",
+        "synth_style_B"
+      ]
+    },
+    "score": 28.76333333333333,
+    "metrics": {
+      "avg_coverage": 0.3958333333333333,
+      "violation_rate": 0.0,
+      "hitl_rate": 0.125,
+      "avg_steps": 2.0,
+      "adaptive_marker_rate": 0.0,
+      "avg_prompt_tokens": 246.70833333333334,
+      "avg_completion_tokens": 260.2916666666667,
+      "avg_total_tokens": 507.0,
+      "num_cases": 24
+    },
+    "samples": [
+      {
+        "case_id": "C019",
+        "requested_action": "rotate from tech to healthcare sector for diversification",
+        "signals": [
+          "high concentration"
+        ],
+        "decision": "CAUTION",
+        "path": [
+          "behavior_check",
+          "synth"
+        ],
+        "explanation": "The requested action warrants careful consideration. Key signals: high concentration. We have identified the following concerns: high concentration. Please review these factors before proceeding.  Audit checklist: Liquidity assessment: OK \u2014 no liquidity mismatch identified. Concentration risk: Issue \u2014 concentration risk indicated. Volatility exposure: OK \u2014 volatility exposure not indicated. Speculative nature: N/A \u2014 no explicitly speculative elements detected. Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected. Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected. Opportunity cost analysis: Consideration \u2014 evaluate tradeoffs of delaying vs executing; compare alternatives. Advisory coverage: reasonable request: partially reasonable, but requires additional checks and guardrails.",
+        "rubric_must_cover": [
+          "sector rotation rationale",
+          "diversification benefits",
+          "appropriate for profile",
+          "tactical rebalancing"
+        ],
+        "coverage": 0.0,
+        "steps": 2,
+        "adaptive_marker": false,
+        "total_tokens": 499
+      },
+      {
+        "case_id": "C001",
+        "requested_action": "add leveraged ETF exposure to amplify growth potential",
+        "signals": [
+          "leverage concerns"
+        ],
+        "decision": "CAUTION",
+        "path": [
+          "behavior_check",
+          "synth"
+        ],
+        "explanation": "The requested action warrants careful consideration. Key signals: time horizon mismatch. We have identified the following concerns: leverage concerns. Please review these factors before proceeding.  Audit checklist: Liquidity assessment: OK \u2014 no liquidity mismatch identified. Concentration risk: OK \u2014 concentration risk not indicated. Volatility exposure: OK \u2014 volatility exposure not indicated. Speculative nature: Consideration \u2014 elements may be speculative; ensure suitability. Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected. Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected. Opportunity cost analysis: Consideration \u2014 evaluate tradeoffs of delaying vs executing; compare alternatives. Advisory coverage: reasonable request: partially reasonable, but requires additional checks and guardrails.",
+        "rubric_must_cover": [
+          "volatility exposure",
+          "leverage risks",
+          "market timing concerns",
+          "appropriate for high risk tolerance"
+        ],
+        "coverage": 0.25,
+        "steps": 2,
+        "adaptive_marker": false,
+        "total_tokens": 498
+      },
+      {
+        "case_id": "C018",
+        "requested_action": "add 25% more to largest single stock holding",
+        "signals": [
+          "concentration risk",
+          "high concentration"
+        ],
+        "decision": "CAUTION",
+        "path": [
+          "behavior_check",
+          "synth"
+        ],
+        "explanation": "The requested action warrants careful consideration. Key signals: high concentration. We have identified the following concerns: concentration risk, high concentration. Please review these factors before proceeding.  Audit checklist: Liquidity assessment: OK \u2014 no liquidity mismatch identified. Concentration risk: Issue \u2014 concentration risk indicated. Volatility exposure: OK \u2014 volatility exposure not indicated. Speculative nature: N/A \u2014 no explicitly speculative elements detected. Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected. Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected. Opportunity cost analysis: Consideration \u2014 evaluate tradeoffs of delaying vs executing; compare alternatives. Advisory coverage: reasonable request: partially reasonable, but requires additional checks and guardrails.",
+        "rubric_must_cover": [
+          "high concentration",
+          "idiosyncratic risk",
+          "existing concentration concerns",
+          "diversification erosion"
+        ],
+        "coverage": 0.25,
+        "steps": 2,
+        "adaptive_marker": false,
+        "total_tokens": 505
+      },
+      {
+        "case_id": "C010",
+        "requested_action": "concentrate 50% of portfolio into single sector ETF",
+        "signals": [
+          "concentration risk",
+          "high concentration"
+        ],
+        "decision": "CAUTION",
+        "path": [
+          "behavior_check",
+          "synth"
+        ],
+        "explanation": "The requested action warrants careful consideration. Key signals: high concentration. We have identified the following concerns: concentration risk, high concentration. Please review these factors before proceeding.  Audit checklist: Liquidity assessment: OK \u2014 no liquidity mismatch identified. Concentration risk: Issue \u2014 concentration risk indicated. Volatility exposure: OK \u2014 volatility exposure not indicated. Speculative nature: N/A \u2014 no explicitly speculative elements detected. Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected. Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected. Opportunity cost analysis: Consideration \u2014 evaluate tradeoffs of delaying vs executing; compare alternatives. Advisory coverage: reasonable request: partially reasonable, but requires additional checks and guardrails.",
+        "rubric_must_cover": [
+          "high concentration",
+          "sector risk",
+          "existing concentration concerns",
+          "diversification erosion"
+        ],
+        "coverage": 0.25,
+        "steps": 2,
+        "adaptive_marker": false,
+        "total_tokens": 507
+      },
+      {
+        "case_id": "C005",
+        "requested_action": "allocate 30% to cryptocurrency assets",
+        "signals": [],
+        "decision": "APPROVE",
+        "path": [
+          "behavior_check",
+          "synth"
+        ],
+        "explanation": "The requested action appears suitable for your profile. Key signals: none. No significant concerns were identified.  Audit checklist: Liquidity assessment: OK \u2014 no liquidity mismatch identified. Concentration risk: OK \u2014 concentration risk not indicated. Volatility exposure: OK \u2014 volatility exposure not indicated. Speculative nature: Consideration \u2014 elements may be speculative; ensure suitability. Regulatory uncertainty: Consideration \u2014 regulatory requirements may vary; verify applicable constraints. Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected. Opportunity cost analysis: N/A \u2014 limited opportunity cost concerns for this request. Advisory coverage: reasonable request: consistent with stated constraints and avoids unnecessary complexity.",
+        "rubric_must_cover": [
+          "volatility exposure",
+          "regulatory uncertainty",
+          "concentration risk",
+          "speculative nature"
+        ],
+        "coverage": 1.0,
+        "steps": 2,
+        "adaptive_marker": false,
+        "total_tokens": 469
+      },
+      {
+        "case_id": "C012",
+        "requested_action": "shift to growth stocks and reduce conservative allocation",
+        "signals": [],
+        "decision": "APPROVE",
+        "path": [
+          "behavior_check",
+          "synth"
+        ],
+        "explanation": "The requested action appears suitable for your profile. Key signals: none. No significant concerns were identified.  Audit checklist: Liquidity assessment: OK \u2014 no liquidity mismatch identified. Concentration risk: OK \u2014 concentration risk not indicated. Volatility exposure: OK \u2014 volatility exposure not indicated. Speculative nature: N/A \u2014 no explicitly speculative elements detected. Regulatory uncertainty: N/A \u2014 no obvious regulatory uncertainty triggers detected. Penalty considerations: N/A \u2014 no explicit penalty-triggering action detected. Opportunity cost analysis: N/A \u2014 limited opportunity cost concerns for this request. Decision rationale: alignment with risk appetite: requested change fits stated risk profile. current conservative positioning: proposal modestly increases return-seeking exposure. growth potential: reallocation improves expected long-term growth potential. volatility exposure increase: does not materially raise volatility exposure increase beyond tolerance. Advisory coverage: reasonable request: consistent with stated constraints and avoids unnecessary complexity.",
+        "rubric_must_cover": [
+          "volatility exposure increase",
+          "alignment with risk appetite",
+          "current conservative positioning",
+          "growth potential"
+        ],
+        "coverage": 1.0,
+        "steps": 2,
+        "adaptive_marker": false,
+        "total_tokens": 555
+      }
+    ]
+  },
+  "all_scores": [
+    {
+      "name": "R0-D0-B1-H1-SB-M4-AD0-APS-CO0",
+      "score": 28.76333333333333,
+      "metrics": {
+        "avg_coverage": 0.3958333333333333,
+        "violation_rate": 0.0,
+        "hitl_rate": 0.125,
+        "avg_steps": 2.0,
+        "adaptive_marker_rate": 0.0,
+        "avg_prompt_tokens": 246.70833333333334,
+        "avg_completion_tokens": 260.2916666666667,
+        "avg_total_tokens": 507.0,
+        "num_cases": 24
+      },
+      "candidate_spec": {
+        "selected_agents": [
+          "adaptive_off",
+          "behavior_check",
+          "carryover_none",
+          "hitl_gate",
+          "synth_style_B"
+        ],
+        "processing_agents": [
+          "behavior_check",
+          "hitl_gate"
+        ],
+        "derived": {
+          "use_retriever": false,
+          "use_risk_decompose": false,
+          "use_behavior_check": true,
+          "use_hitl_gate": true,
+          "synth_style": "B",
+          "max_steps": 4,
+          "adaptive": false,
+          "adaptive_policy": "strict",
+          "carryover": "none"
+        }
+      }
+    }
+  ]
+}
