@@ -10,7 +10,29 @@ let tokenPrice = 0.01; // USD per 1k tokens
 
 // Load results data
 async function loadResultsData() {
-    // Try multiple paths
+    // Check for URL query parameter first
+    const params = new URLSearchParams(window.location.search);
+    const resultsParam = params.get('results');
+    
+    if (resultsParam) {
+        // Use the results path from query parameter
+        try {
+            const response = await fetch(resultsParam);
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Loaded data from query param:', resultsParam);
+                return data;
+            } else {
+                console.error('Failed to load from query param:', resultsParam, 'Status:', response.status);
+                throw new Error(`Failed to load results from ${resultsParam}: ${response.status}`);
+            }
+        } catch (e) {
+            console.error('Error loading from query param:', e);
+            throw new Error(`Could not load results from ${resultsParam}: ${e.message}`);
+        }
+    }
+    
+    // Fallback to legacy paths if no query parameter
     const paths = [
         '../outputs/results_v11_pareto_smoke.json',
         './outputs/results_v11_pareto_smoke.json',
@@ -123,6 +145,64 @@ function formatXValue(value) {
     return value.toFixed(0);
 }
 
+// Apply deterministic jitter for visual separation (DISPLAY ONLY)
+function applyDeterministicJitter(candidate) {
+    // Simple deterministic hash (32-bit)
+    function simpleHash(str) {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+            hash = ((hash << 5) - hash) + str.charCodeAt(i);
+            hash = hash & hash; // 32-bit
+        }
+        return Math.abs(hash);
+    }
+
+    const name = (candidate && candidate.name) ? candidate.name : JSON.stringify(candidate);
+    const hash = simpleHash(name);
+
+    // Magnitudes: ±1.0 token, ±0.003 coverage (0.3%)
+    const jitterX = ((hash % 100) / 100 - 0.5) * 2.0;
+    const jitterY = ((hash % 37) / 37 - 0.5) * 0.006;
+
+    return { x: jitterX, y: jitterY };
+}
+
+// Generate DOT from selected_agents array (TRUE TOPOLOGY)
+function generateDOTFromAgents(agents, candidateName) {
+    let dot = 'digraph Topology {\n';
+    dot += '  rankdir=LR;\n';
+    dot += '  bgcolor="white";\n';
+    dot += '  labelloc="t";\n';
+    dot += `  label="${candidateName} (${agents.length} agents)";\n`;
+    dot += '  fontname="Arial Bold";\n';
+    dot += '  fontsize=14;\n\n';
+    dot += '  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=11, fillcolor="#E3F2FD"];\n\n';
+
+    dot += '  start [label="Start", shape=circle, fillcolor="#4CAF50"];\n';
+    dot += '  end [label="End", shape=circle, fillcolor="#F44336"];\n\n';
+
+    agents.forEach((agent, idx) => {
+        // Escape quotes in agent names
+        const safe = String(agent).replace(/"/g, '\\"');
+        dot += `  agent_${idx} [label="${safe}"];\n`;
+    });
+
+    dot += '\n';
+
+    if (!agents || agents.length === 0) {
+        dot += '  start -> end;\n';
+    } else {
+        dot += '  start -> agent_0;\n';
+        for (let i = 0; i < agents.length - 1; i++) {
+            dot += `  agent_${i} -> agent_${i + 1};\n`;
+        }
+        dot += `  agent_${agents.length - 1} -> end;\n`;
+    }
+
+    dot += '}\n';
+    return dot;
+}
+
 // Create scatter chart
 function createScatterChart(data) {
     const ctx = document.getElementById('paretoChart').getContext('2d');
@@ -169,17 +249,31 @@ function renderChart() {
     paretoSet = new Set(paretoFrontier.map(c => c.name));
     
     // Prepare datasets
-    const allPoints = allCandidatesData.map(c => ({
-        x: getXValue(c),
-        y: c.metrics.avg_coverage || 0,
-        candidate: c
-    }));
+    const allPoints = allCandidatesData.map(c => {
+        const jitter = applyDeterministicJitter(c);
+        const trueX = getXValue(c);
+        const trueY = c.metrics.avg_coverage || 0;
+        return {
+            x: trueX + jitter.x,
+            y: trueY + jitter.y,
+            candidate: c,
+            trueX: trueX,
+            trueY: trueY
+        };
+    });
     
-    const paretoPoints = paretoFrontier.map(c => ({
-        x: getXValue(c),
-        y: c.metrics.avg_coverage || 0,
-        candidate: c
-    }));
+    const paretoPoints = paretoFrontier.map(c => {
+        const jitter = applyDeterministicJitter(c);
+        const trueX = getXValue(c);
+        const trueY = c.metrics.avg_coverage || 0;
+        return {
+            x: trueX + jitter.x,
+            y: trueY + jitter.y,
+            candidate: c,
+            trueX: trueX,
+            trueY: trueY
+        };
+    });
     
     // Sort Pareto points by X for line connection
     paretoPoints.sort((a, b) => a.x - b.x);
@@ -263,12 +357,18 @@ function renderChart() {
                 tooltip: {
                     callbacks: {
                         label: function(context) {
-                            const candidate = context.raw.candidate;
+                            const point = context.raw;
+                            const candidate = point.candidate;
+                            
+                            // Use true (unjittered) values if available
+                            const displayCoverage = point.trueY !== undefined ? point.trueY : candidate.metrics.avg_coverage;
+                            const displayTokens = point.trueX !== undefined ? point.trueX : candidate.metrics.avg_total_tokens;
+                            
                             return [
                                 `Name: ${candidate.name}`,
-                                `Coverage: ${(candidate.metrics.avg_coverage * 100).toFixed(1)}%`,
-                                `Tokens: ${candidate.metrics.avg_total_tokens.toFixed(1)}`,
-                                `Cost: $${calculateCost(candidate.metrics.avg_total_tokens, tokenPrice).toFixed(4)}`,
+                                `Coverage: ${(displayCoverage * 100).toFixed(2)}%`,
+                                `Tokens: ${displayTokens.toFixed(1)}`,
+                                `Cost: $${calculateCost(displayTokens, tokenPrice).toFixed(4)}`,
                                 `Score: ${candidate.score.toFixed(2)}`
                             ];
                         }
@@ -421,14 +521,47 @@ function getCandidateConfig(candidateName) {
 
 // Generate Graphviz DOT for topology (beautified)
 function generateDOT(candidate) {
-    const config = getCandidateConfig(candidate.name);
+    // Try to get config from multiple sources
+    let config;
+    
+    // First: try candidate_spec.derived (new format)
+    if (candidate.candidate_spec && candidate.candidate_spec.derived) {
+        config = candidate.candidate_spec.derived;
+        console.log('Using candidate_spec.derived for DOT generation');
+    }
+    // Second: try candidate.candidate (old format)
+    else if (candidate.candidate) {
+        config = candidate.candidate;
+        console.log('Using candidate.candidate for DOT generation');
+    }
+    // Third: try parsing from name
+    else if (candidate.name) {
+        config = getCandidateConfig(candidate.name);
+        console.log('Parsing candidate name for DOT generation');
+    }
+    // Fallback: use minimal default
+    else {
+        console.warn('No candidate config found, using defaults');
+        config = {
+            use_retriever: false,
+            use_risk_decompose: false,
+            use_behavior_check: false,
+            use_hitl_gate: false,
+            synth_style: 'A',
+            max_steps: 4,
+            adaptive: false,
+            carryover: 'compact'
+        };
+    }
+    
+    const candidateName = candidate.name || 'Unknown';
     
     let dot = 'digraph Topology {\n';
     dot += '  // Graph settings\n';
     dot += '  rankdir=LR;\n';
     dot += '  bgcolor="white";\n';
     dot += '  labelloc="t";\n';
-    dot += `  label="${candidate.name}";\n`;
+    dot += `  label="${candidateName}";\n`;
     dot += '  fontname="Arial Bold";\n';
     dot += '  fontsize=14;\n\n';
     
@@ -542,21 +675,54 @@ async function generateTopology(candidate) {
         let dot;
         let isRealDot = false;
         
-        // Check if candidate has real DOT from backend
+        // Priority 1: Real DOT from backend
         if (candidate.candidate_spec && candidate.candidate_spec.dot) {
             dot = candidate.candidate_spec.dot;
             isRealDot = true;
-            console.log('Using real DOT from candidate_spec');
-        } else {
-            // Fallback to inferred DOT for backward compatibility
+            console.log('Using real DOT from candidate_spec.dot');
+        }
+        // Priority 2: Generate from selected_agents array (NEW!)
+        else if (candidate.candidate_spec && candidate.candidate_spec.selected_agents) {
+            const agents = candidate.candidate_spec.selected_agents;
+            dot = generateDOTFromAgents(agents, candidate.name);
+            isRealDot = true;
+            console.log(`Using selected_agents (${agents.length} agents) for DOT generation`);
+        }
+        // Priority 3: Fallback to inferred DOT (backward compatibility)
+        else {
             dot = generateDOT(candidate);
             isRealDot = false;
-            console.log('Using inferred DOT (no candidate_spec.dot found)');
+            console.log('Using inferred DOT (no candidate_spec data found)');
         }
         
-        // Use Viz.js to render
-        const viz = new Viz();
-        const svg = await viz.renderSVGElement(dot);
+        // Use Viz.js to render (v3+ API)
+        if (typeof Viz === 'undefined') {
+            throw new Error('Viz.js library not loaded');
+        }
+        
+        // Viz.js v3+ uses Viz.instance() to get a renderer instance
+        let svg;
+        try {
+            if (typeof Viz.instance === 'function') {
+                // v3+ standalone: await Viz.instance() then renderSVGElement
+                const instance = await Viz.instance();
+                svg = await instance.renderSVGElement(dot);
+            } else if (typeof Viz.renderSVGElement === 'function') {
+                // v3+ direct method (some builds)
+                svg = await Viz.renderSVGElement(dot);
+            } else if (typeof Viz === 'function') {
+                // v3+ calling Viz as function
+                const instance = await Viz();
+                svg = await instance.renderSVGElement(dot);
+            } else {
+                // Debug info for unsupported version
+                console.error('Viz object methods:', Object.keys(Viz));
+                throw new Error('Unsupported Viz.js API - no known render method found');
+            }
+        } catch (renderError) {
+            console.error('Viz.js render error:', renderError);
+            throw renderError;
+        }
         
         container.innerHTML = '';
         container.appendChild(svg);
