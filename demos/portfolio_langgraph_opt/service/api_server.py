@@ -134,6 +134,14 @@ class APIHandler(SimpleHTTPRequestHandler):
             config = load_run_config()
             self._send_json(config.to_dict())
         
+        elif path == "/api/results/latest":
+            # Dynamically find the most recent result JSON
+            result_path = self._find_latest_result()
+            if result_path:
+                self._send_json({"path": result_path, "success": True})
+            else:
+                self._send_json({"success": False, "error": "No result files found"})
+        
         # Static file serving
         elif path.startswith("/ui/") or path.startswith("/viz/") or path.startswith("/runs/") or path.startswith("/outputs/") or path.startswith("/artifacts/"):
             self._serve_static_file(path)
@@ -289,6 +297,65 @@ class APIHandler(SimpleHTTPRequestHandler):
         self.send_header("Content-Length", len(content))
         self.end_headers()
         self.wfile.write(content)
+    
+    def _find_latest_result(self):
+        """
+        Find the most recent result JSON file.
+        Search in multiple locations and return the relative path from server root.
+        """
+        import glob
+        from pathlib import Path
+        
+        # Search paths (relative to server root)
+        search_patterns = [
+            "demos/portfolio_langgraph_opt/viz/*.json",
+            "demos/portfolio_langgraph_opt/outputs/*.json",
+            "demos/portfolio_langgraph_opt/runs/*/results.json",
+            "demos/portfolio_langgraph_opt/runs/*/results_pareto.json"
+        ]
+        
+        latest_file = None
+        latest_mtime = 0
+        
+        for pattern in search_patterns:
+            for filepath in glob.glob(pattern):
+                # Skip pareto and markdown files for primary result
+                if '_pareto.json' in filepath or '_pareto.md' in filepath:
+                    continue
+                
+                try:
+                    mtime = os.path.getmtime(filepath)
+                    if mtime > latest_mtime:
+                        latest_mtime = mtime
+                        latest_file = filepath
+                except:
+                    continue
+        
+        if latest_file:
+            # Convert to relative path from viz perspective
+            # e.g., "demos/portfolio_langgraph_opt/viz/legal_demo.json" -> "legal_demo.json"
+            # or "demos/portfolio_langgraph_opt/outputs/foo.json" -> "../outputs/foo.json"
+            path_obj = Path(latest_file)
+            
+            # If in viz directory, return just filename
+            if "viz" in latest_file:
+                return path_obj.name
+            # If in outputs directory, return relative path from viz
+            elif "outputs" in latest_file:
+                return f"../outputs/{path_obj.name}"
+            # If in runs directory, return relative path from viz
+            elif "runs" in latest_file:
+                # Extract run_xxx/results.json pattern
+                parts = path_obj.parts
+                if "runs" in parts:
+                    idx = parts.index("runs")
+                    relative_parts = parts[idx:]  # e.g., ('runs', 'run_20260111_xxx', 'results.json')
+                    return f"../{'/'.join(relative_parts)}"
+            
+            # Fallback: return full relative path from demos/portfolio_langgraph_opt
+            return latest_file.replace("demos/portfolio_langgraph_opt/", "../")
+        
+        return None
     
     def _send_error(self, code, message):
         """Send error response."""

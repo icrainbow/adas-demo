@@ -34,9 +34,28 @@ async function loadResultsData() {
         }
     }
     
-    // Fallback to default paths if no query parameter
+    // Try to get latest result from API (dynamic, no hardcoding)
+    try {
+        const apiResponse = await fetch('/api/results/latest');
+        if (apiResponse.ok) {
+            const apiData = await apiResponse.json();
+            if (apiData.success && apiData.path) {
+                console.log('API returned latest result path:', apiData.path);
+                const cacheBuster = `?t=${Date.now()}`;
+                const response = await fetch(apiData.path + cacheBuster);
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Loaded latest result data from:', apiData.path);
+                    return data;
+                }
+            }
+        }
+    } catch (e) {
+        console.log('Could not fetch from API /api/results/latest:', e);
+    }
+    
+    // Fallback to legacy static paths if API fails
     const paths = [
-        'legal_demo.json',  // Latest legal case demo with full agent topology
         '../outputs/results_v11_pareto_smoke.json',
         './outputs/results_v11_pareto_smoke.json',
         'outputs/results_v11_pareto_smoke.json'
