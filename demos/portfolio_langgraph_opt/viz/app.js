@@ -195,11 +195,32 @@ function applyDeterministicJitter(candidate) {
 function generateDOTFromAgents(agents, candidateName) {
     console.log(`🎯 generateDOTFromAgents called with ${agents.length} agents:`, agents);
     
+    // Filter out configuration agents (not processing nodes)
+    // Configuration agents are meta-settings, not pipeline stages
+    const configAgentPatterns = [
+        'adaptive_on', 'adaptive_off',
+        'adaptive_policy_',
+        'carryover_',
+        'synth_style_'
+    ];
+    
+    const processingAgents = agents.filter(agent => {
+        const agentLower = agent.toLowerCase();
+        // Keep agent if it doesn't match any config pattern
+        return !configAgentPatterns.some(pattern => agentLower.includes(pattern.toLowerCase()));
+    });
+    
+    console.log(`🔧 Filtered ${agents.length} total agents -> ${processingAgents.length} processing nodes`);
+    console.log(`🔧 Processing nodes:`, processingAgents);
+    
+    const displayAgents = processingAgents.length > 0 ? processingAgents : agents;
+    const nodeCount = displayAgents.length;
+    
     let dot = 'digraph Topology {\n';
     dot += '  rankdir=LR;\n';
     dot += '  bgcolor="white";\n';
     dot += '  labelloc="t";\n';
-    dot += `  label="${candidateName} (${agents.length} agents)";\n`;
+    dot += `  label="${candidateName} (${nodeCount} processing ${nodeCount === 1 ? 'node' : 'nodes'})";\n`;
     dot += '  fontname="Arial Bold";\n';
     dot += '  fontsize=14;\n\n';
     dot += '  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=11, fillcolor="#E3F2FD"];\n\n';
@@ -207,7 +228,7 @@ function generateDOTFromAgents(agents, candidateName) {
     dot += '  start [label="Start", shape=circle, fillcolor="#4CAF50"];\n';
     dot += '  end [label="End", shape=circle, fillcolor="#F44336"];\n\n';
 
-    agents.forEach((agent, idx) => {
+    displayAgents.forEach((agent, idx) => {
         // Escape quotes in agent names
         const safe = String(agent).replace(/"/g, '\\"');
         dot += `  agent_${idx} [label="${safe}"];\n`;
@@ -215,18 +236,18 @@ function generateDOTFromAgents(agents, candidateName) {
 
     dot += '\n';
 
-    if (!agents || agents.length === 0) {
+    if (!displayAgents || displayAgents.length === 0) {
         dot += '  start -> end;\n';
     } else {
         dot += '  start -> agent_0;\n';
-        for (let i = 0; i < agents.length - 1; i++) {
+        for (let i = 0; i < displayAgents.length - 1; i++) {
             dot += `  agent_${i} -> agent_${i + 1};\n`;
         }
-        dot += `  agent_${agents.length - 1} -> end;\n`;
+        dot += `  agent_${displayAgents.length - 1} -> end;\n`;
     }
 
     dot += '}\n';
-    console.log('🎯 Generated DOT:', dot);
+    console.log('🎯 Generated DOT with processing nodes only');
     return dot;
 }
 
