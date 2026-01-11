@@ -12,6 +12,7 @@ sys.path.insert(0, repo_root)
 
 from demos.portfolio_langgraph_opt.src.search_space import validate_candidate
 from demos.portfolio_langgraph_opt.src.search_space_generator import load_search_space_for_case
+from demos.portfolio_langgraph_opt.src.agents import load_registry
 from demos.portfolio_langgraph_opt.src.evaluate import (
     load_cases,
     load_policy_text,
@@ -336,8 +337,28 @@ def main():
             score = result["score"]
             
             # Build candidate_spec
+            selected_agents = candidate.get("selected_agents", [])
+            
+            # Filter processing agents (node_type: node) for topology visualization
+            # This is generic - works for any case by reading agent YAML metadata
+            processing_agents = []
+            try:
+                registry = load_registry(args.registry_dir)
+                for agent_id in selected_agents:
+                    if agent_id in registry:
+                        agent_def = registry[agent_id]
+                        # Only include agents with node_type == 'node' (processing nodes)
+                        # Exclude: 'policy', 'strategy', 'style' (configuration nodes)
+                        if agent_def.node_type == 'node':
+                            processing_agents.append(agent_id)
+            except Exception as e:
+                # Fallback: if registry loading fails, use all selected_agents
+                print(f"  Warning: Could not filter processing agents: {e}")
+                processing_agents = selected_agents
+            
             candidate_spec = {
-                "selected_agents": candidate.get("selected_agents", []),
+                "selected_agents": selected_agents,
+                "processing_agents": processing_agents,  # NEW: topology-only agents
                 "derived": {
                     "use_retriever": candidate.get("use_retriever", False),
                     "use_risk_decompose": candidate.get("use_risk_decompose", False),

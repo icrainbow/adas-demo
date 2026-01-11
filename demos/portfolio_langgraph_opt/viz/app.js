@@ -195,25 +195,8 @@ function applyDeterministicJitter(candidate) {
 function generateDOTFromAgents(agents, candidateName) {
     console.log(`🎯 generateDOTFromAgents called with ${agents.length} agents:`, agents);
     
-    // Filter out configuration agents (not processing nodes)
-    // Configuration agents are meta-settings, not pipeline stages
-    const configAgentPatterns = [
-        'adaptive_on', 'adaptive_off',
-        'adaptive_policy_',
-        'carryover_',
-        'synth_style_'
-    ];
-    
-    const processingAgents = agents.filter(agent => {
-        const agentLower = agent.toLowerCase();
-        // Keep agent if it doesn't match any config pattern
-        return !configAgentPatterns.some(pattern => agentLower.includes(pattern.toLowerCase()));
-    });
-    
-    console.log(`🔧 Filtered ${agents.length} total agents -> ${processingAgents.length} processing nodes`);
-    console.log(`🔧 Processing nodes:`, processingAgents);
-    
-    const displayAgents = processingAgents.length > 0 ? processingAgents : agents;
+    // Use agents as-is (backend already filtered processing nodes)
+    const displayAgents = agents;
     const nodeCount = displayAgents.length;
     
     let dot = 'digraph Topology {\n';
@@ -247,7 +230,7 @@ function generateDOTFromAgents(agents, candidateName) {
     }
 
     dot += '}\n';
-    console.log('🎯 Generated DOT with processing nodes only');
+    console.log('🎯 Generated DOT for topology visualization');
     return dot;
 }
 
@@ -732,14 +715,21 @@ async function generateTopology(candidate) {
             isRealDot = true;
             console.log('✅ Using real DOT from candidate_spec.dot');
         }
-        // Priority 2: Generate from selected_agents array (NEW!)
-        else if (candidate.candidate_spec && candidate.candidate_spec.selected_agents) {
-            const agents = candidate.candidate_spec.selected_agents;
-            console.log(`✅ Using selected_agents (${agents.length} agents):`, agents);
+        // Priority 2: Generate from processing_agents (PREFERRED - backend filtered)
+        else if (candidate.candidate_spec && candidate.candidate_spec.processing_agents) {
+            const agents = candidate.candidate_spec.processing_agents;
+            console.log(`✅ Using processing_agents (${agents.length} nodes):`, agents);
             dot = generateDOTFromAgents(agents, candidate.name);
             isRealDot = true;
         }
-        // Priority 3: Fallback to inferred DOT (backward compatibility)
+        // Priority 3: Generate from selected_agents (backward compatibility)
+        else if (candidate.candidate_spec && candidate.candidate_spec.selected_agents) {
+            const agents = candidate.candidate_spec.selected_agents;
+            console.log(`⚠️ Using selected_agents (${agents.length} agents - may include config):`, agents);
+            dot = generateDOTFromAgents(agents, candidate.name);
+            isRealDot = true;
+        }
+        // Priority 4: Fallback to inferred DOT (old data)
         else {
             console.log('⚠️ Using inferred DOT (no candidate_spec data found)');
             console.log('⚠️ Full candidate object:', candidate);
