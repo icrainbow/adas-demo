@@ -1,25 +1,19 @@
-version: 1.0
-
-# Dataset configuration
 dataset:
-  cases_path: "demos/portfolio_langgraph_opt/data/cases.jsonl"
-  policy_path: "demos/portfolio_langgraph_opt/data/policy_snippets.txt"
-
-# Search configuration
-search:
-  mode: "grid"
-  budget: 16
-  seed: 7
-
-# Output configuration
+  cases_path: demos/portfolio_langgraph_opt/data/cases.jsonl
+  policy_path: demos/portfolio_langgraph_opt/data/policy_snippets.txt
 output:
-  output_dir: "demos/portfolio_langgraph_opt/runs"
   emit_dot: true
   lite_mode: true
-
-# Safety limits (enforced by service layer)
+  output_dir: demos/portfolio_langgraph_opt/runs
 safety:
   max_budget: 64
-  max_file_upload_mb: 1
   max_concurrency: 1
+  max_file_upload_mb: 1
   timeout_seconds: 3600
+search:
+  # budget = number of candidates evaluated (and thus number of plotted points in all_scores)
+  # recommended: 16-24 for demos; 4-8 for quick smoke tests
+  budget: 24
+  mode: grid
+  seed: 42
+version: 1.0

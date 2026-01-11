@@ -1,9 +1,5 @@
-// Page initialization
-async function init() {
-    await loadAgents();
-    await loadEvalConfig();
-    await loadRunConfig();
-}
+// Global state for case selection
+let currentCaseId = null;
 
 // Helper: Show toast message
 function showToast(message) {
@@ -13,11 +9,125 @@ function showToast(message) {
     setTimeout(() => toast.classList.remove('show'), 3000);
 }
 
+// ========== Case Selection ==========
+
+function renderCaseSelector() {
+    console.log('renderCaseSelector called');
+    
+    // Avoid duplicate insertion
+    if (document.getElementById('caseSelect')) {
+        console.log('Case selector already exists, skipping');
+        return;
+    }
+    
+    // Find main container - try multiple strategies
+    let targetContainer = document.querySelector('.container') || 
+                         document.querySelector('main') || 
+                         document.body;
+    
+    console.log('Target container:', targetContainer);
+    
+    // Create wrapper
+    const wrapper = document.createElement('div');
+    wrapper.className = 'section';
+    wrapper.style.marginBottom = '20px';
+    wrapper.innerHTML = `
+        <h2>Use Case Selection</h2>
+        <div class="form-group">
+            <label for="caseSelect">Select Use Case:</label>
+            <select id="caseSelect" style="width: 300px; padding: 8px; font-size: 14px;">
+                <option value="">-- Loading cases --</option>
+            </select>
+            <p class="help-text">Each use case defines its own agent pool context.</p>
+        </div>
+    `;
+    
+    // Insert at the very beginning
+    if (targetContainer.firstChild) {
+        targetContainer.insertBefore(wrapper, targetContainer.firstChild);
+    } else {
+        targetContainer.appendChild(wrapper);
+    }
+    
+    console.log('Case selector inserted, element:', document.getElementById('caseSelect'));
+    
+    // Add change event listener
+    const selector = document.getElementById('caseSelect');
+    if (selector) {
+        selector.addEventListener('change', async () => {
+            currentCaseId = selector.value || null;
+            console.log('Case changed to:', currentCaseId);
+            if (currentCaseId) {
+                await loadAgents();
+            }
+        });
+    }
+}
+
+async function loadCases() {
+    try {
+        const selector = document.getElementById('caseSelect');
+        if (!selector) {
+            console.error('Case selector not found in DOM');
+            showToast('Case selector not found in DOM');
+            return;
+        }
+        
+        console.log('Fetching /api/cases...');
+        const res = await fetch('/api/cases');
+        const data = await res.json();
+        console.log('Received data:', data);
+        
+        selector.innerHTML = '';
+        
+        if (!data.cases || data.cases.length === 0) {
+            console.warn('No cases found in response:', data);
+            const opt = document.createElement('option');
+            opt.value = '';
+            opt.textContent = 'No cases available';
+            selector.appendChild(opt);
+            currentCaseId = null;
+            await loadAgents();
+            return;
+        }
+        
+        console.log(`Loading ${data.cases.length} cases...`);
+        
+        data.cases.forEach(c => {
+            const opt = document.createElement('option');
+            opt.value = c.case_id;
+            opt.textContent = `${c.display_name} (v${c.version || '1.0.0'})`;
+            selector.appendChild(opt);
+        });
+        
+        // Default selection
+        let defaultCaseId = null;
+        try {
+            const dres = await fetch('/api/cases/default');
+            const d = await dres.json();
+            defaultCaseId = d.default_case_id || null;
+        } catch (e) {
+            defaultCaseId = null;
+        }
+        
+        currentCaseId = defaultCaseId || data.cases[0].case_id;
+        selector.value = currentCaseId;
+        
+        await loadAgents();
+    } catch (e) {
+        showToast('Error loading cases: ' + e.message);
+    }
+}
+
 // ========== Agent Registry ==========
 
 async function loadAgents() {
     try {
-        const res = await fetch('/api/agents');
+        const url = currentCaseId
+            ? `/api/agents?case_id=${encodeURIComponent(currentCaseId)}`
+            : '/api/agents';
+        
+        const res = await fetch(url);
         const data = await res.json();
         populateAgentTable(data.agents || []);
     } catch (e) {
@@ -59,28 +169,54 @@ async function uploadAgents() {
         return;
     }
     
+    const allUpdated = [];
+    const allErrors = [];
+    
     for (const file of files) {
+        // Check file size limit (100KB)
+        if (file.size > 100 * 1024) {
+            allErrors.push(`${file.name}: exceeds 100KB limit`);
+            continue;
+        }
+        
         try {
             const yaml_text = await file.text();
             const res = await fetch('/api/agents/upsert', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({yaml_text})
+                body: JSON.stringify({
+                    yaml_text,
+                    case_id: currentCaseId
+                })
             });
             const data = await res.json();
             
             if (data.success) {
-                showToast(`Uploaded: ${data.updated.join(', ')}`);
+                allUpdated.push(...(data.updated || []));
             } else {
-                showToast(`Errors: ${data.errors.join(', ')}`);
+                allErrors.push(...(data.errors || [`${file.name}: upload failed`]));
             }
         } catch (e) {
-            showToast('Upload error: ' + e.message);
+            allErrors.push(`${file.name}: ${e.message}`);
         }
     }
     
+    // Refresh agent list once
     await loadAgents();
     document.getElementById('agentFileInput').value = '';
+    
+    // Show single summary toast
+    const summary = [];
+    if (allUpdated.length > 0) {
+        summary.push(`Uploaded: ${allUpdated.length} agent(s) (${allUpdated.join(', ')})`);
+    }
+    if (allErrors.length > 0) {
+        summary.push(`Errors: ${allErrors.length}`);
+        if (allErrors.length <= 3) {
+            summary.push(`(${allErrors.join('; ')})`);
+        }
+    }
+    showToast(summary.join(' | ') || 'No agents uploaded');
 }
 
 async function deleteSelected() {
@@ -100,7 +236,10 @@ async function deleteSelected() {
         const res = await fetch('/api/agents/delete', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ids: selected})
+            body: JSON.stringify({
+                ids: selected,
+                case_id: currentCaseId
+            })
         });
         const data = await res.json();
         
@@ -206,7 +345,8 @@ async function saveRunConfig() {
             lite_mode: true
         },
         safety: {
-            max_budget: 64,
+            // aligned with CLI/service cap to avoid failing runs
+            max_budget: 32,
             max_file_upload_mb: 1,
             max_concurrency: 1,
             timeout_seconds: 3600
@@ -240,7 +380,13 @@ async function startOptimization() {
     document.getElementById('viewResultsBtn').disabled = true;
     
     try {
-        const res = await fetch('/api/optimize/start', {method: 'POST'});
+        const res = await fetch('/api/optimize/start', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                case_id: currentCaseId
+            })
+        });
         const data = await res.json();
         
         if (data.success) {
@@ -275,4 +421,18 @@ function viewResults() {
 }
 
 // Initialize on page load
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', async () => {
+    console.log('=== DOMContentLoaded fired ===');
+    console.log('Body:', document.body);
+    console.log('First element:', document.body.firstChild);
+    
+    renderCaseSelector();
+    
+    console.log('After renderCaseSelector, element:', document.getElementById('caseSelect'));
+    
+    await loadCases();
+    await loadEvalConfig();
+    await loadRunConfig();
+    
+    console.log('=== Initialization complete ===');
+});

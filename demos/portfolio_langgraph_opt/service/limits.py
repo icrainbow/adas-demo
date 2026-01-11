@@ -1,7 +1,8 @@
 """Safety limits and validation."""
 
 # Hard caps
-MAX_BUDGET = 64
+# Keep in sync with portfolio_search.py argparse validation (<=32)
+MAX_BUDGET = 32
 MAX_SAMPLES = 6
 MAX_UPLOAD_MB = 1
 MAX_AGENT_YAML_KB = 100
