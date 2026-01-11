@@ -706,6 +706,18 @@ function generateDOT(candidate) {
     return dot;
 }
 
+// Build topology debug info line
+function buildTopologyDebug(dot, candidate, src) {
+    function countMatches(re, s) {
+        const m = s.match(re);
+        return m ? m.length : 0;
+    }
+    const edges = countMatches(/->/g, dot || "");
+    // count node lines in DOT: patterns like '[label=' 
+    const nodes = countMatches(/\[[^\]]*label=/g, dot || "");
+    return `<div class="topology-debug" style="padding:8px; background:#f0f0f0; border-radius:4px; margin-bottom:10px; font-size:12px; font-family:monospace; color:#333;">DOT source: <strong>${src}</strong> | nodes≈${nodes} edges≈${edges}</div>`;
+}
+
 // Render topology using Viz.js
 async function generateTopology(candidate) {
     const container = document.getElementById('topologyContainer');
@@ -714,19 +726,22 @@ async function generateTopology(candidate) {
     try {
         let dot;
         let isRealDot = false;
+        let dotSource = "inferred"; // default
         
         console.log('🔍 generateTopology called for candidate:', candidate.name);
         console.log('🔍 candidate_spec:', candidate.candidate_spec);
         
-        // Priority 1: Real DOT from backend
+        // Priority 1: Real DOT from backend (ALWAYS PREFER)
         if (candidate.candidate_spec && candidate.candidate_spec.dot) {
             dot = candidate.candidate_spec.dot;
             isRealDot = true;
-            console.log('✅ Using real DOT from candidate_spec.dot');
+            dotSource = candidate.candidate_spec.dot_source || "dot";
+            console.log('✅ Using real DOT from candidate_spec.dot, source:', dotSource);
         }
         // Priority 2: Generate from processing_agents (PREFERRED - backend filtered)
         else if (candidate.candidate_spec && candidate.candidate_spec.processing_agents) {
             const agents = candidate.candidate_spec.processing_agents;
+            dotSource = "processing_agents_generated";
             console.log(`✅ Using processing_agents (${agents.length} nodes):`, agents);
             dot = generateDOTFromAgents(agents, candidate.name);
             isRealDot = true;
@@ -734,12 +749,14 @@ async function generateTopology(candidate) {
         // Priority 3: Generate from selected_agents (backward compatibility)
         else if (candidate.candidate_spec && candidate.candidate_spec.selected_agents) {
             const agents = candidate.candidate_spec.selected_agents;
+            dotSource = "selected_agents_generated";
             console.log(`⚠️ Using selected_agents (${agents.length} agents - may include config):`, agents);
             dot = generateDOTFromAgents(agents, candidate.name);
             isRealDot = true;
         }
         // Priority 4: Fallback to inferred DOT (old data)
         else {
+            dotSource = "inferred";
             console.log('⚠️ Using inferred DOT (no candidate_spec data found)');
             console.log('⚠️ Full candidate object:', candidate);
             dot = generateDOT(candidate);
@@ -775,7 +792,13 @@ async function generateTopology(candidate) {
             throw renderError;
         }
         
+        // Build debug info line
+        const debugLine = buildTopologyDebug(dot, candidate, dotSource);
+        
         container.innerHTML = '';
+        // Insert debug line first
+        container.insertAdjacentHTML('beforeend', debugLine);
+        // Then append SVG
         container.appendChild(svg);
         
         // Update DOT source badge
